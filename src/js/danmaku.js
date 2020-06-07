@@ -23,9 +23,9 @@ class Danmaku {
     load() {
         let apiurl;
         if (this.options.api.maximum) {
-            apiurl = `${this.options.api.address}v3/?id=${this.options.api.id}&max=${this.options.api.maximum}`;
+            apiurl = `${this.options.api.address}?max=${this.options.api.maximum}`;
         } else {
-            apiurl = `${this.options.api.address}v3/?id=${this.options.api.id}`;
+            apiurl = `${this.options.api.address}`;
         }
         const endpoints = (this.options.api.addition || []).slice(0);
         endpoints.push(apiurl);
