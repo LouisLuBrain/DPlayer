@@ -92,7 +92,7 @@ class Danmaku {
             type: dan.type,
         };
         this.options.apiBackend.send({
-            url: this.options.api.address + 'v3/',
+            url: this.options.api.address,
             data: danmakuData,
             success: callback,
             error: (msg) => {
@@ -211,9 +211,10 @@ class Danmaku {
                 const item = document.createElement('div');
                 item.classList.add('dplayer-danmaku-item');
                 item.classList.add(`dplayer-danmaku-${dan[i].type}`);
-                if (dan[i].border) {
+                if (dan[i].border && dan[i].text instanceof String) {
                     item.innerHTML = `<span style="border:${dan[i].border}">${dan[i].text}</span>`;
                 } else {
+                    // MARK: render text
                     item.innerHTML = dan[i].text;
                 }
                 item.style.opacity = this._opacity;
@@ -307,13 +308,7 @@ class Danmaku {
     }
 
     htmlEncode(str) {
-        return str
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#x27;')
-            .replace(/\//g, '&#x2f;');
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace(/\//g, '&#x2f;');
     }
 
     resize() {
