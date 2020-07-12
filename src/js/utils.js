@@ -131,6 +131,8 @@ const utils = {
                 return 'top';
             case 2:
                 return 'bottom';
+            case 3:
+                return 'render';
             default:
                 return 'right';
         }

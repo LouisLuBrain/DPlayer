@@ -5,6 +5,7 @@ import Icons from './icons';
 class Controller {
     constructor(player) {
         this.player = player;
+        console.log('player: ', player);
 
         this.autoHideTimer = 0;
         if (!utils.isMobile) {

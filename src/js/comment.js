@@ -41,16 +41,16 @@ class Comment {
 
     show() {
         this.player.controller.disableAutoHide = true;
-        this.player.template.controller.classList.add('dplayer-controller-comment');
+        // this.player.template.controller.classList.add('dplayer-controller-comment');
         this.player.template.mask.classList.add('dplayer-mask-show');
-        this.player.container.classList.add('dplayer-show-controller');
+        // this.player.container.classList.add('dplayer-show-controller');
         this.player.template.commentInput.focus();
     }
 
     hide() {
-        this.player.template.controller.classList.remove('dplayer-controller-comment');
+        // this.player.template.controller.classList.remove('dplayer-controller-comment');
         this.player.template.mask.classList.remove('dplayer-mask-show');
-        this.player.container.classList.remove('dplayer-show-controller');
+        // this.player.container.classList.remove('dplayer-show-controller');
         this.player.controller.disableAutoHide = false;
         this.hideSetting();
     }
@@ -87,6 +87,11 @@ class Comment {
                 type: parseInt(this.player.container.querySelector('.dplayer-comment-setting-type input:checked').value),
             },
             () => {
+                this.player.template.commentInput.value = '';
+                this.hide();
+            },
+            () => {
+                // TODO: add error handler
                 this.player.template.commentInput.value = '';
                 this.hide();
             }

@@ -8,6 +8,7 @@ class Danmaku {
             right: {},
             top: {},
             bottom: {},
+            render: {},
         };
         this.danIndex = 0;
         this.dan = [];
@@ -81,7 +82,7 @@ class Danmaku {
         }
     }
 
-    send(dan, callback) {
+    send(dan, successCallBack, errorCallBack) {
         const danmakuData = {
             token: this.options.api.token,
             id: this.options.api.id,
@@ -94,8 +95,11 @@ class Danmaku {
         this.options.apiBackend.send({
             url: this.options.api.address,
             data: danmakuData,
-            success: callback,
+            success: (msg) => {
+                successCallBack && successCallBack(msg);
+            },
             error: (msg) => {
+                errorCallBack && errorCallBack(msg);
                 this.options.error(msg || this.options.tran('Danmaku send failed'));
             },
         });
@@ -248,6 +252,8 @@ class Danmaku {
                             item.style.bottom = itemHeight * tunnel + 'px';
                         }
                         break;
+                    case 'render':
+                        tunnel = getTunnel(item, dan[i].type);
                     default:
                         console.error(`Can't handled danmaku type: ${dan[i].type}`);
                 }

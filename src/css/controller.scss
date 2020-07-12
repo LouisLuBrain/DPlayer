@@ -8,6 +8,8 @@
 }
 
 .dplayer-controller {
+    display: flex;
+    justify-content: space-between;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -18,10 +20,10 @@
     transition: all 0.3s ease;
     &.dplayer-controller-comment {
         .dplayer-icons {
-            display: none;
+            display: flex;
         }
         .dplayer-icons.dplayer-comment-box {
-            display: block;
+            display: flex;
         }
     }
     .dplayer-bar-wrap {
@@ -154,11 +156,11 @@
     }
     .dplayer-icons {
         height: 38px;
-        position: absolute;
+        // position: absolute;
         bottom: 0;
         &.dplayer-comment-box {
             display: none;
-            position: absolute;
+            // position: absolute;
             transition: all .3s ease-in-out;
             z-index: 2;
             height: 38px;
@@ -170,12 +172,12 @@
                 padding: 7px;
             }
             .dplayer-comment-setting-icon {
-                position: absolute;
+                // position: absolute;
                 left: 0;
                 top: 0;
             }
             .dplayer-send-icon {
-                position: absolute;
+                // position: absolute;
                 right: 0;
                 top: 0;
             }
