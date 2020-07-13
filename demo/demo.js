@@ -41,6 +41,7 @@ function initPlayers() {
         container: document.getElementById('dplayer-container'),
         preload: 'none',
         screenshot: true,
+        theme: '#3093ff',
         video: {
             url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
             pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
@@ -59,6 +60,7 @@ function initPlayers() {
         container: document.getElementById('dplayer1'),
         preload: 'none',
         screenshot: true,
+        theme: '#3093ff',
         video: {
             url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
             pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
@@ -79,7 +81,7 @@ function initPlayers() {
         container: document.getElementById('dplayer2'),
         preload: 'none',
         autoplay: false,
-        theme: '#FADFA3',
+        theme: '#3093ff',
         loop: true,
         screenshot: true,
         airplay: true,
