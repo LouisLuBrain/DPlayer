@@ -1,14 +1,21 @@
 import utils from './utils';
+import Icons from './icons';
 
 class Comment {
     constructor(player) {
         this.player = player;
 
+        this.showDanmaku = this.player.user.get('danmaku');
+        if (!this.showDanmaku) {
+            this.player.danmaku && this.player.danmaku.hide();
+        }
+
         this.player.template.mask.addEventListener('click', () => {
             this.hide();
         });
         this.player.template.commentButton.addEventListener('click', () => {
-            this.show();
+            // this.show();
+            this.toggleShowDanmaku();
         });
         this.player.template.commentSettingButton.addEventListener('click', () => {
             this.toggleSetting();
@@ -37,6 +44,20 @@ class Comment {
         this.player.template.commentSendButton.addEventListener('click', () => {
             this.send();
         });
+    }
+
+    toggleShowDanmaku() {
+        this.player.template.showDanmakuToggle.checked = !this.player.template.showDanmakuToggle.checked;
+        if (this.player.template.showDanmakuToggle.checked) {
+            this.showDanmaku = true;
+            this.player.danmaku.show();
+            this.player.template.commentButton.innerHTML = Icons.comment;
+        } else {
+            this.showDanmaku = false;
+            this.player.danmaku.hide();
+            this.player.template.commentButton.innerHTML = Icons.commentOff;
+        }
+        this.player.user.set('danmaku', this.showDanmaku ? 1 : 0);
     }
 
     show() {
@@ -88,12 +109,10 @@ class Comment {
             },
             () => {
                 this.player.template.commentInput.value = '';
-                this.hide();
             },
             () => {
                 // TODO: add error handler
                 this.player.template.commentInput.value = '';
-                this.hide();
             }
         );
     }

@@ -13,8 +13,14 @@
         height: 100%;
 
         path,
-        circle {
+        circle,
+        rect {
             fill: #fff;
+        }
+
+        #show-danmaku-icon-circle,
+        #show-danmaku-icon-check{
+            fill: #3093ff;
         }
     }
 
