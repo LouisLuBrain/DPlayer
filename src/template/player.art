@@ -45,57 +45,64 @@
         {{ /if }}
     </div>
     <div class="dplayer-icons dplayer-comment-box">
-        <button class="dplayer-icon dplayer-comment-setting-icon" data-balloon="{{ tran('Setting') }}" data-balloon-pos="up">
-            <span class="dplayer-icon-content">{{@ icons.pallette }}</span>
-        </button>
-        <div class="dplayer-comment-setting-box">
-            <div class="dplayer-comment-setting-color">
-                <div class="dplayer-comment-setting-title">{{ tran('Set danmaku color') }}</div>
-                <label>
-                    <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#fff" checked>
-                    <span style="background: #fff;"></span>
-                </label>
-                <label>
-                    <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#e54256">
-                    <span style="background: #e54256"></span>
-                </label>
-                <label>
-                    <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#ffe133">
-                    <span style="background: #ffe133"></span>
-                </label>
-                <label>
-                    <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#64DD17">
-                    <span style="background: #64DD17"></span>
-                </label>
-                <label>
-                    <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#39ccff">
-                    <span style="background: #39ccff"></span>
-                </label>
-                <label>
-                    <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#D500F9">
-                    <span style="background: #D500F9"></span>
-                </label>
-            </div>
-            <div class="dplayer-comment-setting-type">
-                <div class="dplayer-comment-setting-title">{{ tran('Set danmaku type') }}</div>
-                <label>
-                    <input type="radio" name="dplayer-danmaku-type-{{ index }}" value="1">
-                    <span>{{ tran('Top') }}</span>
-                </label>
-                <label>
-                    <input type="radio" name="dplayer-danmaku-type-{{ index }}" value="0" checked>
-                    <span>{{ tran('Rolling') }}</span>
-                </label>
-                <label>
-                    <input type="radio" name="dplayer-danmaku-type-{{ index }}" value="2">
-                    <span>{{ tran('Bottom') }}</span>
-                </label>
-            </div>
+        <div class="dplayer-comment">
+            <button class="dplayer-icon dplayer-comment-icon" data-balloon="{{ tran('Send danmaku') }}" data-balloon-pos="up">
+                <span class="dplayer-icon-content">{{@ icons.comment }}</span>
+            </button>
         </div>
-        <input class="dplayer-comment-input" type="text" placeholder="{{ tran('Input danmaku, hit Enter') }}" maxlength="30">
-        <button class="dplayer-icon dplayer-send-icon" data-balloon="{{ tran('Send') }}" data-balloon-pos="up" style="background: {{ options.theme }}">
-            <span class="dplayer-icon-content">{{@ icons.send }}</span>
-        </button>
+        <div class="dplayer-icons dplayer-comment-input-box">
+            <button class="dplayer-icon dplayer-comment-setting-icon" data-balloon="{{ tran('Setting') }}" data-balloon-pos="up">
+                <span class="dplayer-icon-content">{{@ icons.pallette }}</span>
+            </button>
+            <div class="dplayer-comment-setting-box">
+                <div class="dplayer-comment-setting-color">
+                    <div class="dplayer-comment-setting-title">{{ tran('Set danmaku color') }}</div>
+                    <label>
+                        <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#fff" checked>
+                        <span style="background: #fff;"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#e54256">
+                        <span style="background: #e54256"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#ffe133">
+                        <span style="background: #ffe133"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#64DD17">
+                        <span style="background: #64DD17"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#39ccff">
+                        <span style="background: #39ccff"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="dplayer-danmaku-color-{{ index }}" value="#D500F9">
+                        <span style="background: #D500F9"></span>
+                    </label>
+                </div>
+                <div class="dplayer-comment-setting-type">
+                    <div class="dplayer-comment-setting-title">{{ tran('Set danmaku type') }}</div>
+                    <label>
+                        <input type="radio" name="dplayer-danmaku-type-{{ index }}" value="1">
+                        <span>{{ tran('Top') }}</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="dplayer-danmaku-type-{{ index }}" value="0" checked>
+                        <span>{{ tran('Rolling') }}</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="dplayer-danmaku-type-{{ index }}" value="2">
+                        <span>{{ tran('Bottom') }}</span>
+                    </label>
+                </div>
+            </div>
+            <input class="dplayer-comment-input" type="text" placeholder="{{ tran('Input danmaku, hit Enter') }}" maxlength="30">
+            <button class="dplayer-icon dplayer-send-icon" data-balloon="{{ tran('Send') }}" data-balloon-pos="up" style="background: {{ options.theme }}">
+                <span class="dplayer-icon-content">{{@ icons.send }}</span>
+            </button>
+        </div>
     </div>
     <div class="dplayer-icons dplayer-icons-right">
         {{ if options.video.quality }}
@@ -120,11 +127,6 @@
             <span class="dplayer-icon-content">{{@ icons.airplay }}</span>
         </div>
         {{ /if }}
-        <div class="dplayer-comment">
-            <button class="dplayer-icon dplayer-comment-icon" data-balloon="{{ tran('Send danmaku') }}" data-balloon-pos="up">
-                <span class="dplayer-icon-content">{{@ icons.comment }}</span>
-            </button>
-        </div>
         {{ if options.subtitle }}
         <div class="dplayer-subtitle-btn">
             <button class="dplayer-icon dplayer-subtitle-icon" data-balloon="{{ tran('Hide subtitle') }}" data-balloon-pos="up">
@@ -149,7 +151,7 @@
                             <label for="dplayer-toggle"></label>
                         </div>
                     </div>
-                    <div class="dplayer-setting-item dplayer-setting-showdan">
+                    <div class="dplayer-setting-item dplayer-setting-showdan" style="display: none;">
                         <span class="dplayer-label">{{ tran('Show danmaku') }}</span>
                         <div class="dplayer-toggle">
                             <input class="dplayer-showdan-setting-input" type="checkbox" name="dplayer-toggle-dan">
