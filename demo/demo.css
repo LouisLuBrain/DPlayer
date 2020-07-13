@@ -1,6 +1,6 @@
 body {
-    max-width: 700px;
-    margin: 0 auto;
+    /* max-width: 700px; */
+    margin: 0 20px;
     padding: 45px 10px;
     position: relative;
 }
@@ -45,6 +45,7 @@ body {
 }
 
 .example {
+    width: 90vw;
     position: relative;
     margin: 15px 0 0;
     padding: 39px 19px 14px;
