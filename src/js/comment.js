@@ -26,8 +26,8 @@ class Comment {
             if (sele) {
                 const color = this.player.template.commentColorSettingBox.querySelector('input:checked').value;
                 this.player.template.commentSettingFill.style.fill = color;
-                this.player.template.commentInput.style.color = color;
-                this.player.template.commentSendFill.style.fill = color;
+                // this.player.template.commentInput.style.color = color;
+                // this.player.template.commentSendFill.style.fill = color;
             }
         });
 
