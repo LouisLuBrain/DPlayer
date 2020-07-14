@@ -59,6 +59,10 @@ const tranTxt = {
         Volume: '音量',
         Live: '直播',
         'Video info': '视频统计信息',
+        'Range for danmaku': '弹幕范围',
+        'Full': '全屏',
+        'Half': '半屏',
+        'Quarter': '1/4屏',
     },
     'zh-tw': {
         'Danmaku is loading': '彈幕載入中',
@@ -99,6 +103,10 @@ const tranTxt = {
         Volume: '音量',
         Live: '直播',
         'Video info': '影片統計訊息',
+        'Range for danmaku': '彈幕範圍',
+        'Full': '全屏',
+        'Half': '半屏',
+        'Quarter': '1/4屏',
     },
 };
 
