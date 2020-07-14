@@ -8,6 +8,7 @@ export default (options) => {
         live: false,
         autoplay: false,
         theme: '#b7daff',
+        borderColor: '#fffff',
         loop: false,
         lang: (navigator.language || navigator.browserLanguage).toLowerCase(),
         screenshot: false,
