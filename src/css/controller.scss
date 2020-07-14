@@ -423,6 +423,8 @@
             height: 100%;
             .dplayer-setting-box {
                 position: absolute;
+                height: auto;
+                display: flex;
                 right: 0;
                 bottom: calc( 100% + 10px );
                 transform: scale(0);
@@ -437,6 +439,7 @@
                     display: none;
                     &.dplayer-setting-origin-panel {
                         display: block;
+                        width: 100%;
                     }
                 }
                 &.dplayer-setting-box-open {
@@ -524,6 +527,63 @@
                                 background: #aaa;
                             }
                         }
+                    }
+                }
+            }
+            .dplayer-setting-danrange {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 5px 0px;
+                cursor: default;
+                box-sizing: content-box;
+                height: auto;
+                .dplayer-label {
+                    padding: 0 10px;
+                    display: block;
+                }
+                .dplayer-selector-box {
+                    display: flex;
+                    margin: 10px auto 0px;
+                    width: 80%;
+                    justify-content: space-between;
+                    position: relative;
+                    .dplayer-selector-option {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        span {
+                            font-size: 1rem;
+                            display: inline-block;
+                            padding-top: 2px;
+                            cursor: pointer;
+                            color: rgb(201, 201, 201);
+                            &:hover {
+                                color: rgb(255, 255, 255);
+                            }
+                        }
+                        input {
+                            display: inline-block;
+                            z-index: 2;
+                            &:checked + span {
+                                color: rgb(255, 255, 255);
+                            }
+                            &:hover + span {
+                                color: rgb(255, 255, 255);
+                            }
+                        }
+                    }
+                    &.line {
+                        position: absolute;
+                        width: 80%;
+                        height: 2px;
+                        background-color: #fff;
+                        border-radius: 1px;
+                        top: -5px;
+                        left: 50%;
+                        transform: translateX(-50%);
                     }
                 }
             }
