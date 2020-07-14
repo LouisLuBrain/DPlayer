@@ -52,7 +52,6 @@ function initPlayers() {
         },
         danmaku: {
             id: '9E2E3368B56CDBB4',
-            api: 'https://api.prprpr.me/dplayer/'
         }
     });
     // dp1
@@ -69,7 +68,6 @@ function initPlayers() {
         },
         danmaku: {
             id: '9E2E3368B56CDBB4',
-            api: 'https://api.prprpr.me/dplayer/',
             addition: ['https://s-sh-17-dplayercdn.oss.dogecdn.com/1678963.json']
         }
     });
