@@ -59,6 +59,16 @@ class Setting {
             this.hide();
         });
 
+        // danmaku range
+        for (let i = 0; i < this.player.template.commentRangeSelector.length; i++) {
+            this.player.template.commentRangeSelector[i].addEventListener('click', (event) => {
+                if (event.target.value) {
+                    // const rangeValue = range.value
+                    this.player.danmaku.range(event.target.value)
+                }
+            });
+        }
+
         // speed
         this.player.template.speed.addEventListener('click', () => {
             this.player.template.settingBox.classList.add('dplayer-setting-box-narrow');

@@ -148,6 +148,8 @@ class DPlayer {
 
         index++;
         instances.push(this);
+
+        // console.log('AL: player', this)
     }
 
     /**

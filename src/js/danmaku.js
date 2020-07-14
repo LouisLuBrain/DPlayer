@@ -16,6 +16,7 @@ class Danmaku {
         this._opacity = this.options.opacity;
         this.events = this.options.events;
         this.unlimited = this.options.unlimited;
+        this._range = 1;
         this._measure('');
 
         this.load();
@@ -145,6 +146,17 @@ class Danmaku {
         return this._opacity;
     }
 
+    range(select) {
+        const range = {
+            'full': 1,
+            'half': 2,
+            'quarter': 4,
+        };
+
+        this._range = range[select];
+        
+    }
+
     /**
      * Push a danmaku into DPlayer
      *
@@ -158,7 +170,7 @@ class Danmaku {
             const itemHeight = this.options.height;
             const danWidth = this.container.offsetWidth;
             const danHeight = this.container.offsetHeight;
-            const itemY = parseInt(danHeight / itemHeight);
+            const itemY = parseInt((danHeight / itemHeight) / this._range);
 
             const danItemRight = (ele) => {
                 const eleWidth = ele.offsetWidth || parseInt(ele.style.width);
