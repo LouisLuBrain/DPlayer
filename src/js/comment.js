@@ -4,6 +4,7 @@ import Icons from './icons';
 class Comment {
     constructor(player) {
         this.player = player;
+        this.commentLength = 0;
 
         this.showDanmaku = this.player.user.get('danmaku');
         if (!this.showDanmaku) {
@@ -34,12 +35,27 @@ class Comment {
         this.player.template.commentInput.addEventListener('click', () => {
             this.hideSetting();
         });
+        this.player.template.commentInput.addEventListener('focus', () => {
+            this.show();
+        });
         this.player.template.commentInput.addEventListener('keydown', (e) => {
             const event = e || window.event;
             if (event.keyCode === 13) {
                 this.send();
             }
         });
+
+        this.player.template.commentInput.addEventListener('keyup', (e) => {
+            const event = e || window.event;
+            if (event.keyCode !== 13) {
+                this.commentLength = this.player.template.commentInput.value.length
+            }
+            if (this.commentLength > 100) { 
+                this.player.template.commentCounter.innerText = this.commentLength + '/100';
+            } else {
+                this.player.template.commentCounter.innerText = '';
+            }
+        })
 
         this.player.template.commentSendButton.addEventListener('click', () => {
             this.send();
@@ -101,6 +117,11 @@ class Comment {
             return;
         }
 
+        if (this.player.template.commentInput.value.length > 100) {
+            this.player.notice(this.player.tran('The number of words exceeds the limit!'));
+            return;
+        }
+
         this.player.danmaku.send(
             {
                 text: this.player.template.commentInput.value,
@@ -109,10 +130,12 @@ class Comment {
             },
             () => {
                 this.player.template.commentInput.value = '';
+                this.player.template.commentCounter.innerText = '';
             },
             () => {
                 // TODO: add error handler
                 this.player.template.commentInput.value = '';
+                this.player.template.commentCounter.innerText = '';
             }
         );
     }

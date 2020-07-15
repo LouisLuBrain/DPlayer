@@ -63,6 +63,7 @@ const tranTxt = {
         'Full': '全屏',
         'Half': '半屏',
         'Quarter': '1/4屏',
+        'The number of words exceeds the limit!': '弹幕字数太多了鸭！',
     },
     'zh-tw': {
         'Danmaku is loading': '彈幕載入中',
@@ -107,6 +108,7 @@ const tranTxt = {
         'Full': '全屏',
         'Half': '半屏',
         'Quarter': '1/4屏',
+        'The number of words exceeds the limit!': '彈幕字數太多了呀！',
     },
 };
 

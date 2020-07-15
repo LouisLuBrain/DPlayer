@@ -271,10 +271,10 @@
             .dplayer-comment-input {
                 outline: none;
                 border: none;
-                padding: 8px 10px;
+                padding: 8px 0px;
                 min-width: 250px;
-                font-size: 14px;
-                line-height: 18px;
+                font-size: 1rem;
+                line-height: 1rem;
                 text-align: left;
                 border-radius: 4px;
                 background: none;
@@ -290,6 +290,13 @@
                 &::-ms-clear {
                     display: none;
                 }
+            }
+            .dplayer-comment-input-counter {
+                white-space: nowrap;
+                min-width: 50px;
+                font-size: 1rem;
+                padding: 4px;
+                color: #EB5B4F;
             }
         }
         &.dplayer-icons-left {
@@ -468,6 +475,9 @@
                 &:hover {
                     background-color: rgba(255, 255, 255, .1);
                 }
+                &.dplayer-setting-danunlimit{
+                    display: none!important;
+                }
             }
             .dplayer-setting-danmaku {
                 padding: 5px 0;
@@ -548,12 +558,13 @@
                     display: flex;
                     margin: 10px auto 0px;
                     width: 80%;
-                    justify-content: space-between;
+                    justify-content: flex-start;
                     position: relative;
                     .dplayer-selector-option {
                         display: flex;
                         flex-direction: column;
-                        align-items: center;
+                        align-items: flex-start;
+                        width: 40%;
                         span {
                             font-size: 1rem;
                             display: inline-block;
@@ -577,13 +588,12 @@
                     }
                     &.line {
                         position: absolute;
-                        width: 80%;
+                        width: calc( 90% - 15px );
                         height: 2px;
                         background-color: #fff;
                         border-radius: 1px;
                         top: -5px;
-                        left: 50%;
-                        transform: translateX(-50%);
+                        left: 0;
                     }
                 }
             }
@@ -592,11 +602,11 @@
             display: inline-block;
             height: 100%;
             position: relative;
-            &:hover {
-                .dplayer-full-in-icon {
-                    display: block;
-                }
-            }
+            // &:hover {
+            //     .dplayer-full-in-icon {
+            //         display: block;
+            //     }
+            // }
             .dplayer-full-in-icon {
                 position: absolute;
                 top: -30px;
