@@ -435,13 +435,13 @@
                 position: absolute;
                 height: auto;
                 display: flex;
-                right: 0;
+                right: 20px;
                 bottom: calc( 100% + 10px );
                 transform: scale(0);
-                width: 150px;
+                width: 220px;
                 border-radius: 2px;
                 background: rgba(28, 28, 28, 0.9);
-                padding: 7px 0;
+                padding: 10px 0;
                 transition: all .3s ease-in-out;
                 overflow: hidden;
                 z-index: 2;
@@ -470,7 +470,7 @@
             }
             .dplayer-setting-item,
             .dplayer-setting-speed-item {
-                height: 30px;
+                height: 35px;
                 padding: 5px 10px;
                 box-sizing: border-box;
                 cursor: pointer;
@@ -559,8 +559,8 @@
                 }
                 .dplayer-selector-box {
                     display: flex;
-                    margin: 10px auto 0px;
-                    width: 80%;
+                    margin: 10px 10px 0px;
+                    width: calc( 100% - 20px);
                     justify-content: flex-start;
                     position: relative;
                     .dplayer-selector-option {
@@ -568,6 +568,12 @@
                         flex-direction: column;
                         align-items: flex-start;
                         width: 40%;
+                        &:nth-child(3) {
+                            align-items: center;
+                        }
+                        &:last-child {
+                            align-items: flex-end;
+                        }
                         span {
                             font-size: 1rem;
                             display: inline-block;
@@ -581,6 +587,10 @@
                         input {
                             display: inline-block;
                             z-index: 2;
+                            width: 0px;
+                            &:checked {
+                                width: auto;
+                            }
                             &:checked + span {
                                 color: rgb(255, 255, 255);
                             }
@@ -590,12 +600,13 @@
                         }
                     }
                     &.line {
+                        margin: 0px;
                         position: absolute;
-                        width: calc( 90% - 15px );
+                        width: 100%;
                         height: 2px;
                         background-color: #fff;
                         border-radius: 1px;
-                        top: -5px;
+                        top: 5px;
                         left: 0;
                     }
                 }

@@ -59,6 +59,7 @@ function initPlayers() {
         container: document.getElementById('dplayer1'),
         preload: 'none',
         screenshot: false,
+        lang: 'en',
         theme: '#3093ff',
         video: {
             defaultQuality: 0,
