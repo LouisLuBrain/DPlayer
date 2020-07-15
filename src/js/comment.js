@@ -52,8 +52,12 @@ class Comment {
             }
             if (this.commentLength > 100) { 
                 this.player.template.commentCounter.innerText = this.commentLength + '/100';
+                this.player.template.commentCounter.style.width = '50px';
+                this.player.template.commentInput.style.width = '200px';
             } else {
                 this.player.template.commentCounter.innerText = '';
+                this.player.template.commentCounter.style.width = '0px';
+                this.player.template.commentInput.style.width = '250px';
             }
         })
 
@@ -131,11 +135,15 @@ class Comment {
             () => {
                 this.player.template.commentInput.value = '';
                 this.player.template.commentCounter.innerText = '';
+                this.player.template.commentCounter.style.width = '0px';
+                this.player.template.commentInput.style.width = '250px';
             },
             () => {
                 // TODO: add error handler
                 this.player.template.commentInput.value = '';
                 this.player.template.commentCounter.innerText = '';
+                this.player.template.commentCounter.style.width = '0px';
+                this.player.template.commentInput.style.width = '250px';
             }
         );
     }
