@@ -73,7 +73,8 @@ class Template {
         this.commentSendButton = this.container.querySelector('.dplayer-send-icon');
         this.commentSendFill = this.container.querySelector('.dplayer-send-icon path');
         this.commentColorSettingBox = this.container.querySelector('.dplayer-comment-setting-color');
-        this.commentRangeSelector = this.container.querySelectorAll('.dplayer-range-selector');
+        this.commentRangeSelector = this.container.querySelectorAll('.dplayer-selector-span');
+        this.commentRangeSelectorRadio = this.container.querySelectorAll('.dplayer-range-selector');
         this.commentCounter = this.container.querySelector('.dplayer-comment-input-counter');
         this.browserFullButton = this.container.querySelector('.dplayer-full-icon');
         this.webFullButton = this.container.querySelector('.dplayer-full-in-icon');

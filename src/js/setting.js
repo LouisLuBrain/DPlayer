@@ -63,10 +63,9 @@ class Setting {
         // danmaku range
         for (let i = 0; i < this.player.template.commentRangeSelector.length; i++) {
             this.player.template.commentRangeSelector[i].addEventListener('click', (event) => {
-                if (event.target.value) {
-                    // const rangeValue = range.value
-                    this.player.danmaku.range(event.target.value)
-                }
+                let radio = event.target.previousElementSibling
+                radio.checked = true
+                this.player.danmaku.range(radio.value)
             });
         }
 
