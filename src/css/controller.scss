@@ -285,8 +285,9 @@
                 color: #fff;
                 transition: all 250ms ease-in-out;
                 &::placeholder {
-                    color: #fff;
-                    opacity: 0.8;
+                    color: #fff!important;
+                    opacity: 0.8!important;
+                    font-size: 1rem!important;
                 }
                 &::-ms-clear {
                     display: none;
@@ -524,7 +525,7 @@
                             left: 0;
                             height: 100%;
                             transition: all 0.1s ease;
-                            background: #aaa;
+                            background: #3093fe;
                             will-change: width;
                             .dplayer-thumb {
                                 position: absolute;
@@ -532,12 +533,13 @@
                                 right: 5px;
                                 margin-top: -4px;
                                 margin-right: -10px;
-                                height: 11px;
-                                width: 11px;
+                                height: 6px;
+                                width: 6px;
                                 border-radius: 50%;
                                 cursor: pointer;
                                 transition: all .3s ease-in-out;
-                                background: #aaa;
+                                background: #ffffff;
+                                border: 3px solid #3093fe;
                             }
                         }
                     }
@@ -577,11 +579,22 @@
                         span {
                             font-size: 1rem;
                             display: inline-block;
+                            position: relative;
                             padding-top: 2px;
                             cursor: pointer;
                             color: rgb(201, 201, 201);
                             &:hover {
                                 color: rgb(255, 255, 255);
+                            }
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                width: 10px;
+                                height: 10px;
+                                border-radius: 50%;
+                                background-color: #ffffff;
+                                border: 3px solid #3093fe;
+                                display: none;
                             }
                         }
                         input {
@@ -589,10 +602,10 @@
                             z-index: 2;
                             width: 0px;
                             &:checked {
-                                width: auto;
-                            }
-                            &:checked + span {
                                 color: rgb(255, 255, 255);
+                            }
+                            &:checked + span::before {
+                                display: block;
                             }
                             &:hover + span {
                                 color: rgb(255, 255, 255);
@@ -602,12 +615,12 @@
                     &.line {
                         margin: 0px;
                         position: absolute;
-                        width: 100%;
+                        width: calc( 100% - 20px ) ;
                         height: 2px;
                         background-color: #fff;
                         border-radius: 1px;
                         top: 5px;
-                        left: 0;
+                        left: 10px;
                     }
                 }
             }
@@ -701,7 +714,7 @@
                 display: inline-block;
                 position: relative;
                 box-shadow: rgb(223, 223, 223) 0 0 0 0 inset;
-                border: 1px solid rgb(223, 223, 223);
+                border: 1px solid #dfdfdf;
                 height: 20px;
                 width: 32px;
                 border-radius: 10px;
@@ -734,11 +747,11 @@
                 width: 18px;
             }
             input:checked+label {
-                border-color: rgba(255, 255, 255, 0.5);
+                border-color: #3093fe;
             }
             input:checked+label:before {
                 width: 30px;
-                background: rgba(255, 255, 255, 0.5);
+                background: #3093fe;
             }
             input:checked+label:after {
                 left: 12px;
