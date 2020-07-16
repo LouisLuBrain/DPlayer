@@ -24,7 +24,8 @@
         transform: translateX(100%);
         &.dplayer-danmaku-move {
             will-change: transform;
-            animation: danmaku 5s linear;
+            animation: danmaku linear;
+            animation-duration: 10s;
             animation-play-state: paused;
         }
     }
