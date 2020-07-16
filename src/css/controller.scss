@@ -273,8 +273,8 @@
                 border: none;
                 padding: 8px 0px;
                 width: 250px;
-                font-size: 1rem;
-                line-height: 1rem;
+                font-size: 1.2rem;
+                line-height: 1.2rem;
                 text-align: left;
                 border-radius: 4px;
                 background: none;
@@ -286,8 +286,8 @@
                 transition: all 250ms ease-in-out;
                 &::placeholder {
                     color: #fff!important;
-                    opacity: 0.8!important;
-                    font-size: 1rem!important;
+                    opacity: 0.6!important;
+                    font-size: 1.2rem!important;
                 }
                 &::-ms-clear {
                     display: none;
