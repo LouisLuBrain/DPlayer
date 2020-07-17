@@ -274,8 +274,8 @@
                 border: none;
                 padding: 8px 0px;
                 width: 300px;
-                font-size: 1.2rem;
-                line-height: 1.2rem;
+                font-size: 1rem;
+                line-height: 1rem;
                 text-align: left;
                 border-radius: 4px;
                 background: none;
@@ -288,7 +288,7 @@
                 &::placeholder {
                     color: #fff!important;
                     opacity: 0.6!important;
-                    font-size: 1.2rem!important;
+                    font-size: 1rem!important;
                 }
                 &::-ms-clear {
                     display: none;
@@ -436,8 +436,9 @@
             height: 100%;
             position: relative;
             .dplayer-setting-speed {
-                color: #ffffff;
-                font-size: 1.5rem!important;
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 1rem!important;
+                line-height: 1.5rem;
                 width: 60px;
                 padding: 8px 0px;
                 &.active + .dplayer-setting-speed-panel {
@@ -455,6 +456,7 @@
                 .dplayer-setting-speed-item {
                     height: 35px;
                     padding: 5px 10px;
+                    font-size: 1.25rem!important;
                     box-sizing: border-box;
                     cursor: pointer;
                     position: relative;
@@ -652,13 +654,13 @@
                                 &::after {
                                     content: '';
                                     position: absolute;
-                                    width: 10px;
-                                    height: 10px;
+                                    width: 14px;
+                                    height: 14px;
                                     border-radius: 50%;
                                     background-color: #ffffff;
                                     border: 3px solid #3093fe;
                                     display: none;
-                                    left: -5px;
+                                    left: -6px;
                                     top: -2px;
                                 }
                                 &:checked + span {

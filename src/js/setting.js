@@ -4,7 +4,7 @@ class Setting {
     constructor(player) {
         this.player = player;
         this.dWidth = 200;
-        this.hover = [false, false]
+        this.hover = [false, false];
 
         this.player.template.mask.addEventListener('click', () => {
             this.hide();
@@ -22,31 +22,31 @@ class Setting {
         // auto disappear
         this.player.template.settingButton.addEventListener('mouseleave', () => {
             this.hover[0] = setTimeout(() => {
-                this.hover[0] && this.hide()
-            },300)
+                this.hover[0] && this.hide();
+            }, 300);
         });
 
         this.player.template.speed.addEventListener('mouseleave', () => {
             this.hover[1] = setTimeout(() => {
-                this.hover[1] && this.hideSpeed()
-            },300)
+                this.hover[1] && this.hideSpeed();
+            }, 300);
         });
         // enter & clear timer
         this.player.template.settingBox.addEventListener('mouseenter', () => {
-            clearTimeout(this.hover[0])
-        })
+            clearTimeout(this.hover[0]);
+        });
 
         this.player.template.speedBox.addEventListener('mouseenter', () => {
-            clearTimeout(this.hover[1])
-        })
+            clearTimeout(this.hover[1]);
+        });
         // disapper when leave
         this.player.template.settingBox.addEventListener('mouseleave', () => {
-            this.hide()
-        })
+            this.hide();
+        });
 
         this.player.template.speedBox.addEventListener('mouseleave', () => {
-            this.hideSpeed()
-        })
+            this.hideSpeed();
+        });
 
 
         // loop
@@ -108,13 +108,13 @@ class Setting {
 
         // speed
         this.player.template.speed.addEventListener('click', () => {
-            if (this.player.template.speed.classList.contains('active')) this.hideSpeed();
-            else this.showSpeed()
+            if (this.player.template.speed.classList.contains('active')) {this.hideSpeed();}
+            else {this.showSpeed();}
         });
         for (let i = 0; i < this.player.template.speedItem.length; i++) {
             this.player.template.speedItem[i].addEventListener('click', () => {
                 this.player.speed(this.player.template.speedItem[i].dataset.speed);
-                let num = this.player.template.speedItem[i].dataset.speed
+                const num = this.player.template.speedItem[i].dataset.speed;
                 this.player.template.speed.innerText = (num.length === 1 ? num + '.0' : num) + 'x';
                 this.hide();
             });
@@ -171,7 +171,7 @@ class Setting {
         // this.player.template.mask.classList.add('dplayer-mask-show');
 
         this.player.controller.disableAutoHide = true;
-        this.hideSpeed()
+        this.hideSpeed();
     }
 
     hideSpeed() {
@@ -181,7 +181,7 @@ class Setting {
     showSpeed() {
         this.player.template.speed.classList.add('active');
         this.player.controller.disableAutoHide = true;
-        this.hide()
+        this.hide();
     }
 }
 
