@@ -4,13 +4,50 @@ class Setting {
     constructor(player) {
         this.player = player;
         this.dWidth = 200;
+        this.hover = [false, false]
 
         this.player.template.mask.addEventListener('click', () => {
             this.hide();
         });
-        this.player.template.settingButton.addEventListener('click', () => {
+        // hover icon 2 show panel
+        this.player.template.settingButton.addEventListener('mouseover', () => {
             this.show();
+            this.hover[0] = true;
         });
+
+        this.player.template.speed.addEventListener('mouseover', () => {
+            this.showSpeed();
+            this.hover[1] = true;
+        });
+        // auto disappear
+        this.player.template.settingButton.addEventListener('mouseleave', () => {
+            this.hover[0] = setTimeout(() => {
+                this.hover[0] && this.hide()
+            },300)
+        });
+
+        this.player.template.speed.addEventListener('mouseleave', () => {
+            this.hover[1] = setTimeout(() => {
+                this.hover[1] && this.hideSpeed()
+            },300)
+        });
+        // enter & clear timer
+        this.player.template.settingBox.addEventListener('mouseenter', () => {
+            clearTimeout(this.hover[0])
+        })
+
+        this.player.template.speedBox.addEventListener('mouseenter', () => {
+            clearTimeout(this.hover[1])
+        })
+        // disapper when leave
+        this.player.template.settingBox.addEventListener('mouseleave', () => {
+            this.hide()
+        })
+
+        this.player.template.speedBox.addEventListener('mouseleave', () => {
+            this.hideSpeed()
+        })
+
 
         // loop
         this.loop = this.player.options.loop;
@@ -63,7 +100,7 @@ class Setting {
         // danmaku range
         for (let i = 0; i < this.player.template.commentRangeSelector.length; i++) {
             this.player.template.commentRangeSelector[i].addEventListener('click', (event) => {
-                const radio = event.target.previousElementSibling.children[i];
+                const radio = event.target.previousElementSibling;
                 radio.checked = true;
                 this.player.danmaku.range(radio.value);
             });
@@ -122,21 +159,16 @@ class Setting {
 
     hide() {
         this.player.template.settingBox.classList.remove('dplayer-setting-box-open');
-        this.player.template.mask.classList.remove('dplayer-mask-show');
-        setTimeout(() => {
-            this.player.template.settingBox.classList.remove('dplayer-setting-box-narrow');
-            this.player.template.settingBox.classList.remove('dplayer-setting-box-speed');
-        }, 300);
+        // this.player.template.mask.classList.remove('dplayer-mask-show');
 
         this.player.controller.disableAutoHide = false;
-        this.hideSpeed()
     }
 
     show() {
         // this.dWidth = this.player.template.danmakuOpacityBarWrap.offsetWidth
 
         this.player.template.settingBox.classList.add('dplayer-setting-box-open');
-        this.player.template.mask.classList.add('dplayer-mask-show');
+        // this.player.template.mask.classList.add('dplayer-mask-show');
 
         this.player.controller.disableAutoHide = true;
         this.hideSpeed()
@@ -148,6 +180,8 @@ class Setting {
 
     showSpeed() {
         this.player.template.speed.classList.add('active');
+        this.player.controller.disableAutoHide = true;
+        this.hide()
     }
 }
 
