@@ -154,7 +154,7 @@ class Danmaku {
         };
 
         this._range = range[select];
-        
+
     }
 
     /**
@@ -227,8 +227,8 @@ class Danmaku {
                 const item = document.createElement('div');
                 item.classList.add('dplayer-danmaku-item');
                 item.classList.add(`dplayer-danmaku-${dan[i].type}`);
-                
-                if (dan[i].border && typeof(dan[i].text) === "string") {
+
+                if (dan[i].border && typeof (dan[i].text) === "string") {
                     item.innerHTML = `<span style="border:${dan[i].border};">${dan[i].text}</span>`;
                 } else {
                     // MARK: render text

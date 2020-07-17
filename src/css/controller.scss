@@ -585,10 +585,16 @@
                             &:first-child {
                                 align-items: flex-start;
                                 text-align: start;
+                                input::before {
+                                    left: 0px!important;
+                                }
                             }
                             &:last-child {
                                 align-items: flex-end;
                                 text-align: end;
+                                input::before {
+                                    left: -8px!important;
+                                }
                             }
                             span {
                                 font-size: 1rem;
@@ -608,12 +614,14 @@
                                 &::before {
                                     content: '';
                                     position: absolute;
-                                    width: 2px;
-                                    height: 5px;
+                                    width: 8px;
+                                    height: 8px;
+                                    border-radius: 50%;
                                     background-color: #ffffff;
                                     opacity: 0.8;
-                                    left: 0px;
+                                    left: -5px;
                                     top: 2px;
+                                    cursor: pointer;
                                 }
                                 &::after {
                                     content: '';

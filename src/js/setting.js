@@ -63,9 +63,9 @@ class Setting {
         // danmaku range
         for (let i = 0; i < this.player.template.commentRangeSelector.length; i++) {
             this.player.template.commentRangeSelector[i].addEventListener('click', (event) => {
-                let radio = event.target.previousElementSibling
-                radio.checked = true
-                this.player.danmaku.range(radio.value)
+                const radio = event.target.previousElementSibling.children[i];
+                radio.checked = true;
+                this.player.danmaku.range(radio.value);
             });
         }
 
@@ -108,7 +108,7 @@ class Setting {
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.opacity(percentage);
-                console.log('AL: percentage', percentage)
+                console.log('AL: percentage', percentage);
             });
             this.player.template.danmakuOpacityBarWrapWrap.addEventListener(utils.nameMap.dragStart, () => {
                 document.addEventListener(utils.nameMap.dragMove, danmakuMove);

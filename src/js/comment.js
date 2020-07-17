@@ -48,9 +48,9 @@ class Comment {
         this.player.template.commentInput.addEventListener('keyup', (e) => {
             const event = e || window.event;
             if (event.keyCode !== 13) {
-                this.commentLength = this.player.template.commentInput.value.length
+                this.commentLength = this.player.template.commentInput.value.length;
             }
-            if (this.commentLength > 100) { 
+            if (this.commentLength > 100) {
                 this.player.template.commentCounter.innerText = this.commentLength + '/100';
                 this.player.template.commentCounter.style.width = '50px';
                 this.player.template.commentInput.style.width = '200px';
@@ -59,7 +59,7 @@ class Comment {
                 this.player.template.commentCounter.style.width = '0px';
                 this.player.template.commentInput.style.width = '250px';
             }
-        })
+        });
 
         this.player.template.commentSendButton.addEventListener('click', () => {
             this.send();
