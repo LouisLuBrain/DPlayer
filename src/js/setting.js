@@ -71,12 +71,14 @@ class Setting {
 
         // speed
         this.player.template.speed.addEventListener('click', () => {
-            this.player.template.settingBox.classList.add('dplayer-setting-box-narrow');
-            this.player.template.settingBox.classList.add('dplayer-setting-box-speed');
+            if (this.player.template.speed.classList.contains('active')) this.hideSpeed();
+            else this.showSpeed()
         });
         for (let i = 0; i < this.player.template.speedItem.length; i++) {
             this.player.template.speedItem[i].addEventListener('click', () => {
                 this.player.speed(this.player.template.speedItem[i].dataset.speed);
+                let num = this.player.template.speedItem[i].dataset.speed
+                this.player.template.speed.innerText = (num.length === 1 ? num + '.0' : num) + 'x';
                 this.hide();
             });
         }
@@ -127,6 +129,7 @@ class Setting {
         }, 300);
 
         this.player.controller.disableAutoHide = false;
+        this.hideSpeed()
     }
 
     show() {
@@ -136,6 +139,15 @@ class Setting {
         this.player.template.mask.classList.add('dplayer-mask-show');
 
         this.player.controller.disableAutoHide = true;
+        this.hideSpeed()
+    }
+
+    hideSpeed() {
+        this.player.template.speed.classList.remove('active');
+    }
+
+    showSpeed() {
+        this.player.template.speed.classList.add('active');
     }
 }
 

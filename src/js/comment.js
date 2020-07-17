@@ -50,14 +50,14 @@ class Comment {
             if (event.keyCode !== 13) {
                 this.commentLength = this.player.template.commentInput.value.length;
             }
-            if (this.commentLength > 100) {
+            if (this.commentLength > 10) {
                 this.player.template.commentCounter.innerText = this.commentLength + '/100';
                 this.player.template.commentCounter.style.width = '50px';
-                this.player.template.commentInput.style.width = '200px';
+                this.player.template.commentInput.style.width = '250px';
             } else {
                 this.player.template.commentCounter.innerText = '';
                 this.player.template.commentCounter.style.width = '0px';
-                this.player.template.commentInput.style.width = '250px';
+                this.player.template.commentInput.style.width = '300px';
             }
         });
 
@@ -136,14 +136,14 @@ class Comment {
                 this.player.template.commentInput.value = '';
                 this.player.template.commentCounter.innerText = '';
                 this.player.template.commentCounter.style.width = '0px';
-                this.player.template.commentInput.style.width = '250px';
+                this.player.template.commentInput.style.width = '300px';
             },
             () => {
                 // TODO: add error handler
                 this.player.template.commentInput.value = '';
                 this.player.template.commentCounter.innerText = '';
                 this.player.template.commentCounter.style.width = '0px';
-                this.player.template.commentInput.style.width = '250px';
+                this.player.template.commentInput.style.width = '300px';
             }
         );
     }
