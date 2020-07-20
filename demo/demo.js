@@ -37,23 +37,24 @@ function handleEvent() {
 
 function initPlayers() {
     // dplayer-float
-    window.dpFloat = new DPlayer({
-        container: document.getElementById('dplayer-container'),
-        preload: 'none',
-        screenshot: true,
-        theme: '#3093ff',
-        video: {
-            url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
-            pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
-            thumbnails: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
-        },
-        subtitle: {
-            url: 'subtitle test'
-        },
-        danmaku: {
-            id: '9E2E3368B56CDBB4',
-        }
-    });
+    // window.dpFloat = new DPlayer({
+    //     container: document.getElementById('dplayer-container'),
+    //     preload: 'none',
+    //     screenshot: true,
+    //     theme: '#3093ff',
+    //     video: {
+    //         url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
+    //         pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
+    //         thumbnails: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
+    //     },
+    //     subtitle: {
+    //         url: 'subtitle test'
+    //     },
+    //     danmaku: {
+    //         id: '9E2E3368B56CDBB4',
+    //     }
+    // });
+
     // dp1
     window.dp1 = new DPlayer({
         container: document.getElementById('dplayer1'),
@@ -74,47 +75,47 @@ function initPlayers() {
     });
 
     // dp2
-    window.dp2 = new DPlayer({
-        container: document.getElementById('dplayer2'),
-        preload: 'none',
-        autoplay: false,
-        theme: '#3093ff',
-        loop: true,
-        screenshot: true,
-        airplay: true,
-        hotkey: true,
-        logo: 'https://i.loli.net/2019/06/06/5cf8c5d94521136430.png',
-        volume: 0.2,
-        mutex: true,
-        video: {
-            url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
-            pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
-            type: 'auto'
-        },
-        subtitle: {
-            url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.vtt',
-            type: 'webvtt',
-            fontSize: '25px',
-            bottom: '10%',
-            color: '#b7daff'
-        },
-        danmaku: {
-            id: '9E2E3368B56CDBB4',
-            api: 'https://api.prprpr.me/dplayer/',
-            token: 'tokendemo',
-            maximum: 3000,
-            user: 'DIYgod',
-            bottom: '15%',
-            unlimited: true
-        },
-        contextmenu: [
-            {
-                text: 'custom contextmenu',
-                link: 'https://github.com/MoePlayer/DPlayer'
-            }
-        ]
-    });
+    // window.dp2 = new DPlayer({
+    //     container: document.getElementById('dplayer2'),
+    //     preload: 'none',
+    //     autoplay: false,
+    //     theme: '#3093ff',
+    //     loop: true,
+    //     screenshot: true,
+    //     airplay: true,
+    //     hotkey: true,
+    //     logo: 'https://i.loli.net/2019/06/06/5cf8c5d94521136430.png',
+    //     volume: 0.2,
+    //     mutex: true,
+    //     video: {
+    //         url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+    //         pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
+    //         thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
+    //         type: 'auto'
+    //     },
+    //     subtitle: {
+    //         url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.vtt',
+    //         type: 'webvtt',
+    //         fontSize: '25px',
+    //         bottom: '10%',
+    //         color: '#b7daff'
+    //     },
+    //     danmaku: {
+    //         id: '9E2E3368B56CDBB4',
+    //         api: 'https://api.prprpr.me/dplayer/',
+    //         token: 'tokendemo',
+    //         maximum: 3000,
+    //         user: 'DIYgod',
+    //         bottom: '15%',
+    //         unlimited: true
+    //     },
+    //     contextmenu: [
+    //         {
+    //             text: 'custom contextmenu',
+    //             link: 'https://github.com/MoePlayer/DPlayer'
+    //         }
+    //     ]
+    // });
 
     const events = [
         'abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error',
