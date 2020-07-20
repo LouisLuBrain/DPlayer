@@ -79,6 +79,7 @@ class DPlayer {
             this.danmaku = new Danmaku({
                 container: this.template.danmaku,
                 opacity: this.user.get('opacity'),
+                danmakuSpeed: this.user.get('speed'),
                 callback: () => {
                     setTimeout(() => {
                         this.template.danmakuLoading.style.display = 'none';
@@ -149,7 +150,7 @@ class DPlayer {
         index++;
         instances.push(this);
 
-        // console.log('AL: player', this)
+        console.log('AL: player', this)
     }
 
     /**

@@ -17,6 +17,7 @@ class Danmaku {
         this.events = this.options.events;
         this.unlimited = this.options.unlimited;
         this._range = 1;
+        this._danmakuSpeed = this.options.danmakuSpeed;
         this._measure('');
 
         this.load();
@@ -144,6 +145,19 @@ class Danmaku {
             this.events && this.events.trigger('danmaku_opacity', this._opacity);
         }
         return this._opacity;
+    }
+
+    speed(speed) {
+        if (speed !== undefined) {
+            const items = this.container.getElementsByClassName('dplayer-danmaku-item');
+            for (let i = 0; i < items.length; i++) {
+                items[i].style.animationDuration = speed + 'ms';
+            }
+            this._danmakuSpeed = speed;
+
+            this.events && this.events.trigger('danmaku_speed', this._danmakuSpeed);
+        }
+        return this._danmakuSpeed;
     }
 
     range(select) {
@@ -274,7 +288,7 @@ class Danmaku {
                 if (tunnel >= 0) {
                     // move
                     item.classList.add('dplayer-danmaku-move');
-
+                    item.style.animationDuration = this._danmakuSpeed + 'ms';
                     // insert
                     docFragment.appendChild(item);
                 }

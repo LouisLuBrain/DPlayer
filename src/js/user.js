@@ -8,6 +8,7 @@ class User {
             unlimited: 'dplayer-danmaku-unlimited',
             danmaku: 'dplayer-danmaku-show',
             subtitle: 'dplayer-subtitle-show',
+            speed: 'dplayer-danmaku-speed',
         };
         this.default = {
             opacity: 0.7,
@@ -15,6 +16,7 @@ class User {
             unlimited: (player.options.danmaku && player.options.danmaku.unlimited ? 1 : 0) || 0,
             danmaku: 1,
             subtitle: 1,
+            speed: 5000,
         };
         this.data = {};
 

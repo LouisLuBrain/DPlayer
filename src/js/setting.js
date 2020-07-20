@@ -147,12 +147,46 @@ class Setting {
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.opacity(percentage);
-                console.log('AL: percentage', percentage);
             });
             this.player.template.danmakuOpacityBarWrapWrap.addEventListener(utils.nameMap.dragStart, () => {
                 document.addEventListener(utils.nameMap.dragMove, danmakuMove);
                 document.addEventListener(utils.nameMap.dragEnd, danmakuUp);
                 this.player.template.danmakuOpacityBox.classList.add('dplayer-setting-danmaku-active');
+            });
+        }
+
+        // danmaku speed
+        if (this.player.danmaku) {
+            this.player.on('danmaku_speed', (speed) => {
+                this.player.bar.set('speed',  ( speed - 5000 ) / 15000, 'width');
+                this.player.user.set('speed', speed);
+            });
+            this.player.danmaku.speed(this.player.user.get('speed'));
+
+            const danmakuSpeedMove = (event) => {
+                const e = event || window.event;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.dWidth;
+                percentage = Math.max(percentage, 0);
+                percentage = Math.min(percentage, 1);
+                this.player.danmaku.speed(percentage.toFixed(2) * 15000 + 5000);
+            };
+            const danmakuSpeedUp = () => {
+                document.removeEventListener(utils.nameMap.dragEnd, danmakuSpeedUp);
+                document.removeEventListener(utils.nameMap.dragMove, danmakuSpeedMove);
+                this.player.template.danmakuSpeedBox.classList.remove('dplayer-setting-danmaku-active');
+            };
+
+            this.player.template.danmakuSpeedBarWrapWrap.addEventListener('click', (event) => {
+                const e = event || window.event;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.dWidth;
+                percentage = Math.max(percentage, 0);
+                percentage = Math.min(percentage, 1);
+                this.player.danmaku.speed(percentage.toFixed(2) * 15000 + 5000);
+            });
+            this.player.template.danmakuSpeedBarWrapWrap.addEventListener(utils.nameMap.dragStart, () => {
+                document.addEventListener(utils.nameMap.dragMove, danmakuSpeedMove);
+                document.addEventListener(utils.nameMap.dragEnd, danmakuSpeedUp);
+                this.player.template.danmakuSpeedBox.classList.add('dplayer-setting-danmaku-active');
             });
         }
     }

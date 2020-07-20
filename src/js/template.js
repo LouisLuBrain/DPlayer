@@ -1,5 +1,6 @@
 import Icons from './icons';
 import tplPlayer from '../template/player.art';
+import mobilePlayer from '../template/mobile.art';
 import utils from './utils';
 
 class Template {
@@ -12,7 +13,7 @@ class Template {
     }
 
     init() {
-        this.container.innerHTML = tplPlayer({
+        const templateOptions = {
             options: this.options,
             index: this.index,
             tran: this.tran,
@@ -27,7 +28,9 @@ class Template {
                 url: this.options.video.url,
                 subtitle: this.options.subtitle,
             },
-        });
+        }
+        
+        this.container.innerHTML = window.innerWidth > 769 ? tplPlayer(templateOptions) : mobilePlayer(templateOptions)
 
         this.volumeBar = this.container.querySelector('.dplayer-volume-bar-inner');
         this.volumeBarWrap = this.container.querySelector('.dplayer-volume-bar');
@@ -64,6 +67,10 @@ class Template {
         this.danmakuOpacityBarWrap = this.container.querySelector('.dplayer-danmaku-bar');
         this.danmakuOpacityBarWrapWrap = this.container.querySelector('.dplayer-danmaku-bar-wrap');
         this.danmakuOpacityBox = this.container.querySelector('.dplayer-setting-danmaku');
+        this.danmakuSpeedBar = this.container.querySelector('.dplayer-danmaku-speed-inner');
+        this.danmakuSpeedBarWrap = this.container.querySelector('.dplayer-danmaku-speed');
+        this.danmakuSpeedBarWrapWrap = this.container.querySelector('.dplayer-danmaku-speed-wrap');
+        this.danmakuSpeedBox = this.container.querySelector('.dplayer-setting-danmaku-speed');
         this.dtime = this.container.querySelector('.dplayer-dtime');
         this.controller = this.container.querySelector('.dplayer-controller');
         this.commentInput = this.container.querySelector('.dplayer-comment-input');

@@ -5,6 +5,7 @@ class Bar {
         this.elements.played = template.playedBar;
         this.elements.loaded = template.loadedBar;
         this.elements.danmaku = template.danmakuOpacityBar;
+        this.elements.speed = template.danmakuSpeedBar;
     }
 
     /**
@@ -15,6 +16,7 @@ class Bar {
      * @param {String} direction - Point out the direction of this bar, Should be height or width
      */
     set(type, percentage, direction) {
+        console.log('AL: percentage', percentage)
         percentage = Math.max(percentage, 0);
         percentage = Math.min(percentage, 1);
         this.elements[type].style[direction] = percentage * 100 + '%';
