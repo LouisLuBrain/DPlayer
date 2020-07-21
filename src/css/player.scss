@@ -152,6 +152,9 @@
             opacity: 0;
             transform: translateY(120%);
         }
+        .dplayer-setting-mobile {
+            top: -50px;
+        }
     }
     &.dplayer-show-controller {
         .dplayer-controller-mask {
