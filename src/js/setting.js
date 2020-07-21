@@ -116,7 +116,7 @@ class Setting {
                 this.player.speed(this.player.template.speedItem[i].dataset.speed);
                 const num = this.player.template.speedItem[i].dataset.speed;
                 this.player.template.speed.innerText = (num.length === 1 ? num + '.0' : num) + 'x';
-                this.hide();
+                utils.isMobile || this.hide();
             });
         }
 
@@ -130,7 +130,7 @@ class Setting {
 
             const danmakuMove = (event) => {
                 const e = event || window.event;
-                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuOpacityBarWrap)) / this.dWidth;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuOpacityBarWrap)) / this.player.template.danmakuOpacityBarWrap.offsetWidth;
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.opacity(percentage);
@@ -143,7 +143,7 @@ class Setting {
 
             this.player.template.danmakuOpacityBarWrapWrap.addEventListener('click', (event) => {
                 const e = event || window.event;
-                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuOpacityBarWrap)) / this.dWidth;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuOpacityBarWrap)) / this.player.template.danmakuOpacityBarWrap.offsetWidth;
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.opacity(percentage);
@@ -165,7 +165,7 @@ class Setting {
 
             const danmakuSpeedMove = (event) => {
                 const e = event || window.event;
-                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.dWidth;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.player.template.danmakuOpacityBarWrap.offsetWidth;
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.speed(percentage.toFixed(2) * 15000 + 5000);
@@ -178,7 +178,7 @@ class Setting {
 
             this.player.template.danmakuSpeedBarWrapWrap.addEventListener('click', (event) => {
                 const e = event || window.event;
-                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.dWidth;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.player.template.danmakuOpacityBarWrap.offsetWidth;
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.speed(percentage.toFixed(2) * 15000 + 5000);
@@ -189,6 +189,7 @@ class Setting {
                 this.player.template.danmakuSpeedBox.classList.add('dplayer-setting-danmaku-active');
             });
         }
+        this.resize()
     }
 
     hide() {
@@ -216,6 +217,16 @@ class Setting {
         this.player.template.speed.classList.add('active');
         this.player.controller.disableAutoHide = true;
         this.hide();
+    }
+
+    resize() {
+        // TODO: vertical setting panel
+        if ( screen.orientation.angle === 0 || screen.orientation.angle === 180 && utils.isMobile) {
+            this.player.template.settingBox.classList.add('vertical');
+        } else {
+            this.player.template.settingBox.classList.remove('vertical');
+        }
+        
     }
 }
 
