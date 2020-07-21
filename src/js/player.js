@@ -149,8 +149,10 @@ class DPlayer {
 
         index++;
         instances.push(this);
+        
+        window.addEventListener('orientationchange', this.resize.bind(this))
 
-        console.log('AL: player', this)
+        // console.log('AL: player', this)
     }
 
     /**
@@ -599,6 +601,8 @@ class DPlayer {
         if (this.controller.thumbnails) {
             this.controller.thumbnails.resize(160, (this.video.videoHeight / this.video.videoWidth) * 160, this.template.barWrap.offsetWidth);
         }
+        this.setting.resize()
+
         this.events.trigger('resize');
     }
 
