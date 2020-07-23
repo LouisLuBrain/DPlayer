@@ -62,6 +62,9 @@ function initPlayers() {
         screenshot: false,
         lang: 'en',
         theme: '#3093ff',
+        api: {
+            address: "https://qa.sendawish.net/graphql" // unused
+        },
         video: {
             defaultQuality: 0,
             url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
@@ -69,8 +72,9 @@ function initPlayers() {
             thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg'
         },
         danmaku: {
-            id: '9E2E3368B56CDBB4',
-            addition: ['https://s-sh-17-dplayercdn.oss.dogecdn.com/1678963.json']
+            api: "https://qa.sendawish.net/graphql", // endpoints
+            id: 'fd4c3d96-d3c1-4546-9546-006dd289a325', // wishId
+            token: 'af518ab6-35c7-4249-a706-d3792741b5ea', // token
         }
     });
 
