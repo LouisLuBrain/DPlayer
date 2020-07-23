@@ -126,15 +126,15 @@ const utils = {
     number2Type: (number) => {
         switch (number) {
             case 0:
-                return 'right';
+                return 'right_to_left';
             case 1:
                 return 'top';
             case 2:
                 return 'bottom';
             case 3:
-                return 'render';
+                return 'left_to_right';
             default:
-                return 'right';
+                return 'right_to_left';
         }
     },
 };
