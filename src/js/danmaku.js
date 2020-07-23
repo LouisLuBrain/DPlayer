@@ -5,10 +5,10 @@ class Danmaku {
         this.options = options;
         this.container = this.options.container;
         this.danTunnel = {
-            right: {},
-            top: {},
-            bottom: {},
-            render: {},
+            "right_to_left": {},
+            "top": {},
+            "bottom": {},
+            "render": {},
         };
         this.danIndex = 0;
         this.dan = [];
@@ -30,11 +30,12 @@ class Danmaku {
         } else {
             apiurl = `${this.options.api.address}`;
         }
+
         const endpoints = (this.options.api.addition || []).slice(0);
         endpoints.push(apiurl);
         this.events && this.events.trigger('danmaku_load_start', endpoints);
 
-        this._readAllEndpoints(endpoints, (results) => {
+        this._readGraphQLEndPoint(endpoints, this.options.api.id, this.options.api.token, (results) => {
             this.dan = [].concat.apply([], results).sort((a, b) => a.time - b.time);
             window.requestAnimationFrame(() => {
                 this.frame();
@@ -84,19 +85,54 @@ class Danmaku {
         }
     }
 
+    /* 
+    * read from gql
+    */
+    _readGraphQLEndPoint(endpoints, id, token, callback) {
+        const result = []
+        endpoints.map((url) => {
+            url && this.options.apiBackend.read({
+                url: url,
+                data: {
+                    id: id,
+                    token: token
+                },
+                success: (data) => {
+                    result.push(data);
+                    callback(result);
+                },
+                error: (msg) => {
+                    his.options.error(msg || this.options.tran('Danmaku load failed'));
+                    callback(result);
+                }
+            })
+        })
+    }
+
+    _motifyDanmakuData(danmaku) {
+        switch(danmaku.type) {
+
+        }
+    }
+
     send(dan, successCallBack, errorCallBack) {
         const danmakuData = {
-            token: this.options.api.token,
             id: this.options.api.id,
-            author: this.options.api.user,
             time: this.options.time(),
             text: dan.text,
             color: dan.color,
-            type: dan.type,
+            type: utils.number2Type(dan.type),
         };
+
         this.options.apiBackend.send({
             url: this.options.api.address,
-            data: danmakuData,
+            data: {
+                "wishInviteId": danmakuData.id,
+                "showtimeInSecond": this.options.time() + 0.01,
+                "transition": danmakuData.type,
+                "color": danmakuData.color,
+                "body": danmakuData.text
+            },
             success: (msg) => {
                 successCallBack && successCallBack(msg);
             },
@@ -200,7 +236,7 @@ class Danmaku {
                 for (let i = 0; this.unlimited || i < itemY; i++) {
                     const item = this.danTunnel[type][i + ''];
                     if (item && item.length) {
-                        if (type !== 'right') {
+                        if (type !== 'right_to_left') {
                             continue;
                         }
                         for (let j = 0; j < item.length; j++) {
@@ -249,7 +285,7 @@ class Danmaku {
                     item.innerHTML = dan[i].text;
                 }
                 item.style.opacity = this._opacity;
-                item.style.color = utils.number2Color(dan[i].color);
+                item.style.color = utils.number2Color(parseInt(dan[i].color));
                 item.addEventListener('animationend', () => {
                     this.container.removeChild(item);
                 });
@@ -259,7 +295,7 @@ class Danmaku {
 
                 // adjust
                 switch (dan[i].type) {
-                    case 'right':
+                    case 'right_to_left':
                         tunnel = getTunnel(item, dan[i].type, itemWidth);
                         if (tunnel >= 0) {
                             item.style.width = itemWidth + 1 + 'px';
@@ -279,8 +315,6 @@ class Danmaku {
                             item.style.bottom = itemHeight * tunnel + 'px';
                         }
                         break;
-                    case 'render':
-                        tunnel = getTunnel(item, dan[i].type);
                     default:
                         console.error(`Can't handled danmaku type: ${dan[i].type}`);
                 }
@@ -330,9 +364,9 @@ class Danmaku {
 
     clear() {
         this.danTunnel = {
-            right: {},
-            top: {},
-            bottom: {},
+            "right_to_left": {},
+            "top": {},
+            "bottom": {},
         };
         this.danIndex = 0;
         this.options.container.innerHTML = '';

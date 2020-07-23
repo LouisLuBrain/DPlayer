@@ -123,7 +123,7 @@ class Comment {
 
         if (this.player.template.commentInput.value.length > 100) {
             this.player.notice(this.player.tran('The number of words exceeds the limit!'));
-            return;
+            return; 
         }
 
         this.player.danmaku.send(
