@@ -50,7 +50,7 @@ class Comment {
             if (event.keyCode !== 13) {
                 this.commentLength = this.player.template.commentInput.value.length;
             }
-            if (this.commentLength > 10) {
+            if (this.commentLength > 100) {
                 this.player.template.commentCounter.innerText = this.commentLength + '/100';
                 this.player.template.commentCounter.style.width = '50px';
                 // this.player.template.commentInput.style.marginRight = '54px';
@@ -133,12 +133,14 @@ class Comment {
                 type: parseInt(this.player.container.querySelector('.dplayer-comment-setting-type input:checked').value),
             },
             () => {
+                console.log('success callback')
                 this.player.template.commentInput.value = '';
                 this.player.template.commentCounter.innerText = '';
                 this.player.template.commentCounter.style.width = '0px';
                 // this.player.template.commentInput.style.marginRight = '54px';
             },
             () => {
+                console.log('error callback')
                 // TODO: add error handler
                 this.player.template.commentInput.value = '';
                 this.player.template.commentCounter.innerText = '';

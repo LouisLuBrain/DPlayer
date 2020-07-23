@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export default {
     send: (options) => {
-        console.log(options.data)
         fetch('https://qa.sendawish.net/graphql', {
             method: 'POST',
             headers: {
@@ -20,11 +19,10 @@ export default {
         })
             .then(res => res.json())
             .then(res => {
-                console.log('AL: res', res)
+                options.success && options.success(res)
             })
             .catch(err => {
-                console.error(err);
-                options.error && options.error();
+                options.error && options.error(err);
             });
     },
 
