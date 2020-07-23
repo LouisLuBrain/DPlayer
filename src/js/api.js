@@ -12,20 +12,7 @@ export default {
             },
             mode: 'cors',
             body: JSON.stringify({
-                query: `
-                mutation ($input: DanmakuTextInput!) {
-                    createDanmakuText(input: $input) {
-                        id
-                        showtimeInSecond
-                        transition
-                        color
-                        creator {
-                            id
-                            fullname
-                        }
-                        body
-                    }
-                }`,
+                query: "mutation ($input: DanmakuTextInput!) { createDanmakuText(input: $input) { id showtimeInSecond transition color creator { id fullname } body } }",
                 variables: {
                     "input": options.data
                 }
@@ -51,24 +38,7 @@ export default {
             },
             mode: 'cors',
             body: JSON.stringify({
-                query: `
-                query danmakuQuery($id: String!, $token: String!) {
-                    thingInvite(id: $id, token: $token) {
-                        id
-                        danmakus {
-                            id
-                            showtimeInSecond
-                            transition
-                            color
-                            body
-                            creator {
-                                id
-                                email
-                                fullname
-                            }
-                        }
-                    }
-                }`,
+                query: "query danmakuQuery($id: String!, $token: String!) { thingInvite(id: $id, token: $token) { id danmakus { id showtimeInSecond transition color body creator { id email fullname } } } }",
                 variables: {
                     ...options.data
                 }

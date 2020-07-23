@@ -102,7 +102,7 @@ class Danmaku {
                     callback(result);
                 },
                 error: (msg) => {
-                    his.options.error(msg || this.options.tran('Danmaku load failed'));
+                    this.options.error(msg || this.options.tran('Danmaku load failed'));
                     callback(result);
                 }
             })
