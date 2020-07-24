@@ -306,7 +306,7 @@ class DPlayer {
         this.video.src = video.url;
         this.initMSE(this.video, video.type || 'auto');
         if (danmakuAPI) {
-            this.template.danmakuLoading.style.display = 'block';
+            // this.template.danmakuLoading.style.display = 'block';
             this.bar.set('played', 0, 'width');
             this.bar.set('loaded', 0, 'width');
             this.template.ptime.innerHTML = '00:00';

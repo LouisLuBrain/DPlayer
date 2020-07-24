@@ -133,6 +133,7 @@ class Setting {
                 let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuOpacityBarWrap)) / this.player.template.danmakuOpacityBarWrap.offsetWidth;
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
+                this.player.template.danmakuOpacityBarWrap.setAttribute('aria-label', ( percentage * 100 ).toFixed(0) +'%');
                 this.player.danmaku.opacity(percentage);
             };
             const danmakuUp = () => {

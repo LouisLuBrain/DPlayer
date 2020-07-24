@@ -23,7 +23,10 @@ export default {
             })
             .catch((err) => {
                 options.error && options.error(err);
-            });
+            })
+            .finally((msg) => {
+                options.finally && options.finally(msg);
+            })
     },
 
     read: (options) => {

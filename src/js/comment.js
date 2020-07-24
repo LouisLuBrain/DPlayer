@@ -5,6 +5,7 @@ class Comment {
     constructor(player) {
         this.player = player;
         this.commentLength = 0;
+        this.hover = [false];
 
         this.showDanmaku = this.player.user.get('danmaku');
         if (!this.showDanmaku) {
@@ -18,8 +19,14 @@ class Comment {
             // this.show();
             this.toggleShowDanmaku();
         });
-        this.player.template.commentSettingButton.addEventListener('click', () => {
-            this.toggleSetting();
+        this.player.template.commentSettingButton.addEventListener('mouseover', () => {
+            this.showSetting();
+            this.hover[0] = true;
+        });
+        this.player.template.commentSettingButton.addEventListener('mouseleave', () => {
+            this.hover[0] = setTimeout(() => {
+                this.hover[0] && this.hideSetting();
+            }, 300);
         });
 
         this.player.template.commentColorSettingBox.addEventListener('click', () => {
@@ -31,6 +38,14 @@ class Comment {
                 // this.player.template.commentSendFill.style.fill = color;
             }
         });
+
+        this.player.template.commentSettingBox.addEventListener('mouseenter', () => {
+            clearTimeout(this.hover[0]);
+        })
+
+        this.player.template.commentSettingBox.addEventListener('mouseleave', () => {
+            this.hideSetting()
+        })
 
         this.player.template.commentInput.addEventListener('click', () => {
             this.hideSetting();
@@ -135,18 +150,17 @@ class Comment {
                 type: parseInt(this.player.container.querySelector('.dplayer-comment-setting-type input:checked').value),
             },
             () => {
-                console.log('success callback');
-            },
-            () => {
-                console.log('error callback');
-                // TODO: add error handler
-                this.player.notice(this.player.tran('Danmaku send failed'));
-            },
-            () => {
-                console.log('always callback');
+                // console.log('success callback');
                 this.player.template.commentInput.value = '';
                 this.player.template.commentCounter.innerText = '';
                 this.player.template.commentCounter.style.width = '0px';
+            },
+            () => {
+                // console.log('error callback');
+                this.player.notice(this.player.tran('Danmaku send failed'));
+            },
+            () => {
+                // console.log('always callback');
             }
         );
     }

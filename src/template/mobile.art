@@ -13,7 +13,7 @@
     <div class="dplayer-bezel">
         <span class="dplayer-bezel-icon"></span>
         {{ if options.danmaku }}
-        <span class="dplayer-danloading">{{ tran('Danmaku is loading') }}</span>
+        <span class="dplayer-danloading" style="display: none;">{{ tran('Danmaku is loading') }}</span>
         {{ /if }}
         <span class="diplayer-loading-icon">{{@ icons.loading }}</span>
     </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="dplayer-setting-item dplayer-setting-danmaku-speed">
                     <span class="dplayer-label">{{ tran('Speed for danmaku') }}</span>
-                    <div class="dplayer-danmaku-speed-wrap">
+                    <div class="dplayer-danmaku-speed-wrap" data-slow="{{ tran('slow') }}" data-fast="{{ tran('fast') }}">
                         <div class="dplayer-danmaku-speed">
                             <div class="dplayer-danmaku-speed-inner">
                                 <span class="dplayer-thumb"></span>

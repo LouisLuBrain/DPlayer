@@ -135,24 +135,25 @@ class Danmaku {
             },
             success: (msg) => {
                 successCallBack && successCallBack(msg);
+                this.dan.splice(this.danIndex, 0, danmakuData);
+                this.danIndex++;
+                const danmaku = {
+                    text: this.htmlEncode(danmakuData.text),
+                    color: danmakuData.color,
+                    type: danmakuData.type,
+                    border: `2px solid ${this.options.borderColor}`,
+                };
+                this.draw(danmaku);
+
+                this.events && this.events.trigger('danmaku_send', danmakuData);
             },
             error: (msg) => {
                 errorCallBack && errorCallBack(msg);
-                this.options.error(msg || this.options.tran('Danmaku send failed'));
             },
+            finally: (msg) => {
+                finallyCallBack && finallyCallBack(msg);
+            }
         });
-
-        this.dan.splice(this.danIndex, 0, danmakuData);
-        this.danIndex++;
-        const danmaku = {
-            text: this.htmlEncode(danmakuData.text),
-            color: danmakuData.color,
-            type: danmakuData.type,
-            border: `2px solid ${this.options.borderColor}`,
-        };
-        finallyCallBack()
-        this.draw(danmaku);
-        this.events && this.events.trigger('danmaku_send', danmakuData);
     }
 
     frame() {
