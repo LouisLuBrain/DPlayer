@@ -63,6 +63,7 @@ class Template {
         this.speed = this.container.querySelector('.dplayer-setting-speed');
         this.speedItem = this.container.querySelectorAll('.dplayer-setting-speed-item');
         this.speedBox = this.container.querySelector('.dplayer-setting-speed-panel');
+        this.danmakuOpacityThumb = this.container.querySelector('.dplayer-opacity-thumb');
         this.danmakuOpacityBar = this.container.querySelector('.dplayer-danmaku-bar-inner');
         this.danmakuOpacityBarWrap = this.container.querySelector('.dplayer-danmaku-bar');
         this.danmakuOpacityBarWrapWrap = this.container.querySelector('.dplayer-danmaku-bar-wrap');
