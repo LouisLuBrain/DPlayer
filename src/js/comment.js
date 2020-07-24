@@ -86,12 +86,12 @@ class Comment {
         if (this.player.template.showDanmakuToggle.checked) {
             this.showDanmaku = true;
             this.player.danmaku.show();
-            this.player.template.commentButton.setAttribute('aria-label',this.player.tran('Show danmaku'));
+            this.player.template.commentButton.setAttribute('aria-label',this.player.tran('Hide danmaku'));
             this.player.template.commentButton.innerHTML = Icons.comment;
         } else {
             this.showDanmaku = false;
             this.player.danmaku.hide();
-            this.player.template.commentButton.setAttribute('aria-label',this.player.tran('Hide danmaku'));
+            this.player.template.commentButton.setAttribute('aria-label',this.player.tran('Show danmaku'));
             this.player.template.commentButton.innerHTML = Icons.commentOff;
         }
         this.player.user.set('danmaku', this.showDanmaku ? 1 : 0);

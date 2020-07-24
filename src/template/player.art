@@ -48,7 +48,7 @@
     <!-- MARK: comment input -->
     <div class="dplayer-icons dplayer-comment-box">
         <div class="dplayer-comment">
-            <button class="dplayer-icon dplayer-comment-icon" aria-label="{{ tran('Show danmaku') }}" data-balloon-nofocus="true" data-balloon-pos="up">
+            <button class="dplayer-icon dplayer-comment-icon" aria-label="{{ tran('Hide danmaku') }}" data-balloon-nofocus="true" data-balloon-pos="up">
                 <span class="dplayer-icon-content">{{@ icons.comment }}</span>
             </button>
         </div>
