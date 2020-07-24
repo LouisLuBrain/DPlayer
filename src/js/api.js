@@ -17,11 +17,11 @@ export default {
                 }
             }),
         })
-            .then(res => res.json())
-            .then(res => {
-                options.success && options.success(res)
+            .then((res) => res.json())
+            .then((res) => {
+                options.success && options.success(res);
             })
-            .catch(err => {
+            .catch((err) => {
                 options.error && options.error(err);
             });
     },
@@ -42,10 +42,10 @@ export default {
                 }
             }),
         })
-            .then(res => res.json())
-            .then(res => {
+            .then((res) => res.json())
+            .then((res) => {
                 options.success && options.success(
-                    res.data.thingInvite.danmakus.map(d =>
+                    res.data.thingInvite.danmakus.map((d) =>
                         ({
                             time: d.showtimeInSecond,
                             type: d.transition,
@@ -54,9 +54,9 @@ export default {
                             text: d.body,
                         })
                     )
-                )
+                );
             })
-            .catch(err => {
+            .catch((err) => {
                 console.error(err);
                 options.error && options.error();
             });

@@ -158,7 +158,7 @@ class Setting {
         // danmaku speed
         if (this.player.danmaku) {
             this.player.on('danmaku_speed', (speed) => {
-                this.player.bar.set('speed',  ( speed - 5000 ) / 15000, 'width');
+                this.player.bar.set('speed',  (speed - 5000) / 15000, 'width');
                 this.player.user.set('speed', speed);
             });
             this.player.danmaku.speed(this.player.user.get('speed'));
@@ -189,7 +189,7 @@ class Setting {
                 this.player.template.danmakuSpeedBox.classList.add('dplayer-setting-danmaku-active');
             });
         }
-        this.resize()
+        this.resize();
     }
 
     hide() {
@@ -221,12 +221,12 @@ class Setting {
 
     resize() {
         // TODO: vertical setting panel
-        if ( screen.orientation.angle === 0 || screen.orientation.angle === 180 && utils.isMobile) {
+        if (screen.orientation.angle === 0 || screen.orientation.angle === 180 && utils.isMobile) {
             this.player.template.settingBox.classList.add('vertical');
         } else {
             this.player.template.settingBox.classList.remove('vertical');
         }
-        
+
     }
 }
 

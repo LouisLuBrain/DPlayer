@@ -85,11 +85,11 @@ class Danmaku {
         }
     }
 
-    /* 
+    /*
     * read from gql
     */
     _readGraphQLEndPoint(endpoints, id, token, callback) {
-        const result = []
+        const result = [];
         endpoints.map((url) => {
             url && this.options.apiBackend.read({
                 url: url,
@@ -105,23 +105,23 @@ class Danmaku {
                     this.options.error(msg || this.options.tran('Danmaku load failed'));
                     callback(result);
                 }
-            })
-        })
+            });
+        });
     }
 
     _motifyDanmakuData(danmaku) {
-        switch(danmaku.type) {
+        switch (danmaku.type) {
 
         }
     }
 
-    send(dan, successCallBack, errorCallBack) {
+    send(dan, successCallBack, errorCallBack, finallyCallBack) {
         const danmakuData = {
             id: this.options.api.id,
             time: this.options.time(),
             text: dan.text,
             color: dan.color,
-            type: utils.number2Type(dan.type),
+            type: dan.type,
         };
 
         this.options.apiBackend.send({
@@ -129,7 +129,7 @@ class Danmaku {
             data: {
                 "wishInviteId": danmakuData.id,
                 "showtimeInSecond": this.options.time() + 0.01,
-                "transition": danmakuData.type,
+                "transition": utils.number2Type(danmakuData.type),
                 "color": danmakuData.color,
                 "body": danmakuData.text
             },
@@ -150,8 +150,8 @@ class Danmaku {
             type: danmakuData.type,
             border: `2px solid ${this.options.borderColor}`,
         };
+        finallyCallBack()
         this.draw(danmaku);
-
         this.events && this.events.trigger('danmaku_send', danmakuData);
     }
 
@@ -270,13 +270,13 @@ class Danmaku {
             const docFragment = document.createDocumentFragment();
 
             for (let i = 0; i < dan.length; i++) {
-                dan[i].type = utils.number2Type(dan[i].type);
+                const typeOfdan = utils.number2Type(dan[i].type);
                 if (!dan[i].color) {
                     dan[i].color = 16777215;
                 }
                 const item = document.createElement('div');
                 item.classList.add('dplayer-danmaku-item');
-                item.classList.add(`dplayer-danmaku-${dan[i].type}`);
+                item.classList.add(`dplayer-danmaku-${typeOfdan}`);
 
                 if (dan[i].border && typeof (dan[i].text) === "string") {
                     item.innerHTML = `<span style="border:${dan[i].border};">${dan[i].text}</span>`;
@@ -294,9 +294,9 @@ class Danmaku {
                 let tunnel;
 
                 // adjust
-                switch (dan[i].type) {
+                switch (typeOfdan) {
                     case 'right_to_left':
-                        tunnel = getTunnel(item, dan[i].type, itemWidth);
+                        tunnel = getTunnel(item, typeOfdan, itemWidth);
                         if (tunnel >= 0) {
                             item.style.width = itemWidth + 1 + 'px';
                             item.style.top = itemHeight * tunnel + 'px';
@@ -304,19 +304,19 @@ class Danmaku {
                         }
                         break;
                     case 'top':
-                        tunnel = getTunnel(item, dan[i].type);
+                        tunnel = getTunnel(item, typeOfdan);
                         if (tunnel >= 0) {
                             item.style.top = itemHeight * tunnel + 'px';
                         }
                         break;
                     case 'bottom':
-                        tunnel = getTunnel(item, dan[i].type);
+                        tunnel = getTunnel(item, typeOfdan);
                         if (tunnel >= 0) {
                             item.style.bottom = itemHeight * tunnel + 'px';
                         }
                         break;
                     default:
-                        console.error(`Can't handled danmaku type: ${dan[i].type}`);
+                        console.error(`Can't handled danmaku type: ${typeOfdan}`);
                 }
 
                 if (tunnel >= 0) {
@@ -350,7 +350,9 @@ class Danmaku {
         }
         return this.context.measureText(text).width;
     }
-
+    /**
+     * MARK: Seek video
+     */
     seek() {
         this.clear();
         for (let i = 0; i < this.dan.length; i++) {
