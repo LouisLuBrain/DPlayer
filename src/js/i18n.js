@@ -47,6 +47,7 @@ const tranTxt = {
         REW: '快退',
         'Unlimited danmaku': '海量弹幕',
         'Show danmaku': '显示弹幕',
+        'Hide danmaku': '隐藏弹幕',
         Setting: '设置',
         'Full screen': '全屏',
         'Web full screen': '页面全屏',
@@ -64,7 +65,7 @@ const tranTxt = {
         'Half': '半屏',
         'Quarter': '1/4屏',
         'The number of words exceeds the limit!': '弹幕字数太多了鸭！',
-        'Speed for danmaku': '弹幕速度'
+        'Speed for danmaku': '弹幕速度',
     },
     'zh-tw': {
         'Danmaku is loading': '彈幕載入中',
@@ -83,6 +84,7 @@ const tranTxt = {
         'Set danmaku color': '設定彈幕顏色',
         'Set danmaku type': '設定彈幕類型',
         'Show danmaku': '顯示彈幕',
+        'Hide danmaku': '隱藏彈幕',
         'Video load failed': '影片載入失敗',
         'Danmaku load failed': '彈幕載入失敗',
         'Danmaku send failed': '彈幕發送失敗',
@@ -110,7 +112,7 @@ const tranTxt = {
         'Half': '半屏',
         'Quarter': '1/4屏',
         'The number of words exceeds the limit!': '彈幕字數太多了呀！',
-        'Speed for danmaku': '彈幕速度'
+        'Speed for danmaku': '彈幕速度',
     },
 };
 

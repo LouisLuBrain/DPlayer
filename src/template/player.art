@@ -53,7 +53,7 @@
             </button>
         </div>
         <div class="dplayer-icons dplayer-comment-input-box">
-            <button class="dplayer-icon dplayer-comment-setting-icon" aria-label="{{ tran('Setting') }}" data-balloon-nofocus="true" data-balloon-pos="up">
+            <button class="dplayer-icon dplayer-comment-setting-icon">
                 <span class="dplayer-icon-content">{{@ icons.pallette }}</span>
             </button>
             <div class="dplayer-comment-setting-box">

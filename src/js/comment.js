@@ -52,7 +52,7 @@ class Comment {
             }
             if (this.commentLength > 100) {
                 this.player.template.commentCounter.innerText = this.commentLength + '/100';
-                this.player.template.commentCounter.style.width = '50px';
+                this.player.template.commentCounter.style.width = 'auto';
                 // this.player.template.commentInput.style.marginRight = '54px';
             } else {
                 this.player.template.commentCounter.innerText = '';
@@ -71,10 +71,12 @@ class Comment {
         if (this.player.template.showDanmakuToggle.checked) {
             this.showDanmaku = true;
             this.player.danmaku.show();
+            this.player.template.commentButton.setAttribute('aria-label',this.player.tran('Show danmaku'));
             this.player.template.commentButton.innerHTML = Icons.comment;
         } else {
             this.showDanmaku = false;
             this.player.danmaku.hide();
+            this.player.template.commentButton.setAttribute('aria-label',this.player.tran('Hide danmaku'));
             this.player.template.commentButton.innerHTML = Icons.commentOff;
         }
         this.player.user.set('danmaku', this.showDanmaku ? 1 : 0);
@@ -123,7 +125,7 @@ class Comment {
 
         if (this.player.template.commentInput.value.length > 100) {
             this.player.notice(this.player.tran('The number of words exceeds the limit!'));
-            return; 
+            return;
         }
 
         this.player.danmaku.send(
@@ -133,19 +135,18 @@ class Comment {
                 type: parseInt(this.player.container.querySelector('.dplayer-comment-setting-type input:checked').value),
             },
             () => {
-                console.log('success callback')
-                this.player.template.commentInput.value = '';
-                this.player.template.commentCounter.innerText = '';
-                this.player.template.commentCounter.style.width = '0px';
-                // this.player.template.commentInput.style.marginRight = '54px';
+                console.log('success callback');
             },
             () => {
-                console.log('error callback')
+                console.log('error callback');
                 // TODO: add error handler
+                this.player.notice(this.player.tran('Danmaku send failed'));
+            },
+            () => {
+                console.log('always callback');
                 this.player.template.commentInput.value = '';
                 this.player.template.commentCounter.innerText = '';
                 this.player.template.commentCounter.style.width = '0px';
-                this.player.template.commentInput.style.marginRight = '0px';
             }
         );
     }
