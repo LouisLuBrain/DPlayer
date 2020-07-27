@@ -231,7 +231,7 @@ class Setting {
             this.player.template.settingButton.style.display = 'block';
         }
         // TODO: vertical setting panel
-        if (screen.orientation.angle === 0 || screen.orientation.angle === 180 && utils.isMobile) {
+        if (utils.orientationAngle === 0 || utils.orientationAngle === 180 && utils.isMobile) {
             this.player.template.settingBox.classList.add('vertical');
         } else {
             this.player.template.settingBox.classList.remove('vertical');

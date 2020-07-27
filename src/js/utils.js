@@ -137,6 +137,14 @@ const utils = {
                 return 'right_to_left';
         }
     },
+
+    orientationAngle: () => {
+        if (isMobile) {
+            if (isSafari) return window.innerWidth > window.innerHeight ? 90 : 0;
+            else return screen.orientation.angle;
+        }
+        else return 0;
+    }
 };
 
 export default utils;
