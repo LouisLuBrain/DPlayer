@@ -24,6 +24,11 @@ class Danmaku {
     }
 
     load() {
+        // this.options.apiBackend.report({
+        //     flag: true,
+        //     success: (msg) => {console.log(msg)},
+        //     error: (msg) => {console.error(msg)},
+        // })
         let apiurl;
         if (this.options.api.maximum) {
             apiurl = `${this.options.api.address}?max=${this.options.api.maximum}`;
@@ -173,7 +178,7 @@ class Danmaku {
 
     opacity(percentage) {
         if (percentage !== undefined) {
-            const items = this.container.getElementsByClassName('dplayer-danmaku-item');
+            const items = this.container.getElementsByClassName('dplayer-danmaku-item');   
             for (let i = 0; i < items.length; i++) {
                 items[i].style.opacity = percentage;
             }
@@ -324,6 +329,11 @@ class Danmaku {
                     // move
                     item.classList.add('dplayer-danmaku-move');
                     item.style.animationDuration = this._danmakuSpeed + 'ms';
+                    // report
+                    // let report = document.createElement('span');
+                    // report.classList.add('dplayer-report');
+                    // report.innerText = 'report';
+                    // item.appendChild(report)
                     // insert
                     docFragment.appendChild(item);
                 }

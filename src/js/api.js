@@ -1,4 +1,6 @@
 import axios from 'axios';
+import options from './options';
+import { resolve, reject } from 'promise-polyfill';
 
 export default {
     send: (options) => {
@@ -60,8 +62,22 @@ export default {
                 );
             })
             .catch((err) => {
-                console.error(err);
-                options.error && options.error();
+                options.error && options.error(err);
             });
     },
+
+    report: (options) => {
+        return new Promise((resolve,reject) => {
+            options.flag ? resolve('We will handle your report as soon as possible.') : reject('something went wrong, please try again.')
+        })
+            .then((res) => {
+                options.success && options.success(res)
+            })
+            .catch((err) => {
+                options.error && options.error(err);
+            })
+            .finally((msg) => {
+                options.finally && options.finally(msg);
+            })
+    }
 };
