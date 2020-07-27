@@ -2,6 +2,8 @@ const isMobile = /mobile/i.test(window.navigator.userAgent);
 
 const isSafari = /Safari/i.test(window.navigator.userAgent);
 
+const isIOS = /iphone|ipad|ipod/.test(window.navigator.userAgent);
+
 const utils = {
     /**
      * Parse second to time string
@@ -93,6 +95,8 @@ const utils = {
 
     isSafari: isSafari,
 
+    isIOS: isIOS,
+
     isFirefox: /firefox/i.test(window.navigator.userAgent),
 
     isChrome: /chrome/i.test(window.navigator.userAgent),
@@ -140,8 +144,8 @@ const utils = {
 
     orientationAngle: () => {
         if (isMobile) {
-            if (isSafari) return window.innerWidth > window.innerHeight ? 90 : 0;
-            else return screen.orientation.angle;
+            if (screen.orientation) return screen.orientation.angle;
+            else return window.innerWidth > window.innerHeight ? 0 : 90;
         }
         else return 0;
     }

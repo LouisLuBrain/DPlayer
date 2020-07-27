@@ -144,7 +144,7 @@
             </button>
             <div class="dplayer-setting-speed-panel">
                 {{ each options.playbackSpeed }}
-                    <div class="dplayer-setting-speed-item" data-speed="{{ $value }}">
+                    <div class="dplayer-setting-speed-item {{ $value === 1 ? 'speed-selected' : ''}}" data-speed="{{ $value }}">
                         <span class="dplayer-label">{{ ( $value === 1 || $value === 2 ) ? $value + '.0' : $value }}x</span>
                     </div>
                 {{ /each }}

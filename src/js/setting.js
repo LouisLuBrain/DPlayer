@@ -115,9 +115,11 @@ class Setting {
         });
         for (let i = 0; i < this.player.template.speedItem.length; i++) {
             this.player.template.speedItem[i].addEventListener('click', () => {
+                document.querySelector('.dplayer-setting-speed-item.speed-selected').classList.remove('speed-selected')
                 this.player.speed(this.player.template.speedItem[i].dataset.speed);
                 const num = this.player.template.speedItem[i].dataset.speed;
                 this.player.template.speed.innerText = (num.length === 1 ? num + '.0' : num) + 'x';
+                this.player.template.speedItem[i].classList.add('speed-selected');
                 utils.isMobile || this.hide();
             });
         }
@@ -230,8 +232,9 @@ class Setting {
         else {
             this.player.template.settingButton.style.display = 'block';
         }
+
         // TODO: vertical setting panel
-        if (utils.orientationAngle === 0 || utils.orientationAngle === 180 && utils.isMobile) {
+        if (utils.orientationAngle() === 0 || utils.orientationAngle() === 180 && utils.isMobile) {
             this.player.template.settingBox.classList.add('vertical');
         } else {
             this.player.template.settingBox.classList.remove('vertical');

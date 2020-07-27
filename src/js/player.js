@@ -133,6 +133,8 @@ class DPlayer {
 
         this.paused = true;
 
+        this._playSpeed = 1;
+
         this.timer = new Timer(this);
 
         this.hotkey = new HotKey(this);
@@ -607,6 +609,7 @@ class DPlayer {
     }
 
     speed(rate) {
+        this._playSpeed = rate;
         this.video.playbackRate = rate;
     }
 
