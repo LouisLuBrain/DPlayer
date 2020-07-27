@@ -30,7 +30,7 @@ class Template {
             },
         };
 
-        this.container.innerHTML = window.innerWidth > 769 ? tplPlayer(templateOptions) : mobilePlayer(templateOptions);
+        this.container.innerHTML = utils.isMobile ? mobilePlayer(templateOptions) : tplPlayer(templateOptions);
 
         this.volumeBar = this.container.querySelector('.dplayer-volume-bar-inner');
         this.volumeBarWrap = this.container.querySelector('.dplayer-volume-bar');

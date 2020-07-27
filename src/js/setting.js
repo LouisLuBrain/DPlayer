@@ -6,6 +6,8 @@ class Setting {
         this.dWidth = 200;
         this.hover = [false, false];
 
+        this.player.template.danmakuOpacityThumb.setAttribute('aria-label', ( this.player.user.get('opacity') * 100 ).toFixed(0) +'%'); 
+        
         this.player.template.mask.addEventListener('click', () => {
             this.hide();
         });
@@ -133,8 +135,8 @@ class Setting {
                 let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuOpacityBarWrap)) / this.player.template.danmakuOpacityBarWrap.offsetWidth;
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
-                this.player.template.danmakuOpacityThumb.setAttribute('aria-label', ( percentage * 100 ).toFixed(0) +'%');
                 this.player.danmaku.opacity(percentage);
+                this.player.template.danmakuOpacityThumb.setAttribute('aria-label', ( percentage * 100 ).toFixed(0) +'%'); 
             };
             const danmakuUp = () => {
                 document.removeEventListener(utils.nameMap.dragEnd, danmakuUp);
@@ -148,6 +150,7 @@ class Setting {
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.opacity(percentage);
+                this.player.template.danmakuOpacityThumb.setAttribute('aria-label', ( percentage * 100 ).toFixed(0) +'%'); 
             });
             this.player.template.danmakuOpacityBarWrapWrap.addEventListener(utils.nameMap.dragStart, () => {
                 document.addEventListener(utils.nameMap.dragMove, danmakuMove);
@@ -221,6 +224,12 @@ class Setting {
     }
 
     resize() {
+        if(!this.player.fullScreen.isFullScreen() && utils.isMobile) {
+            this.player.template.settingButton.style.display = 'none';
+        }
+        else {
+            this.player.template.settingButton.style.display = 'block';
+        }
         // TODO: vertical setting panel
         if (screen.orientation.angle === 0 || screen.orientation.angle === 180 && utils.isMobile) {
             this.player.template.settingBox.classList.add('vertical');
