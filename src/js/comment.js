@@ -6,6 +6,7 @@ class Comment {
         this.player = player;
         this.commentLength = 0;
         this.hover = [false];
+        this.sendTimer = false;
 
         this.showDanmaku = this.player.user.get('danmaku');
         if (!this.showDanmaku) {
@@ -142,8 +143,10 @@ class Comment {
             this.player.notice(this.player.tran('The number of words exceeds the limit!'));
             return;
         }
-
-        this.player.danmaku.send(
+        if (this.sendTimer) {
+            this.player.notice(this.player.tran('You send it too often!'));
+        }
+        else this.player.danmaku.send(
             {
                 text: this.player.template.commentInput.value,
                 color: utils.color2Number(this.player.container.querySelector('.dplayer-comment-setting-color input:checked').value),
@@ -154,6 +157,10 @@ class Comment {
                 this.player.template.commentInput.value = '';
                 this.player.template.commentCounter.innerText = '';
                 this.player.template.commentCounter.style.width = '0px';
+                this.sendTimer = setTimeout(() => {
+                    clearTimeout(this.sendTimer)
+                    this.sendTimer = false
+                }, 1000)
             },
             () => {
                 // console.log('error callback');
