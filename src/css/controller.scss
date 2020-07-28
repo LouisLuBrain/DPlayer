@@ -778,7 +778,7 @@
                     width: calc(100% - 24px);
                     &.line {
                         position: absolute;
-                        top: 5px;
+                        top: 3px;
                         height: 2px;
                         margin: 0px;
                         background-color: #6e6e6e;
@@ -809,7 +809,22 @@
                                     left: -4px!important;
                                 }
                             }
-                            span {
+                            .dplayer-range-selector {
+                                display: flex;
+                                justify-content: center;
+                                height: auto;
+                                width: auto;
+                                align-items: center;
+                                .dot {
+                                    background-color: #dddddd;
+                                    height: 4px;
+                                    width: 4px;
+                                    border: 2px solid #dddddd;
+                                    border-radius: 50%;
+                                    transition: all 250ms ease-in-out;
+                                }
+                            }
+                            .dplayer-selector-span {
                                 font-size: 0.75rem;
                                 cursor: pointer;
                                 width: auto;
@@ -819,43 +834,16 @@
                                     color: rgb(255, 255, 255);
                                 }
                             }
-                            input {
-                                display: block;
-                                z-index: 3;
-                                width: 0px;
-                                position: relative;
-                                &::before {
-                                    content: '';
-                                    position: absolute;
-                                    width: 8px;
-                                    height: 8px;
-                                    border-radius: 50%;
-                                    background-color: #ffffff;
-                                    opacity: 0.8;
-                                    left: -5px;
-                                    top: 2px;
-                                    cursor: pointer;
+                            &.range-selected {
+                                .dplayer-selector-span{
+                                    color: rgb(255, 255, 255);
                                 }
-                                &::after {
-                                    content: '';
-                                    position: absolute;
-                                    width: 14px;
-                                    height: 14px;
-                                    border-radius: 50%;
-                                    background-color: #ffffff;
-                                    border: 3px solid #3093fe;
-                                    display: none;
-                                    left: -6px;
-                                    top: -2px;
-                                }
-                                &:checked + span {
-                                    color: #ffffff;
-                                }
-                                &:checked::after {
-                                    display: block;
-                                }
-                                &:hover + span {
-                                    color: #ffffff;
+                                .dplayer-range-selector {
+                                    .dot {
+                                        transform: scale(1.5);
+                                        border-color: #3093fe;
+                                        background-color: rgb(255, 255, 255);
+                                    }
                                 }
                             }
                         }
@@ -1375,8 +1363,23 @@
                                 left: -4px!important;
                             }
                         }
-                        span {
-                            font-size: 1rem;
+                        .dplayer-range-selector {
+                            display: flex;
+                            justify-content: center;
+                            height: auto;
+                            width: auto;
+                            align-items: center;
+                            .dot {
+                                background-color: #dddddd;
+                                height: 4px;
+                                width: 4px;
+                                border: 2px solid #dddddd;
+                                border-radius: 50%;
+                                transition: all 250ms ease-in-out;
+                            }
+                        }
+                        .dplayer-selector-span {
+                            font-size: 0.75rem;
                             cursor: pointer;
                             width: auto;
                             padding: 5px 0px 0px 0px;
@@ -1385,43 +1388,16 @@
                                 color: rgb(255, 255, 255);
                             }
                         }
-                        input {
-                            display: block;
-                            z-index: 3;
-                            width: 0px;
-                            position: relative;
-                            &::before {
-                                content: '';
-                                position: absolute;
-                                width: 8px;
-                                height: 8px;
-                                border-radius: 50%;
-                                background-color: #ffffff;
-                                opacity: 0.8;
-                                left: -5px;
-                                top: 2px;
-                                cursor: pointer;
+                        &.range-selected {
+                            .dplayer-selector-span{
+                                color: rgb(255, 255, 255);
                             }
-                            &::after {
-                                content: '';
-                                position: absolute;
-                                width: 14px;
-                                height: 14px;
-                                border-radius: 50%;
-                                background-color: #ffffff;
-                                border: 3px solid #3093fe;
-                                display: none;
-                                left: -6px;
-                                top: -2px;
-                            }
-                            &:checked + span {
-                                color: #ffffff;
-                            }
-                            &:checked::after {
-                                display: block;
-                            }
-                            &:hover + span {
-                                color: #ffffff;
+                            .dplayer-range-selector {
+                                .dot {
+                                    transform: scale(1.5);
+                                    border-color: #3093fe;
+                                    background-color: rgb(255, 255, 255);
+                                }
                             }
                         }
                     }

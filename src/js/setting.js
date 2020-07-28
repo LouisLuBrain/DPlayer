@@ -100,12 +100,30 @@ class Setting {
         });
 
         // danmaku range
-        for (let i = 0; i < this.player.template.commentRangeSelector.length; i++) {
-            this.player.template.commentRangeSelector[i].addEventListener('click', (event) => {
-                const radio = event.target.previousElementSibling;
-                radio.checked = true;
-                this.player.danmaku.range(radio.value);
+        if (this.player.danmaku) {
+            this.player.on('danmaku_range', (range) => {
+                this.player.user.set('range', range);
             });
+            this.player.danmaku.range(this.player.user.get('range'));
+            const selector = document.querySelector(`.dplayer-selector-option[data-range="${this.player.danmaku.getRange()}"]`);
+            console.log('AL: selector', selector)
+            selector && selector.classList.add('range-selected');
+
+            for (let i = 0; i < this.player.template.commentRangeSelector.length; i++) {
+                this.player.template.commentRangeSelector[i].addEventListener('click', (event) => {
+                    // const radio = event.target.previousElementSibling;
+                    // radio.checked = true;
+                    // this.player.danmaku.range(radio.value);
+
+                    const rangeSelected = document.querySelector('.dplayer-selector-option.range-selected');
+                    rangeSelected && rangeSelected.classList.remove('range-selected');
+                    this.player.template.commentRangeSelector[i].classList.add('range-selected');
+
+                    const range = this.player.template.commentRangeSelector[i].dataset.range;
+                    
+                    this.player.danmaku.range(range);
+                });
+            }
         }
 
         // speed
@@ -115,7 +133,9 @@ class Setting {
         });
         for (let i = 0; i < this.player.template.speedItem.length; i++) {
             this.player.template.speedItem[i].addEventListener('click', () => {
-                document.querySelector('.dplayer-setting-speed-item.speed-selected').classList.remove('speed-selected')
+                const speedSelected = document.querySelector('.dplayer-setting-speed-item.speed-selected');
+                speedSelected && speedSelected.classList.remove('speed-selected');
+
                 this.player.speed(this.player.template.speedItem[i].dataset.speed);
                 const num = this.player.template.speedItem[i].dataset.speed;
                 this.player.template.speed.innerText = (num.length === 1 ? num + '.0' : num) + 'x';

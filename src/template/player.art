@@ -202,16 +202,22 @@
                         <div class="dplayer-selector-box">
                             <div class="dplayer-selector-box line"></div>
                             <div class="dplayer-selector-box box">
-                                <div class="dplayer-selector-option">
-                                    <input type="radio" class="dplayer-range-selector" name="dplayer-comment-range" id="dplayer-comment-range-quarter" value="quarter" />
+                                <div class="dplayer-selector-option" data-range="quarter">
+                                    <div class="dplayer-range-selector">
+                                        <div class="dot"></div>
+                                    </div>
                                     <span class="dplayer-selector-span">25%</span>
                                 </div>
-                                <div class="dplayer-selector-option">
-                                    <input type="radio" class="dplayer-range-selector" name="dplayer-comment-range" id="dplayer-comment-range-half" value="half" />
+                                <div class="dplayer-selector-option" data-range="half">
+                                    <div class="dplayer-range-selector">
+                                        <div class="dot"></div>
+                                    </div>
                                     <span class="dplayer-selector-span">50%</span>
                                 </div>
-                                <div class="dplayer-selector-option">
-                                    <input type="radio" class="dplayer-range-selector" name="dplayer-comment-range" id="dplayer-comment-range-full" value="full" checked="checked"/>
+                                <div class="dplayer-selector-option" data-range="full">
+                                    <div class="dplayer-range-selector">
+                                        <div class="dot"></div>
+                                    </div>
                                     <span class="dplayer-selector-span">100%</span>
                                 </div>
                             </div>

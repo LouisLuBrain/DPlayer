@@ -208,9 +208,17 @@ class Danmaku {
             'half': 2,
             'quarter': 4,
         };
+        this._range = typeof select === 'number' ? select : range[select];
+        this.events && this.events.trigger('danmaku_range', this._range);
+    }
 
-        this._range = range[select];
-
+    getRange() {
+        const range = {
+            1: 'full',
+            2: 'half',
+            4: 'quarter',
+        }
+        return range[this._range];
     }
 
     /**

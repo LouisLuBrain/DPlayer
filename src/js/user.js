@@ -9,6 +9,7 @@ class User {
             danmaku: 'dplayer-danmaku-show',
             subtitle: 'dplayer-subtitle-show',
             speed: 'dplayer-danmaku-speed',
+            range: 'dplayer-danmaku-range',
         };
         this.default = {
             opacity: 0.7,
@@ -17,6 +18,7 @@ class User {
             danmaku: 1,
             subtitle: 1,
             speed: 5000,
+            range: 'full',
         };
         this.data = {};
 

@@ -38,6 +38,7 @@ class Events {
             'danmaku_send',
             'danmaku_opacity',
             'danmaku_speed',
+            'danmaku_range',
             'contextmenu_show',
             'contextmenu_hide',
             'notice_show',
