@@ -18,7 +18,7 @@ class User {
             danmaku: 1,
             subtitle: 1,
             speed: 5000,
-            range: 'full',
+            range: 1,
         };
         this.data = {};
 

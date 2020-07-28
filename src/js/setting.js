@@ -106,7 +106,7 @@ class Setting {
             });
             this.player.danmaku.range(this.player.user.get('range'));
             const selector = document.querySelector(`.dplayer-selector-option[data-range="${this.player.danmaku.getRange()}"]`);
-            console.log('AL: selector', selector)
+            
             selector && selector.classList.add('range-selected');
 
             for (let i = 0; i < this.player.template.commentRangeSelector.length; i++) {
