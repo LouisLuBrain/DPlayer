@@ -62,6 +62,7 @@ function initPlayers() {
         screenshot: false,
         lang: 'en',
         theme: '#3093ff',
+        playTime: 10,
         api: {
             address: "https://qa.sendawish.net/graphql" // unused
         },
@@ -73,9 +74,13 @@ function initPlayers() {
         },
         danmaku: {
             api: "https://qa.sendawish.net/graphql", // endpoints
-            id: 'fd4c3d96-d3c1-4546-9546-006dd289a325', // wishId
+            id: "fd4c3d96-d3c1-4546-9546-006dd289a325", // wishId
             token: 'af518ab6-35c7-4249-a706-d3792741b5ea', // token
         }
+    });
+
+    window.dp1.on('ended_no_loop', function () {
+        console.log('player ended');
     });
 
     // dp2
@@ -121,30 +126,30 @@ function initPlayers() {
     //     ]
     // });
 
-    const events = [
-        'abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error',
-        'loadeddata', 'loadedmetadata', 'loadstart', 'mozaudioavailable', 'pause', 'play',
-        'playing', 'ratechange', 'seeked', 'seeking', 'stalled',
-        'volumechange', 'waiting',
-        'screenshot',
-        'thumbnails_show', 'thumbnails_hide',
-        'danmaku_show', 'danmaku_hide', 'danmaku_clear',
-        'danmaku_loaded', 'danmaku_send', 'danmaku_opacity',
-        'contextmenu_show', 'contextmenu_hide',
-        'notice_show', 'notice_hide',
-        'quality_start', 'quality_end',
-        'destroy',
-        'resize',
-        'fullscreen', 'fullscreen_cancel', 'webfullscreen', 'webfullscreen_cancel',
-        'subtitle_show', 'subtitle_hide', 'subtitle_change'
-    ];
-    const eventsEle = document.getElementById('events');
-    for (let i = 0; i < events.length; i++) {
-        dp2.on(events[i], (info) => {
-            eventsEle.innerHTML += '<p>Event: ' + events[i] + '</p>';
-            eventsEle.scrollTop = eventsEle.scrollHeight;
-        });
-    }
+    // const events = [
+    //     'abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error',
+    //     'loadeddata', 'loadedmetadata', 'loadstart', 'mozaudioavailable', 'pause', 'play',
+    //     'playing', 'ratechange', 'seeked', 'seeking', 'stalled',
+    //     'volumechange', 'waiting',
+    //     'screenshot',
+    //     'thumbnails_show', 'thumbnails_hide',
+    //     'danmaku_show', 'danmaku_hide', 'danmaku_clear',
+    //     'danmaku_loaded', 'danmaku_send', 'danmaku_opacity',
+    //     'contextmenu_show', 'contextmenu_hide',
+    //     'notice_show', 'notice_hide',
+    //     'quality_start', 'quality_end',
+    //     'destroy',
+    //     'resize',
+    //     'fullscreen', 'fullscreen_cancel', 'webfullscreen', 'webfullscreen_cancel',
+    //     'subtitle_show', 'subtitle_hide', 'subtitle_change'
+    // ];
+    // const eventsEle = document.getElementById('events');
+    // for (let i = 0; i < events.length; i++) {
+    //     dp2.on(events[i], (info) => {
+    //         eventsEle.innerHTML += '<p>Event: ' + events[i] + '</p>';
+    //         eventsEle.scrollTop = eventsEle.scrollHeight;
+    //     });
+    // }
 
     // dp3
     // window.dp3 = new DPlayer({

@@ -9,6 +9,7 @@ class Events {
             'durationchange',
             'emptied',
             'ended',
+            'ended_no_loop',
             'error',
             'loadeddata',
             'loadedmetadata',

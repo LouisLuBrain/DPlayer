@@ -135,6 +135,8 @@ class DPlayer {
 
         this._playSpeed = 1;
 
+        this.initPlay = true;
+
         this.timer = new Timer(this);
 
         this.hotkey = new HotKey(this);
@@ -486,6 +488,7 @@ class DPlayer {
             this.bar.set('played', 1, 'width');
             if (!this.setting.loop) {
                 this.pause();
+                this.events && this.events.trigger('ended_no_loop')
             } else {
                 this.seek(0);
                 this.play();
@@ -498,6 +501,10 @@ class DPlayer {
         this.on('play', () => {
             if (this.paused) {
                 this.play(true);
+            }
+            if (this.initPlay && this.options.playTime) {
+                this.initPlay = false
+                this.seek(this.options.playTime)
             }
         });
 
