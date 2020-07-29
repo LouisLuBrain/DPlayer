@@ -111,13 +111,21 @@ class Danmaku {
                     callback(result);
                 }
             });
+            // : this.options.apiBackend.readResponse({
+            //     url: url,
+            //     data: {
+            //         wishIds: id,
+            //     },
+            //     success: (data) => {
+            //         result.push(data);
+            //         callback(result);
+            //     },
+            //     error: (msg) => {
+            //         this.options.error(msg || this.options.tran('Danmaku load failed'));
+            //         callback(result);
+            //     }
+            // });
         });
-    }
-
-    _motifyDanmakuData(danmaku) {
-        switch (danmaku.type) {
-
-        }
     }
 
     send(dan, successCallBack, errorCallBack, finallyCallBack) {

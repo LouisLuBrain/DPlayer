@@ -66,6 +66,41 @@ export default {
             });
     },
 
+    readResponse: (options) => {
+        fetch(options.url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': "*",
+                'Access-Control-Allow-Headers': '*'
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+                query: "query wishDanmaku($wishIds: [String!]){ wishes(wishIds: $wishIds) { id danmakus { id showtimeInSecond transition color body creator { id email fullname } } } }",
+                variables: {
+                    ...options.data
+                }
+            }),
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                options.success && options.success(
+                    res.data.wishes[0].danmakus.map((d) =>
+                        ({
+                            time: d.showtimeInSecond,
+                            type: d.transition,
+                            color: d.color,
+                            author: d.creator.id,
+                            text: d.body,
+                        })
+                    )
+                );
+            })
+            .catch((err) => {
+                options.error && options.error(err);
+            });
+    },
+
     report: (options) => {
         return new Promise((resolve,reject) => {
             options.flag ? resolve('We will handle your report as soon as possible.') : reject('something went wrong, please try again.')
