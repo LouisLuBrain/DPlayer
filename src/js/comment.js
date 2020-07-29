@@ -7,6 +7,8 @@ class Comment {
         this.commentLength = 0;
         this.hover = [false];
         this.sendTimer = false;
+        this.counterInter = null;
+        this.counterNum = 4;
 
         this.showDanmaku = this.player.user.get('danmaku');
         if (!this.showDanmaku) {
@@ -143,33 +145,65 @@ class Comment {
             this.player.notice(this.player.tran('The number of words exceeds the limit!'));
             return;
         }
-        if (this.sendTimer) {
+        if (this.counterInter) {
             this.player.notice(this.player.tran('You send it too often!'));
         }
-        else this.player.danmaku.send(
-            {
-                text: this.player.template.commentInput.value,
-                color: utils.color2Number(this.player.container.querySelector('.dplayer-comment-setting-color input:checked').value),
-                type: parseInt(this.player.container.querySelector('.dplayer-comment-setting-type input:checked').value),
-            },
-            () => {
-                // console.log('success callback');
-                this.player.template.commentInput.value = '';
-                this.player.template.commentCounter.innerText = '';
-                this.player.template.commentCounter.style.width = '0px';
-                this.sendTimer = setTimeout(() => {
-                    clearTimeout(this.sendTimer)
-                    this.sendTimer = false
-                }, 1000)
-            },
-            () => {
-                // console.log('error callback');
-                this.player.notice(this.player.tran('Danmaku send failed'));
-            },
-            () => {
-                // console.log('always callback');
-            }
-        );
+        else {
+            this.player.template.commentSendCounter.style.display = 'inline';
+            this.player.template.commentSendButton.style.display = 'none';
+
+            this.counterInter = setInterval(() => {
+                this.player.template.commentSendCounter.innerText = this.counterNum + 's';
+                this.counterNum === 0 && this._clearInterval();
+                this.counterNum > 0 && this.counterNum--;
+            }, 1000)
+            this.player.template.commentSendCounter.innerText = 5 + 's';
+
+            this.player.danmaku.send(
+                {
+                    text: this.player.template.commentInput.value,
+                    color: utils.color2Number(this.player.container.querySelector('.dplayer-comment-setting-color input:checked').value),
+                    type: parseInt(this.player.container.querySelector('.dplayer-comment-setting-type input:checked').value),
+                },
+                () => {
+                    // console.log('success callback');
+                    this.player.template.commentInput.value = '';
+                    this.player.template.commentCounter.innerText = '';
+                    this.player.template.commentCounter.style.width = '0px';
+
+                    // this.sendTimer = setTimeout(() => {
+                    //     clearTimeout(this.sendTimer)
+                    //     clearInterval(this.counterInter)
+                    //     this.counterNum = 4
+                    //     this.player.template.commentSendCounter.style.display = 'none';
+                    //     this.player.template.commentSendButton.style.display = 'inline';
+                    //     this.player.template.commentSendCounter.innerText = this.counterNum + 's';
+                    //     this.sendTimer = false
+                    // }, 5000)
+                },
+                () => {
+                    // console.log('error callback');
+                    this.player.notice(this.player.tran('Danmaku send failed'));
+
+                    this.player.template.commentSendCounter.style.display = 'inline';
+                    this.player.template.commentSendButton.style.display = 'none';
+
+                    this._clearInterval()
+                },
+                () => {
+                    // console.log('always callback');
+                }
+            );
+        }
+    }
+
+    _clearInterval() {
+        clearInterval(this.counterInter)
+        this.counterNum = 4;
+        this.player.template.commentSendCounter.style.display = 'none';
+        this.player.template.commentSendButton.style.display = 'inline';
+        this.player.template.commentSendCounter.innerText = this.counterNum + 's';
+        this.counterInter = false;
     }
 }
 

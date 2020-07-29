@@ -81,6 +81,7 @@ class Template {
         this.commentSettingFill = this.container.querySelector('.dplayer-comment-setting-icon path');
         this.commentSendButton = this.container.querySelector('.dplayer-send-icon');
         this.commentSendFill = this.container.querySelector('.dplayer-send-icon path');
+        this.commentSendCounter = this.container.querySelector('.dplayer-send-counter');
         this.commentColorSettingBox = this.container.querySelector('.dplayer-comment-setting-color');
         this.commentRangeSelector = this.container.querySelectorAll('.dplayer-selector-option');
         this.commentRangeSelectorRadio = this.container.querySelectorAll('.dplayer-range-selector');
