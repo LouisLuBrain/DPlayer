@@ -500,6 +500,7 @@ class DPlayer {
         });
 
         this.on('play', () => {
+            this.cancelBlur()
             if (this.paused) {
                 this.play(true);
             }
@@ -635,7 +636,14 @@ class DPlayer {
      * blur video
      */
     blur() {
-        this.video.classList.toggle('blur')
+        this.video.classList.add('blur')
+    }
+
+    /**
+     * cancel blur
+     */
+    cancelBlur() {
+        this.video.classList.remove('blur')
     }
 
     static get version() {
