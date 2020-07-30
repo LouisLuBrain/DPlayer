@@ -486,6 +486,7 @@ class DPlayer {
         // video end
         this.on('ended', () => {
             this.bar.set('played', 1, 'width');
+            // this.danmaku.clear();
             if (!this.setting.loop) {
                 this.pause();
                 this.events && this.events.trigger('ended_no_loop')
@@ -628,6 +629,13 @@ class DPlayer {
         this.video.src = '';
         this.container.innerHTML = '';
         this.events.trigger('destroy');
+    }
+
+    /**
+     * blur video
+     */
+    blur() {
+        this.video.classList.toggle('blur')
     }
 
     static get version() {
