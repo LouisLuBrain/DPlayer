@@ -167,11 +167,11 @@ class DPlayer {
         if (this.video.duration) {
             time = Math.min(time, this.video.duration);
         }
-        if (this.video.currentTime < time) {
-            this.notice(`${this.tran('FF')} ${(time - this.video.currentTime).toFixed(0)} ${this.tran('s')}`);
-        } else if (this.video.currentTime > time) {
-            this.notice(`${this.tran('REW')} ${(this.video.currentTime - time).toFixed(0)} ${this.tran('s')}`);
-        }
+        // if (this.video.currentTime < time) {
+        //     this.notice(`${this.tran('FF')} ${(time - this.video.currentTime).toFixed(0)} ${this.tran('s')}`);
+        // } else if (this.video.currentTime > time) {
+        //     this.notice(`${this.tran('REW')} ${(this.video.currentTime - time).toFixed(0)} ${this.tran('s')}`);
+        // }
 
         this.video.currentTime = time;
 
