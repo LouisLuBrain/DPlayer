@@ -430,7 +430,9 @@ class DPlayer {
                             const torrentId = video.src;
                             video.src = '';
                             video.preload = 'metadata';
-                            video.addEventListener('durationchange', () => this.container.classList.remove('dplayer-loading'), { once: true });
+                            video.addEventListener('durationchange', () => {
+                                this.container.classList.remove('dplayer-loading');
+                            }, { once: true });
                             client.add(torrentId, (torrent) => {
                                 const file = torrent.files.find((file) => file.name.endsWith('.mp4'));
                                 file.renderTo(this.video, {
@@ -500,15 +502,18 @@ class DPlayer {
         });
 
         this.on('play', () => {
-            this.cancelBlur()
+            this.cancelBlur();
             if (this.paused) {
                 this.play(true);
             }
+        });
+
+        this.on('canplay', () => {
             if (this.initPlay && this.options.playTime) {
                 this.initPlay = false
                 this.seek(this.options.playTime)
             }
-        });
+        })
 
         this.on('pause', () => {
             if (!this.paused) {

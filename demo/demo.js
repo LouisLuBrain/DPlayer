@@ -58,7 +58,7 @@ function initPlayers() {
     // dp1
     window.dp1 = new DPlayer({
         container: document.getElementById('dplayer1'),
-        preload: 'none',
+        preload: 'auto',
         screenshot: false,
         lang: 'en',
         theme: '#3093ff',
