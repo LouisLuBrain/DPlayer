@@ -131,7 +131,7 @@ class Danmaku {
                 "body": danmakuData.text
             }
             : {
-                "wishResponseId": danmakuData.id,
+                "wishInviteResponseId": danmakuData.id,
                 "showtimeInSecond": this.options.time() + 0.01,
                 "transition": utils.number2Type(danmakuData.type),
                 "color": danmakuData.color,
