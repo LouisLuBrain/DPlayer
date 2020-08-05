@@ -121,14 +121,14 @@ class DPlayer {
             () => {
                 this.focus = false;
             },
-            true
+            false
         );
         this.container.addEventListener(
             'click',
             () => {
                 this.focus = true;
             },
-            true
+            false
         );
 
         this.paused = true;

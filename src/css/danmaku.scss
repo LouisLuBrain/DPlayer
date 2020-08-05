@@ -7,15 +7,33 @@
     font-size: 22px;
     color: #fff;
     .dplayer-danmaku-item {
-        display: inline-block;
-        pointer-events: none;
-        user-select: none;
-        cursor: default;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        // pointer-events: none;
+        // user-select: none;
+        cursor: pointer;
         white-space: nowrap;
         text-shadow: .5px .5px .5px rgba(0, 0, 0, .5);
         &--demo {
             position: absolute;
             visibility: hidden;
+        }
+        .dplayer-danmaku-report {
+            opacity: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #333333;
+            color: white;
+            padding: 2px 0px 0px 4px;
+        }
+        &:hover {
+            background-color: #333333;
+            border-radius: 999px;
+            padding: 0px 10px;
+            .dplayer-danmaku-report {
+                opacity: 1;
+            }
         }
     }
     .dplayer-danmaku-right_to_left {
@@ -37,7 +55,9 @@
     .dplayer-danmaku-top,
     .dplayer-danmaku-bottom {
         position: absolute;
-        width: 100%;
+        width: auto;
+        left: 50%;
+        transform: translateX(-50%);
         text-align: center;
         visibility: hidden;
         &.dplayer-danmaku-move {

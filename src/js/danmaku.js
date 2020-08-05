@@ -1,4 +1,6 @@
 import utils from './utils';
+import i18n from './i18n';
+import Icons from './icons';
 
 class Danmaku {
     constructor(options) {
@@ -24,11 +26,6 @@ class Danmaku {
     }
 
     load() {
-        // this.options.apiBackend.report({
-        //     flag: true,
-        //     success: (msg) => {console.log(msg)},
-        //     error: (msg) => {console.error(msg)},
-        // })
         let apiurl;
         if (this.options.api.maximum) {
             apiurl = `${this.options.api.address}?max=${this.options.api.maximum}`;
@@ -298,7 +295,7 @@ class Danmaku {
                     item.innerHTML = `<span style="border:${dan[i].border};">${dan[i].text}</span>`;
                 } else {
                     // MARK: render text
-                    item.innerHTML = dan[i].text;
+                    item.innerHTML = `<span>${dan[i].text}</span>`;
                 }
                 item.style.opacity = this._opacity;
                 item.style.color = utils.number2Color(parseInt(dan[i].color));
@@ -314,7 +311,7 @@ class Danmaku {
                     case 'right_to_left':
                         tunnel = getTunnel(item, typeOfdan, itemWidth);
                         if (tunnel >= 0) {
-                            item.style.width = itemWidth + 1 + 'px';
+                            item.style.width = itemWidth + 22 + 'px';
                             item.style.top = itemHeight * tunnel + 'px';
                             item.style.transform = `translateX(-${danWidth}px)`;
                         }
@@ -340,11 +337,15 @@ class Danmaku {
                     item.classList.add('dplayer-danmaku-move');
                     item.style.animationDuration = this._danmakuSpeed + 'ms';
                     // report
-                    // item.addEventListener('click',(e) => {
-                    //     console.log(e.currentTarget);
-                    //     e.stopPropagation();
-                    // }, false)
+                    let report = document.createElement('div');
+                    report.innerHTML = Icons.report;
+                    report.classList.add('dplayer-danmaku-report');
+                    item.addEventListener('click',(e) => {
+                        this.options.apiBackend.report({e})
+                        e.stopPropagation();
+                    }, false)
                     // insert
+                    item.appendChild(report);
                     docFragment.appendChild(item);
                 }
             }

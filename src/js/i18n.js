@@ -68,7 +68,8 @@ const tranTxt = {
         'Speed for danmaku': '弹幕速度',
         'slow': '慢',
         'fast': '快',
-        'You send it too often!': '你这发得也忒快了！'
+        'You send it too often!': '你这发得也忒快了！',
+        'report': '举报',
     },
     'zh-tw': {
         'Danmaku is loading': '彈幕載入中',
@@ -118,7 +119,8 @@ const tranTxt = {
         'Speed for danmaku': '彈幕速度',
         'slow': '慢',
         'fast': '快',
-        'You send it too often!': '你發送得太頻繁了呀'
+        'You send it too often!': '你發送得太頻繁了呀',
+        'report': '舉報',
     },
 };
 

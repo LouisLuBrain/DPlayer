@@ -13,7 +13,7 @@ class Controller {
             });
             this.player.container.addEventListener('click', () => {
                 this.setAutoHide();
-            });
+            }, false);
             this.player.on('play', () => {
                 this.setAutoHide();
             });
