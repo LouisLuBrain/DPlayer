@@ -125,8 +125,16 @@ class Danmaku {
 
         this.options.apiBackend.send({
             url: this.options.api.address,
-            data: {
+            data: this.options.api.token 
+            ? {
                 "wishInviteId": danmakuData.id,
+                "showtimeInSecond": this.options.time() + 0.01,
+                "transition": utils.number2Type(danmakuData.type),
+                "color": danmakuData.color,
+                "body": danmakuData.text
+            }
+            : {
+                "wishResponseId": danmakuData.id,
                 "showtimeInSecond": this.options.time() + 0.01,
                 "transition": utils.number2Type(danmakuData.type),
                 "color": danmakuData.color,
@@ -332,10 +340,10 @@ class Danmaku {
                     item.classList.add('dplayer-danmaku-move');
                     item.style.animationDuration = this._danmakuSpeed + 'ms';
                     // report
-                    // let report = document.createElement('span');
-                    // report.classList.add('dplayer-report');
-                    // report.innerText = 'report';
-                    // item.appendChild(report)
+                    // item.addEventListener('click',(e) => {
+                    //     console.log(e.currentTarget);
+                    //     e.stopPropagation();
+                    // }, false)
                     // insert
                     docFragment.appendChild(item);
                 }
