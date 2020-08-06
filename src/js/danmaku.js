@@ -339,6 +339,7 @@ class Danmaku {
                     // report
                     let report = document.createElement('div');
                     report.innerHTML = Icons.report;
+                    report.innerHTML += Icons.like;
                     report.classList.add('dplayer-danmaku-report');
                     item.addEventListener('click',(e) => {
                         this.options.apiBackend.report({e})

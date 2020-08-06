@@ -17,6 +17,9 @@ import subtitle from '../assets/subtitle.svg';
 import loading from '../assets/loading.svg';
 import more from '../assets/more.svg';
 import report from '../assets/report.svg';
+import like from '../assets/like.svg';
+import fire from '../assets/fire.svg';
+
 
 const Icons = {
     play: play,
@@ -38,6 +41,8 @@ const Icons = {
     airplay: airplay,
     more: more,
     report: report,
+    like: like,
+    fire: fire,
 };
 
 export default Icons;
