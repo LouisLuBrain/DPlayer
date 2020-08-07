@@ -45,16 +45,17 @@
         }
         .dplayer-danmaku-report {
             opacity: 0;
-            width: 20px;
+            width: 64px;
             height: 20px;
             background-color: #333333;
             color: white;
             padding: 2px 0px 0px 4px;
+            display: flex;
         }
         &:hover {
             background-color: #333333;
             border-radius: 999px;
-            padding: 10px 54px 10px 15px;
+            padding: 10px 15px;
             z-index: 100;
             .dplayer-danmaku-item-text svg {
                 display: none;
@@ -82,7 +83,7 @@
                     opacity: 0;
                 }
             }
-            &:not(.iLiked) .dplayer-danmaku-report {
+            .dplayer-danmaku-report {
                 svg:hover path {
                     fill: #3093ff;
                 }
@@ -90,6 +91,9 @@
         }
         &.iLiked {
             .dplayer-danmaku-report {
+                svg:nth-child(1) path {
+                    fill: #FB7431;
+                }
                 svg:nth-child(1) path {
                     fill: #FB7431;
                 }
