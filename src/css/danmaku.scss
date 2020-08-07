@@ -26,6 +26,9 @@
                     fill: #FB7431;
                 }
             }
+            &.none svg {
+                fill-opacity: 0;
+            }
             &.xs svg {
                 fill-opacity: 0.25;
             }
@@ -38,6 +41,7 @@
             &.lg svg {
                 fill-opacity: 1;
             }
+
         }
         &--demo {
             position: absolute;
@@ -90,6 +94,11 @@
             }
         }
         &.iLiked {
+            .dplayer-danmaku-item-text {
+                svg {
+                    fill-opacity: 1!important;
+                }
+            }
             .dplayer-danmaku-report {
                 svg:nth-child(1) path {
                     fill: #FB7431;

@@ -379,11 +379,11 @@ class Danmaku {
     }
 
     _fire(likes) {
-        if (likes <= 0) return '';
+        if (likes <= 0) return 'none';
         else if (likes <= 50) return 'xs';
         else if (likes <= 100) return 'sm';
         else if (likes <= 150) return 'md';
-        else return 'lg';
+        else if (likes) return 'lg';
     }
 
     _measure(text) {
