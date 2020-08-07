@@ -177,13 +177,13 @@ class Danmaku {
 
     opacity(percentage) {
         if (percentage !== undefined) {
-            const items = this.container.getElementsByClassName('dplayer-danmaku-item');   
+            const items = this.container.getElementsByClassName('dplayer-danmaku-item-text');   
             for (let i = 0; i < items.length; i++) {
-                items[i].style.opacity = percentage;
+                items[i].style.opacity = 0.9 * percentage + 0.1;
             }
-            this._opacity = percentage;
+            this._opacity = 0.9 * percentage + 0.1;
 
-            this.events && this.events.trigger('danmaku_opacity', this._opacity);
+            this.events && this.events.trigger('danmaku_opacity', percentage);
         }
         return this._opacity;
     }
@@ -298,7 +298,7 @@ class Danmaku {
                     // MARK: render text
                     item.innerHTML = `<span class="dplayer-danmaku-item-text ${this._fire(dan[i].likes)}">${dan[i].text}${dan[i].iLiked ? Icons.like : Icons.fire}</span>`;
                 }
-                item.style.opacity = this._opacity;
+                item.childNodes[0].style.opacity = this._opacity;
                 item.style.color = utils.number2Color(parseInt(dan[i].color));
                 item.addEventListener('animationend', () => {
                     this.container.removeChild(item);

@@ -148,7 +148,7 @@ class Setting {
         if (this.player.danmaku) {
             this.player.on('danmaku_opacity', (percentage) => {
                 this.player.bar.set('danmaku', percentage, 'width');
-                this.player.user.set('opacity', percentage);
+                this.player.user.set('opacity', 0.9 * percentage + 0.1);
             });
             this.player.danmaku.opacity(this.player.user.get('opacity'));
 
@@ -158,7 +158,7 @@ class Setting {
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.opacity(percentage);
-                this.player.template.danmakuOpacityThumb.setAttribute('aria-label', ( percentage * 100 ).toFixed(0) +'%'); 
+                this.player.template.danmakuOpacityThumb.setAttribute('aria-label', ( percentage * 90 + 10 ).toFixed(0) +'%'); 
             };
             const danmakuUp = () => {
                 document.removeEventListener(utils.nameMap.dragEnd, danmakuUp);
@@ -172,7 +172,7 @@ class Setting {
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.opacity(percentage);
-                this.player.template.danmakuOpacityThumb.setAttribute('aria-label', ( percentage * 100 ).toFixed(0) +'%'); 
+                this.player.template.danmakuOpacityThumb.setAttribute('aria-label', ( percentage * 90 + 10 ).toFixed(0) +'%'); 
             });
             this.player.template.danmakuOpacityBarWrapWrap.addEventListener(utils.nameMap.dragStart, () => {
                 document.addEventListener(utils.nameMap.dragMove, danmakuMove);
