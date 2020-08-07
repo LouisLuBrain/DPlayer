@@ -16,6 +16,29 @@
         cursor: pointer;
         white-space: nowrap;
         text-shadow: .5px .5px .5px rgba(0, 0, 0, .5);
+        .dplayer-danmaku-item-text {
+            svg {
+                margin-left: 3px;
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                path {
+                    fill: #FB7431;
+                }
+            }
+            &.xs svg {
+                fill-opacity: 0.25;
+            }
+            &.sm svg {
+                fill-opacity: 0.5;
+            }
+            &.md svg {
+                fill-opacity: 0.75;
+            }
+            &.lg svg {
+                fill-opacity: 1;
+            }
+        }
         &--demo {
             position: absolute;
             visibility: hidden;
@@ -31,14 +54,59 @@
         &:hover {
             background-color: #333333;
             border-radius: 999px;
-            padding: 10px 15px;
+            padding: 10px 54px 10px 15px;
             z-index: 100;
+            .dplayer-danmaku-item-text svg {
+                display: none;
+            }
             .dplayer-danmaku-report {
                 opacity: 1;
-                &:hover path {
+                svg {
+                    width: 18px;
+                    height: 18px;
+                    position: relative;
+                }
+                svg:nth-child(1) {
+                    margin-left: 10px;
+                }
+                svg:nth-child(2) {
+                    margin-left: 15px;
+                }
+                &::after {
+                    content: '+1';
+                    position: absolute;
+                    top: 0px;
+                    right: 48px;
+                    color: #FB7431;
+                    font-size: 0.875rem;
+                    opacity: 0;
+                }
+            }
+            &:not(.iLiked) .dplayer-danmaku-report {
+                svg:hover path {
                     fill: #3093ff;
                 }
             }
+        }
+        &.iLiked {
+            .dplayer-danmaku-report {
+                svg:nth-child(1) path {
+                    fill: #FB7431;
+                }
+                &.ani::after {
+                    animation: iLike 1000ms forwards;
+                }
+            }
+        }
+    }
+    @keyframes iLike {
+        from {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-10px);
         }
     }
     .dplayer-danmaku-right_to_left {

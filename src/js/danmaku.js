@@ -261,7 +261,7 @@ class Danmaku {
                                 this.danTunnel[type][i + ''].push(ele);
                                 ele.addEventListener('animationend', () => {
                                     this.danTunnel[type][i + ''].splice(0, 1);
-                                });
+                                }, false);
                                 return i % itemY;
                             }
                         }
@@ -269,7 +269,7 @@ class Danmaku {
                         this.danTunnel[type][i + ''] = [ele];
                         ele.addEventListener('animationend', () => {
                             this.danTunnel[type][i + ''].splice(0, 1);
-                        });
+                        },false);
                         return i % itemY;
                     }
                 }
@@ -290,18 +290,19 @@ class Danmaku {
                 const item = document.createElement('div');
                 item.classList.add('dplayer-danmaku-item');
                 item.classList.add(`dplayer-danmaku-${typeOfdan}`);
+                dan[i].iLiked && item.classList.add('iLiked');
 
                 if (dan[i].border && typeof (dan[i].text) === "string") {
-                    item.innerHTML = `<span style="border:${dan[i].border};">${dan[i].text}</span>`;
+                    item.innerHTML = `<span class="dplayer-danmaku-item-text ${this._fire(dan[i].likes)}" style="border:${dan[i].border};">${dan[i].text}${dan[i].iLiked ? Icons.like : Icons.fire}</span>`;
                 } else {
                     // MARK: render text
-                    item.innerHTML = `<span>${dan[i].text}</span>`;
+                    item.innerHTML = `<span class="dplayer-danmaku-item-text ${this._fire(dan[i].likes)}">${dan[i].text}${dan[i].iLiked ? Icons.like : Icons.fire}</span>`;
                 }
                 item.style.opacity = this._opacity;
                 item.style.color = utils.number2Color(parseInt(dan[i].color));
                 item.addEventListener('animationend', () => {
                     this.container.removeChild(item);
-                });
+                }, false);
 
                 const itemWidth = this._measure(dan[i].text);
                 let tunnel;
@@ -336,13 +337,25 @@ class Danmaku {
                     // move
                     item.classList.add('dplayer-danmaku-move');
                     item.style.animationDuration = this._danmakuSpeed + 'ms';
-                    // report
+                    // like & report
                     let report = document.createElement('div');
-                    report.innerHTML = Icons.report;
                     report.innerHTML += Icons.like;
+                    report.innerHTML += Icons.report;
                     report.classList.add('dplayer-danmaku-report');
-                    item.addEventListener('click',(e) => {
+                    // report
+                    report.childNodes[1].addEventListener('click',(e) => {
                         this.options.apiBackend.report({e})
+                        e.stopPropagation();
+                    }, false)
+                    // like
+                    report.childNodes[0].addEventListener('click',(e) => {
+                        this.options.apiBackend.like({e});
+                        item.classList.toggle('iLiked');
+                        if(item.classList.contains('iLiked')) report.classList.add('ani')
+                        e.stopPropagation();
+                    }, false)
+                    report.addEventListener('animationend',(e) => {
+                        report.classList.remove('ani');
                         e.stopPropagation();
                     }, false)
                     // insert
@@ -363,6 +376,14 @@ class Danmaku {
 
     pause() {
         this.paused = true;
+    }
+
+    _fire(likes) {
+        if (likes <= 0) return '';
+        else if (likes <= 50) return 'xs';
+        else if (likes <= 100) return 'sm';
+        else if (likes <= 150) return 'md';
+        else return 'lg';
     }
 
     _measure(text) {
