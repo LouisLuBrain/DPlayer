@@ -194,6 +194,7 @@
             <button class="dplayer-icon dplayer-send-icon mobile" none-aria-label="{{ tran('Send') }}" data-balloon-nofocus="true" data-balloon-pos="up" style="background: {{ options.theme }}">
                 <span class="dplayer-icon-content">{{@ icons.send }}</span>
             </button>
+            <button class="dplayer-icon dplayer-send-counter mobile" style="display: none;"></button>
         </div>
     </div>
     <!-- MARK: right buttons -->
