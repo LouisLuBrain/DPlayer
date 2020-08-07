@@ -312,7 +312,7 @@ class Danmaku {
                     case 'right_to_left':
                         tunnel = getTunnel(item, typeOfdan, itemWidth);
                         if (tunnel >= 0) {
-                            item.style.width = itemWidth + 22 + 'px';
+                            item.style.width = itemWidth + 64 + 'px';
                             item.style.top = itemHeight * tunnel + 'px';
                             item.style.transform = `translateX(-${danWidth}px)`;
                         }
