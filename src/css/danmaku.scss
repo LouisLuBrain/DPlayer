@@ -14,9 +14,6 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        // pointer-events: none;
-        // user-select: none;
-        cursor: pointer;
         white-space: nowrap;
         text-shadow: .5px .5px .5px rgba(0, 0, 0, .5);
         .dplayer-danmaku-item-text {
@@ -59,6 +56,9 @@
             color: white;
             padding: 2px 0px 0px 4px;
             display: flex;
+        }
+        &.hoverable {
+            cursor: pointer;
         }
         &.hoverable:hover {
             background-color: #333333;
