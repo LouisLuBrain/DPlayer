@@ -294,12 +294,8 @@ class Danmaku {
                 item.setAttribute('data-id', dan[i].id);
                 dan[i].iLiked && item.classList.add('iLiked');
 
-                if (dan[i].border && typeof (dan[i].text) === "string") {
-                    item.innerHTML = `<span class="dplayer-danmaku-item-text ${this._fire(dan[i].likes)}" style="border:${dan[i].border};">${dan[i].text}${dan[i].iLiked ? Icons.like : Icons.fire}</span>`;
-                } else {
-                    // MARK: render text
-                    item.innerHTML = `<span class="dplayer-danmaku-item-text ${this._fire(dan[i].likes)}">${dan[i].text}${dan[i].iLiked ? Icons.like : Icons.fire}</span>`;
-                }
+                item.appendChild(this._renderText(dan[i]));
+
                 item.childNodes[0].style.opacity = this._opacity;
                 item.style.color = utils.number2Color(parseInt(dan[i].color));
                 item.addEventListener('animationend', () => {
@@ -359,7 +355,7 @@ class Danmaku {
                                 item.classList.toggle('iLiked');
                                 if(item.classList.contains('iLiked')) danOp.classList.add('ani');
                                 dan[i].iLiked = !dan[i].iLiked
-                                item.childNodes[0].innerHTML = `${dan[i].text}${dan[i].iLiked ? Icons.like : Icons.fire}`;
+                                item.replaceChild(this._renderText(dan[i]), item.childNodes[0]);
                             },
                             error: (err) => {
                                 this.options.error('like failed.')
@@ -397,12 +393,22 @@ class Danmaku {
         this.paused = true;
     }
 
-    _fire(likes) {
-        if (likes <= 0 || likes === undefined) return 'none';
-        else if (likes <= 50) return 'xs';
-        else if (likes <= 100) return 'sm';
-        else if (likes <= 150) return 'md';
-        else if (likes) return 'lg';
+    _renderText(dan) {
+        const { likes, iLiked, border, text } = dan;
+        let fire;
+        if (likes <= 0 || likes === undefined) fire = 'none';
+        else if (likes <= 50) fire = 'xs';
+        else if (likes <= 100) fire = 'sm';
+        else if (likes <= 150) fire = 'md';
+        else if (likes) fire = 'lg';
+        
+        let node = document.createElement('span');
+        node.classList.add('dplayer-danmaku-item-text');
+        iLiked || node.classList.add(fire);
+        border && (node.style.border = border);
+        node.innerHTML = `${text}${iLiked ? Icons.like : Icons.fire}`;
+
+        return node;
     }
 
     _measure(text) {
