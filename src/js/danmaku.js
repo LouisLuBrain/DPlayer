@@ -339,29 +339,46 @@ class Danmaku {
                     // move
                     item.classList.add('dplayer-danmaku-move');
                     item.style.animationDuration = this._danmakuSpeed + 'ms';
-                    // like & report
-                    let report = document.createElement('div');
-                    report.innerHTML += Icons.like;
-                    report.innerHTML += Icons.report;
-                    report.classList.add('dplayer-danmaku-report');
-                    // report
-                    report.childNodes[1].addEventListener('click',(e) => {
+                    // add like & report
+                    let danOp = document.createElement('div');
+                    danOp.innerHTML += Icons.like;
+                    danOp.innerHTML += Icons.report;
+                    danOp.classList.add('dplayer-danmaku-report');
+
+                    // report func
+                    danOp.childNodes[1].addEventListener('click',(e) => {
                         this.options.apiBackend.report(dan[i])
                         e.stopPropagation();
                     }, false)
-                    // like
-                    report.childNodes[0].addEventListener('click',(e) => {
-                        this.options.apiBackend.like({e});
-                        item.classList.toggle('iLiked');
-                        if(item.classList.contains('iLiked')) report.classList.add('ani')
+
+                    // like func
+                    danOp.childNodes[0].addEventListener('click',(e) => {
+                        this.options.apiBackend.like({
+                            data: dan[i],
+                            success: (res) => {
+                                item.classList.toggle('iLiked');
+                                if(item.classList.contains('iLiked')) danOp.classList.add('ani');
+                                dan[i].iLiked = !dan[i].iLiked
+                                item.childNodes[0].innerHTML = `${dan[i].text}${dan[i].iLiked ? Icons.like : Icons.fire}`;
+                            },
+                            error: (err) => {
+                                this.options.error('like failed.')
+                            },
+                            finally: () => {},
+                        });
                         e.stopPropagation();
                     }, false)
-                    report.addEventListener('animationend',(e) => {
-                        report.classList.remove('ani');
+                    danOp.addEventListener('animationend',(e) => {
+                        danOp.classList.remove('ani');
                         e.stopPropagation();
                     }, false)
+                    danOp.addEventListener('mouseleave',(e) => {
+                        danOp.classList.remove('ani');
+                        e.stopPropagation();
+                    }, false)
+
                     // insert
-                    item.appendChild(report);
+                    item.appendChild(danOp);
                     docFragment.appendChild(item);
                 }
             }

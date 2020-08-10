@@ -146,7 +146,19 @@ function initPlayers() {
         //         })
         //       },
         //     report: (options) => {console.log('this is default api function, please add your own api function. you send params: \n',options)},
-        //     like: (options) => {console.log('this is default api function, please add your own api function. you send params: \n',options)},
+        //     like: (options) => {
+        //       new Promise((resolve, reject)=> {
+        //         Math.random() <= 0.9 ? resolve('success') : reject('failed')
+        //       }).then((res) => {
+        //         options.success && options.success(res);
+        //       })
+        //       .catch((err) => {
+        //         options.error && options.error(err);
+        //       })
+        //       .finally((msg) => {
+        //         options.finally && options.finally(msg);
+        //       })
+        //     },
         // }
     });
 
