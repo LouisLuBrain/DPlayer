@@ -106,7 +106,7 @@
     &.dplayer-playing {
         .dplayer-danmaku .dplayer-danmaku-move {
             animation-play-state: running;
-            &:hover{
+            &.hoverable:hover{
                 animation-play-state: paused!important;
                 z-index: 100;
             }

@@ -328,6 +328,24 @@
                     display: none;
                 }
             }
+            .dplayer-unAuth-placeholder {
+                position: absolute;
+                left: 40px;
+                color: rgba(255,255,255,0.6);
+                &.mobile {
+                    left: 5px;
+                }
+                a {
+                    color: white;
+                    margin: 0px 5px;
+                    cursor: pointer;
+                    transition: all 100ms ease-in-out;
+                    &:hover {
+                        color: #3093fe;
+                        text-decoration: underline;
+                    }
+                }
+            }
             .dplayer-comment-input-counter {
                 white-space: nowrap;
                 text-align: right;

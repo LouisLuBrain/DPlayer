@@ -74,6 +74,8 @@ class Template {
         this.danmakuSpeedBox = this.container.querySelector('.dplayer-setting-danmaku-speed');
         this.dtime = this.container.querySelector('.dplayer-dtime');
         this.controller = this.container.querySelector('.dplayer-controller');
+        this.commentInputUnAuthLogin = this.container.querySelector('.dplayer-unAuth-placeholder a:nth-child(1)');
+        this.commentInputUnAuthRegister = this.container.querySelector('.dplayer-unAuth-placeholder a:nth-child(2)');
         this.commentInput = this.container.querySelector('.dplayer-comment-input');
         this.commentButton = this.container.querySelector('.dplayer-comment-icon');
         this.commentSettingBox = this.container.querySelector('.dplayer-comment-setting-box');

@@ -6,7 +6,7 @@
         <img src="{{ options.logo }}">
     </div>
     {{ /if }}
-    <div class="dplayer-danmaku"{{ if options.danmaku && options.danmaku.bottm }} style="margin-bottom:{{ options.danmaku.bottm }}"{{ /if }}>
+    <div class="dplayer-danmaku mobile"{{ if options.danmaku && options.danmaku.bottm }} style="margin-bottom:{{ options.danmaku.bottm }}"{{ /if }}>
         <div class="dplayer-danmaku-item dplayer-danmaku-item--demo"></div>
     </div>
     <div class="dplayer-subtitle"></div>
@@ -142,6 +142,7 @@
             </button>
         </div>
         <div class="dplayer-icons dplayer-comment-input-box mobile">
+            {{ if options.isAuth }}
             <button class="dplayer-icon dplayer-comment-setting-icon mobile" none-aria-label="{{ tran('Setting') }}" data-balloon-nofocus="true" data-balloon-pos="up">
                 <span class="dplayer-icon-content">{{@ icons.pallette }}</span>
             </button>
@@ -195,6 +196,11 @@
                 <span class="dplayer-icon-content">{{@ icons.send }}</span>
             </button>
             <button class="dplayer-icon dplayer-send-counter mobile" style="display: none;"></button>
+            {{ /if }}
+            {{ if !options.isAuth }}
+            <input class="dplayer-comment-input mobile" type="text" disabled>
+            <div class="dplayer-unAuth-placeholder mobile">{{ tran('Please') }}<a>{{ tran('log in') }}</a>{{ tran('or') }}<a>{{ tran('register') }}</a></div>
+            {{ /if }}
         </div>
     </div>
     <!-- MARK: right buttons -->

@@ -93,6 +93,7 @@ class DPlayer {
                 error: (msg) => {
                     this.notice(msg);
                 },
+                isAuth: options.isAuth,
                 apiBackend: this.options.apiBackend,
                 borderColor: this.options.theme,
                 height: this.arrow ? 24 : 30,

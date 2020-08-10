@@ -61,6 +61,11 @@ function initPlayers() {
         preload: 'auto',
         screenshot: false,
         lang: 'en',
+        isAuth: false,
+        history: {
+            'login': () => {console.log('login')},
+            'register': () => {console.log('register')},
+        },
         theme: '#3093ff',
         playTime: 10,
         api: {
@@ -77,89 +82,89 @@ function initPlayers() {
             id: "fd4c3d96-d3c1-4546-9546-006dd289a325", // wishId
             token: 'af518ab6-35c7-4249-a706-d3792741b5ea', // token
         },
-        // apiBackend: {
-        //     read: (options) => {
-        //         fetch(options.url, {
-        //           method: 'POST',
-        //           headers: {
-        //             'Content-Type': 'application/json',
-        //             'Access-Control-Allow-Origin': "*",
-        //             'Access-Control-Allow-Headers': '*'
-        //           },
-        //           mode: 'cors',
-        //           body: JSON.stringify({
-        //             query: "query danmakuQuery($id: String!, $token: String!) { thingInvite(id: $id, token: $token) { id danmakus { id showtimeInSecond transition color body creator { id email fullname } } } }",
-        //             variables: {
-        //                 ...options.data
-        //             }
-        //           }),
-        //         })
-        //         .then((res) => res.json())
-        //         .then((res) => {
-        //           options.success && options.success(
-        //             res.data.thingInvite.danmakus.map((d) =>
-        //               ({
-        //                 id: d.id,
-        //                 time: d.showtimeInSecond,
-        //                 type: d.transition,
-        //                 color: d.color,
-        //                 author: d.creator.id,
-        //                 text: d.body,
-        //                 likes: ( Math.random() * 200 ).toFixed(0),
-        //                 iLiked: Math.random() >= 0.5,
-        //               })
-        //             )
-        //           );
-        //         })
-        //         .catch((err) => {
-        //             options.error && options.error(err);
-        //         })
-        //         .finally((msg) => {
-        //           options.finally && options.finally(msg);
-        //         })
-        //     },
-        //     send: (options) => {
-        //         fetch(options.url, {
-        //           method: 'POST',
-        //           headers: {
-        //             'Content-Type': 'application/json',
-        //             'Access-Control-Allow-Origin': "*",
-        //             'Access-Control-Allow-Headers': '*'
-        //           },
-        //           mode: 'cors',
-        //           body: JSON.stringify({
-        //             query: "mutation ($input: DanmakuTextInput!) { createDanmakuText(input: $input) { id showtimeInSecond transition color creator { id fullname } body } }",
-        //             variables: {
-        //               "input": options.data
-        //             }
-        //           }),
-        //         })
-        //         .then((res) => res.json())
-        //         .then((res) => {
-        //           options.success && options.success(res);
-        //         })
-        //         .catch((err) => {
-        //           options.error && options.error(err);
-        //         })
-        //         .finally((msg) => {
-        //           options.finally && options.finally(msg);
-        //         })
-        //       },
-        //     report: (options) => {console.log('this is default api function, please add your own api function. you send params: \n',options)},
-        //     like: (options) => {
-        //       new Promise((resolve, reject)=> {
-        //         Math.random() <= 0.9 ? resolve('success') : reject('failed')
-        //       }).then((res) => {
-        //         options.success && options.success(res);
-        //       })
-        //       .catch((err) => {
-        //         options.error && options.error(err);
-        //       })
-        //       .finally((msg) => {
-        //         options.finally && options.finally(msg);
-        //       })
-        //     },
-        // }
+        apiBackend: {
+            read: (options) => {
+                fetch(options.url, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': "*",
+                    'Access-Control-Allow-Headers': '*'
+                  },
+                  mode: 'cors',
+                  body: JSON.stringify({
+                    query: "query danmakuQuery($id: String!, $token: String!) { thingInvite(id: $id, token: $token) { id danmakus { id showtimeInSecond transition color body creator { id email fullname } } } }",
+                    variables: {
+                        ...options.data
+                    }
+                  }),
+                })
+                .then((res) => res.json())
+                .then((res) => {
+                  options.success && options.success(
+                    res.data.thingInvite.danmakus.map((d) =>
+                      ({
+                        id: d.id,
+                        time: d.showtimeInSecond,
+                        type: d.transition,
+                        color: d.color,
+                        author: d.creator.id,
+                        text: d.body,
+                        likes: ( Math.random() * 1 ).toFixed(0),
+                        iLiked: Math.random() >= 0.5,
+                      })
+                    )
+                  );
+                })
+                .catch((err) => {
+                    options.error && options.error(err);
+                })
+                .finally((msg) => {
+                  options.finally && options.finally(msg);
+                })
+            },
+            send: (options) => {
+                fetch(options.url, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': "*",
+                    'Access-Control-Allow-Headers': '*'
+                  },
+                  mode: 'cors',
+                  body: JSON.stringify({
+                    query: "mutation ($input: DanmakuTextInput!) { createDanmakuText(input: $input) { id showtimeInSecond transition color creator { id fullname } body } }",
+                    variables: {
+                      "input": options.data
+                    }
+                  }),
+                })
+                .then((res) => res.json())
+                .then((res) => {
+                  options.success && options.success(res);
+                })
+                .catch((err) => {
+                  options.error && options.error(err);
+                })
+                .finally((msg) => {
+                  options.finally && options.finally(msg);
+                })
+              },
+            report: (options) => {console.log('this is default api function, please add your own api function. you send params: \n',options)},
+            like: (options) => {
+              new Promise((resolve, reject)=> {
+                Math.random() <= 0.9 ? resolve('success') : reject('failed')
+              }).then((res) => {
+                options.success && options.success(res);
+              })
+              .catch((err) => {
+                options.error && options.error(err);
+              })
+              .finally((msg) => {
+                options.finally && options.finally(msg);
+              })
+            },
+        }
     });
 
     window.dp1.on('ended_no_loop', function () {

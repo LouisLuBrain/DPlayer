@@ -296,7 +296,7 @@ class Danmaku {
 
                 item.appendChild(this._renderText(dan[i]));
 
-                item.childNodes[0].style.opacity = this._opacity;
+                // item.childNodes[0].style.opacity = this._opacity;
                 item.style.color = utils.number2Color(parseInt(dan[i].color));
                 item.addEventListener('animationend', () => {
                     this.container.removeChild(item);
@@ -334,6 +334,7 @@ class Danmaku {
                 if (tunnel >= 0) {
                     // move
                     item.classList.add('dplayer-danmaku-move');
+                    this.options.isAuth && item.classList.add('hoverable');
                     item.style.animationDuration = this._danmakuSpeed + 'ms';
                     // add like & report
                     let danOp = document.createElement('div');
@@ -372,9 +373,12 @@ class Danmaku {
                         danOp.classList.remove('ani');
                         e.stopPropagation();
                     }, false)
-
+                    // mobile hover fix
+                    item.addEventListener('click', (e) => {
+                        e.stopPropagation()
+                    }, false)
                     // insert
-                    item.appendChild(danOp);
+                    this.options.isAuth && item.appendChild(danOp);
                     docFragment.appendChild(item);
                 }
             }
@@ -407,6 +411,7 @@ class Danmaku {
         iLiked || node.classList.add(fire);
         border && (node.style.border = border);
         node.innerHTML = `${text}${iLiked ? Icons.like : Icons.fire}`;
+        node.style.opacity = this._opacity;
 
         return node;
     }

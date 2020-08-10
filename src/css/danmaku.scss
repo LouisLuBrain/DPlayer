@@ -7,6 +7,9 @@
     font-size: 22px;
     color: #fff;
     margin: 20px 0px 80px 0px;
+    &.mobile {
+        margin: 10px 0px;
+    }
     .dplayer-danmaku-item {
         display: flex;
         justify-content: space-around;
@@ -57,7 +60,7 @@
             padding: 2px 0px 0px 4px;
             display: flex;
         }
-        &:hover {
+        &.hoverable:hover {
             background-color: #333333;
             border-radius: 999px;
             padding: 10px 15px;

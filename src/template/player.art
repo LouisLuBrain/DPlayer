@@ -56,6 +56,7 @@
             <button class="dplayer-icon dplayer-comment-setting-icon">
                 <span class="dplayer-icon-content">{{@ icons.pallette }}</span>
             </button>
+            {{ if options.isAuth }}
             <div class="dplayer-comment-setting-box">
                 <div class="dplayer-comment-setting-color">
                     <div class="dplayer-comment-setting-title">{{ tran('Set danmaku color') }}</div>
@@ -101,11 +102,18 @@
                 </div>
             </div>
             <input class="dplayer-comment-input" type="text" placeholder="{{ tran('Input danmaku, hit Enter') }}">
+            {{ /if }}
+            {{ if !options.isAuth }}
+            <input class="dplayer-comment-input" type="text" disabled>
+            <div class="dplayer-unAuth-placeholder">{{ tran('Please') }}<a>{{ tran('log in') }}</a>{{ tran('or') }}<a>{{ tran('register') }}</a></div>
+            {{ /if }}
+            {{ if options.isAuth }}
             <div class="dplayer-comment-input-counter"></div>
             <button class="dplayer-icon dplayer-send-icon" aria-label="{{ tran('Send') }}" data-balloon-nofocus="true" data-balloon-pos="up" style="background: {{ options.theme }};display: inline;">
                 <span class="dplayer-icon-content">{{@ icons.send }}</span>
             </button>
             <button class="dplayer-icon dplayer-send-counter" style="display: none;"></button>
+            {{ /if }}
         </div>
     </div>
     <!-- MARK: right buttons -->

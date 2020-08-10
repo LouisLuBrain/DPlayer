@@ -70,6 +70,10 @@ const tranTxt = {
         'fast': '快',
         'You send it too often!': '你这发得也忒快了！',
         'report': '举报',
+        'log in': '登录',
+        'or': '或',
+        'register': '注册',
+        'Please': '请',
     },
     'zh-tw': {
         'Danmaku is loading': '彈幕載入中',
@@ -121,6 +125,10 @@ const tranTxt = {
         'fast': '快',
         'You send it too often!': '你發送得太頻繁了呀',
         'report': '舉報',
+        'log in': '登錄',
+        'or': '或',
+        'register': '註冊',
+        'Please': '請',
     },
 };
 

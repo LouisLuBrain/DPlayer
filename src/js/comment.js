@@ -22,17 +22,18 @@ class Comment {
             // this.show();
             this.toggleShowDanmaku();
         });
-        this.player.template.commentSettingButton.addEventListener('mouseover', () => {
+        // MARK:  ES2020 new features
+        this.player.template.commentSettingButton?.addEventListener('mouseover', () => {
             this.showSetting();
             this.hover[0] = true;
         });
-        this.player.template.commentSettingButton.addEventListener('mouseleave', () => {
+        this.player.template.commentSettingButton?.addEventListener('mouseleave', () => {
             this.hover[0] = setTimeout(() => {
                 this.hover[0] && this.hideSetting();
             }, 300);
         });
 
-        this.player.template.commentColorSettingBox.addEventListener('click', () => {
+        this.player.template.commentColorSettingBox?.addEventListener('click', () => {
             const sele = this.player.template.commentColorSettingBox.querySelector('input:checked+span');
             if (sele) {
                 const color = this.player.template.commentColorSettingBox.querySelector('input:checked').value;
@@ -42,28 +43,28 @@ class Comment {
             }
         });
 
-        this.player.template.commentSettingBox.addEventListener('mouseenter', () => {
+        this.player.template.commentSettingBox?.addEventListener('mouseenter', () => {
             clearTimeout(this.hover[0]);
         })
 
-        this.player.template.commentSettingBox.addEventListener('mouseleave', () => {
+        this.player.template.commentSettingBox?.addEventListener('mouseleave', () => {
             this.hideSetting()
         })
 
-        this.player.template.commentInput.addEventListener('click', () => {
+        this.player.template.commentInput?.addEventListener('click', () => {
             this.hideSetting();
         });
-        this.player.template.commentInput.addEventListener('focus', () => {
+        this.player.template.commentInput?.addEventListener('focus', () => {
             this.show();
         });
-        this.player.template.commentInput.addEventListener('keydown', (e) => {
+        this.player.template.commentInput?.addEventListener('keydown', (e) => {
             const event = e || window.event;
             if (event.keyCode === 13) {
                 this.send();
             }
         });
 
-        this.player.template.commentInput.addEventListener('keyup', (e) => {
+        this.player.template.commentInput?.addEventListener('keyup', (e) => {
             const event = e || window.event;
             if (event.keyCode !== 13) {
                 this.commentLength = this.player.template.commentInput.value.length;
@@ -79,9 +80,11 @@ class Comment {
             }
         });
 
-        this.player.template.commentSendButton.addEventListener('click', () => {
+        this.player.template.commentSendButton?.addEventListener('click', () => {
             this.send();
         });
+        this.player.template.commentInputUnAuthLogin?.addEventListener('click', this.player.options.history?.login)
+        this.player.template.commentInputUnAuthRegister?.addEventListener('click', this.player.options.history?.register)
     }
 
     toggleShowDanmaku() {
@@ -117,11 +120,11 @@ class Comment {
     }
 
     showSetting() {
-        this.player.template.commentSettingBox.classList.add('dplayer-comment-setting-open');
+        this.player.template.commentSettingBox?.classList.add('dplayer-comment-setting-open');
     }
 
     hideSetting() {
-        this.player.template.commentSettingBox.classList.remove('dplayer-comment-setting-open');
+        this.player.template.commentSettingBox?.classList.remove('dplayer-comment-setting-open');
     }
 
     toggleSetting() {
