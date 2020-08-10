@@ -27,6 +27,7 @@
                 }
             }
             &.none svg {
+                display: none;
                 fill-opacity: 0;
             }
             &.xs svg {

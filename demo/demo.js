@@ -99,6 +99,7 @@ function initPlayers() {
         //           options.success && options.success(
         //             res.data.thingInvite.danmakus.map((d) =>
         //               ({
+        //                 id: d.id,
         //                 time: d.showtimeInSecond,
         //                 type: d.transition,
         //                 color: d.color,
@@ -117,6 +118,33 @@ function initPlayers() {
         //           options.finally && options.finally(msg);
         //         })
         //     },
+        //     send: (options) => {
+        //         fetch(options.url, {
+        //           method: 'POST',
+        //           headers: {
+        //             'Content-Type': 'application/json',
+        //             'Access-Control-Allow-Origin': "*",
+        //             'Access-Control-Allow-Headers': '*'
+        //           },
+        //           mode: 'cors',
+        //           body: JSON.stringify({
+        //             query: "mutation ($input: DanmakuTextInput!) { createDanmakuText(input: $input) { id showtimeInSecond transition color creator { id fullname } body } }",
+        //             variables: {
+        //               "input": options.data
+        //             }
+        //           }),
+        //         })
+        //         .then((res) => res.json())
+        //         .then((res) => {
+        //           options.success && options.success(res);
+        //         })
+        //         .catch((err) => {
+        //           options.error && options.error(err);
+        //         })
+        //         .finally((msg) => {
+        //           options.finally && options.finally(msg);
+        //         })
+        //       },
         //     report: (options) => {console.log('this is default api function, please add your own api function. you send params: \n',options)},
         //     like: (options) => {console.log('this is default api function, please add your own api function. you send params: \n',options)},
         // }

@@ -142,6 +142,7 @@ class Danmaku {
                 this.dan.splice(this.danIndex, 0, danmakuData);
                 this.danIndex++;
                 const danmaku = {
+                    id: msg.data.createDanmakuText.id,
                     text: this.htmlEncode(danmakuData.text),
                     color: danmakuData.color,
                     type: danmakuData.type,
@@ -290,6 +291,7 @@ class Danmaku {
                 const item = document.createElement('div');
                 item.classList.add('dplayer-danmaku-item');
                 item.classList.add(`dplayer-danmaku-${typeOfdan}`);
+                item.setAttribute('data-id', dan[i].id);
                 dan[i].iLiked && item.classList.add('iLiked');
 
                 if (dan[i].border && typeof (dan[i].text) === "string") {
@@ -344,7 +346,7 @@ class Danmaku {
                     report.classList.add('dplayer-danmaku-report');
                     // report
                     report.childNodes[1].addEventListener('click',(e) => {
-                        this.options.apiBackend.report({e})
+                        this.options.apiBackend.report(dan[i])
                         e.stopPropagation();
                     }, false)
                     // like
@@ -379,7 +381,7 @@ class Danmaku {
     }
 
     _fire(likes) {
-        if (likes <= 0) return 'none';
+        if (likes <= 0 || likes === undefined) return 'none';
         else if (likes <= 50) return 'xs';
         else if (likes <= 100) return 'sm';
         else if (likes <= 150) return 'md';
