@@ -140,6 +140,11 @@
     @keyframes danmaku {
         from {
             transform: translateX(100%);
+            right: 0;
+        }
+        to {
+            transform: translateX(0%);
+            right: 100%;
         }
     }
     .dplayer-danmaku-top,
