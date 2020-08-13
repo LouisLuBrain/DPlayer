@@ -159,7 +159,7 @@ class DPlayer {
 
         // console.log('AL: player', this)
 
-        utils.isSafari && this.notice(this.tran('Browser Safari may not perform very well, please try other browsers.'), 6000)
+        // utils.isSafari && this.notice(this.tran('Browser Safari may not perform very well, please try other browsers.'), 6000)
     }
 
     /**
