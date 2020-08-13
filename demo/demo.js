@@ -61,7 +61,7 @@ function initPlayers() {
         preload: 'auto',
         screenshot: false,
         lang: 'en',
-        isAuth: false,
+        isAuth: true,
         history: {
             'login': () => {console.log('login')},
             'register': () => {console.log('register')},
@@ -110,7 +110,7 @@ function initPlayers() {
                         color: d.color,
                         author: d.creator.id,
                         text: d.body,
-                        likes: ( Math.random() * 1 ).toFixed(0),
+                        likes: ( Math.random() * 200 ).toFixed(0),
                         iLiked: Math.random() >= 0.5,
                       })
                     )

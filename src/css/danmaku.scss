@@ -17,11 +17,14 @@
         white-space: nowrap;
         text-shadow: .5px .5px .5px rgba(0, 0, 0, .5);
         .dplayer-danmaku-item-text {
+            display: flex;
+            justify-content: start;
+            align-items: center;
             svg {
-                margin-left: 3px;
+                margin-left: 5px;
                 display: inline-block;
                 width: 16px;
-                height: 16px;
+                height: 22px;
                 path {
                     fill: #FB7431;
                 }
