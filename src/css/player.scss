@@ -108,7 +108,7 @@
             animation-play-state: running;
             &.hoverable:hover{
                 animation-play-state: paused!important;
-                z-index: 100;
+                z-index: 10;
             }
         }
 

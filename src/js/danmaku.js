@@ -334,51 +334,59 @@ class Danmaku {
                 if (tunnel >= 0) {
                     // move
                     item.classList.add('dplayer-danmaku-move');
-                    this.options.isAuth && item.classList.add('hoverable');
+                    if (this.options.isAuth && ( this.options.likeEnable || this.options.reportEnable ) ) item.classList.add('hoverable');
                     item.style.animationDuration = this._danmakuSpeed + 'ms';
                     // add like & report
                     let danOp = document.createElement('div');
-                    danOp.innerHTML += Icons.like;
-                    danOp.innerHTML += Icons.report;
-                    danOp.classList.add('dplayer-danmaku-report');
+                    if (this.options.likeEnable) {
+                        danOp.innerHTML += Icons.like;
+                        // like func
+                        danOp.childNodes[0].addEventListener('click',(e) => {
+                            this.options.apiBackend.like({
+                                data: dan[i],
+                                success: (res) => {
+                                    item.classList.toggle('iLiked');
+                                    if(item.classList.contains('iLiked')) danOp.classList.add('ani');
+                                    dan[i].iLiked = !dan[i].iLiked
+                                    item.replaceChild(this._renderText(dan[i]), item.childNodes[0]);
+                                },
+                                error: (err) => {
+                                    this.options.error('like failed.')
+                                },
+                                finally: () => {},
+                            });
+                            e.stopPropagation();
+                        }, false)
+                        danOp.addEventListener('animationend',(e) => {
+                            danOp.classList.remove('ani');
+                            e.stopPropagation();
+                        }, false)
+                        danOp.addEventListener('mouseleave',(e) => {
+                            danOp.classList.remove('ani');
+                            e.stopPropagation();
+                        }, false)
+                    }
 
-                    // report func
-                    danOp.childNodes[1].addEventListener('click',(e) => {
-                        this.options.apiBackend.report(dan[i])
-                        e.stopPropagation();
-                    }, false)
+                    if (this.options.reportEnable) {
+                        danOp.innerHTML += Icons.report;
+                        // report func
+                        danOp.childNodes[1].addEventListener('click',(e) => {
+                            this.options.apiBackend.report(dan[i])
+                            e.stopPropagation();
+                        }, false)
+                    }
 
-                    // like func
-                    danOp.childNodes[0].addEventListener('click',(e) => {
-                        this.options.apiBackend.like({
-                            data: dan[i],
-                            success: (res) => {
-                                item.classList.toggle('iLiked');
-                                if(item.classList.contains('iLiked')) danOp.classList.add('ani');
-                                dan[i].iLiked = !dan[i].iLiked
-                                item.replaceChild(this._renderText(dan[i]), item.childNodes[0]);
-                            },
-                            error: (err) => {
-                                this.options.error('like failed.')
-                            },
-                            finally: () => {},
-                        });
-                        e.stopPropagation();
-                    }, false)
-                    danOp.addEventListener('animationend',(e) => {
-                        danOp.classList.remove('ani');
-                        e.stopPropagation();
-                    }, false)
-                    danOp.addEventListener('mouseleave',(e) => {
-                        danOp.classList.remove('ani');
-                        e.stopPropagation();
-                    }, false)
+                    if (this.options.reportEnable || this.likeEnable) {
+                        danOp.classList.add('dplayer-danmaku-report');
+                        // insert report & like
+                        this.options.isAuth && item.appendChild(danOp);
+                    }
+                    
                     // mobile hover fix
                     item.addEventListener('click', (e) => {
                         e.stopPropagation()
                     }, false)
-                    // insert
-                    this.options.isAuth && item.appendChild(danOp);
+                    // insert dan
                     docFragment.appendChild(item);
                 }
             }
@@ -410,7 +418,8 @@ class Danmaku {
         node.classList.add('dplayer-danmaku-item-text');
         iLiked || node.classList.add(fire);
         border && (node.style.border = border);
-        node.innerHTML = `${text}${iLiked ? Icons.like : Icons.fire}`;
+        if ( this.options.likeEnable || this.options.reportEnable ) node.innerHTML = `${text}${iLiked ? Icons.like : Icons.fire}`;
+        else node.innerHTML = `${text}`;
         node.style.opacity = this._opacity;
 
         return node;

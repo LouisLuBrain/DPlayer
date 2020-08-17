@@ -68,6 +68,8 @@ function initPlayers() {
         },
         theme: '#3093ff',
         playTime: 10,
+        likeEnbale: false,
+        reportEnable: false,
         api: {
             address: "https://qa.sendawish.net/graphql" // unused
         },
