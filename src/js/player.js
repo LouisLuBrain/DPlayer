@@ -95,7 +95,7 @@ class DPlayer {
                 },
                 isAuth: options.isAuth,
                 likeEnbale: options.likeEnbale,
-                reportEnable: options.reportEnable, 
+                reportEnable: options.reportEnable,
                 apiBackend: this.options.apiBackend,
                 borderColor: this.options.theme,
                 height: this.arrow ? 24 : 30,
@@ -496,7 +496,7 @@ class DPlayer {
             // this.danmaku.clear();
             if (!this.setting.loop) {
                 this.pause();
-                this.events && this.events.trigger('ended_no_loop')
+                this.events && this.events.trigger('ended_no_loop');
             } else {
                 this.seek(0);
                 this.play();
@@ -515,10 +515,10 @@ class DPlayer {
 
         this.on('canplay', () => {
             if (this.initPlay && this.options.playTime) {
-                this.initPlay = false
-                this.seek(this.options.playTime)
+                this.initPlay = false;
+                this.seek(this.options.playTime);
             }
-        })
+        });
 
         this.on('pause', () => {
             if (!this.paused) {
@@ -646,14 +646,14 @@ class DPlayer {
      * blur video
      */
     blur() {
-        this.video.classList.add('blur')
+        this.video.classList.add('blur');
     }
 
     /**
      * cancel blur
      */
     cancelBlur() {
-        this.video.classList.remove('blur')
+        this.video.classList.remove('blur');
     }
 
     static get version() {

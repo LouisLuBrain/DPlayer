@@ -144,10 +144,10 @@ const utils = {
 
     orientationAngle: () => {
         if (isMobile) {
-            if (screen.orientation) return screen.orientation.angle;
-            else return window.innerWidth > window.innerHeight ? 0 : 90;
+            if (screen.orientation) {return screen.orientation.angle;}
+            else {return window.innerWidth > window.innerHeight ? 0 : 90;}
         }
-        else return 0;
+        else {return 0;}
     }
 };
 

@@ -83,8 +83,8 @@ class Comment {
         this.player.template.commentSendButton?.addEventListener('click', () => {
             this.send();
         });
-        this.player.template.commentInputUnAuthLogin?.addEventListener('click', this.player.options.history?.login)
-        this.player.template.commentInputUnAuthRegister?.addEventListener('click', this.player.options.history?.register)
+        this.player.template.commentInputUnAuthLogin?.addEventListener('click', this.player.options.apiBackend?.login)
+        this.player.template.commentInputUnAuthRegister?.addEventListener('click', this.player.options.apiBackend?.register)
     }
 
     toggleShowDanmaku() {

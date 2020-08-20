@@ -3,11 +3,11 @@ const stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild(stats.dom);
 function animate() {
-    stats.begin();
-    // monitored code goes here
-    stats.end();
+  stats.begin();
+  // monitored code goes here
+  stats.end();
 
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 }
 requestAnimationFrame(animate);
 
@@ -15,356 +15,342 @@ initPlayers();
 handleEvent();
 
 function handleEvent() {
-    document.getElementById('dplayer-dialog').addEventListener('click', (e) => {
-        const $clickDom = e.currentTarget;
-        const isShowStatus = $clickDom.getAttribute('data-show');
+  document.getElementById('dplayer-dialog').addEventListener('click', (e) => {
+    const $clickDom = e.currentTarget;
+    const isShowStatus = $clickDom.getAttribute('data-show');
 
-        if (isShowStatus) {
-            document.getElementById('float-dplayer').style.display = 'none';
-        } else {
-            $clickDom.setAttribute('data-show', 1);
-            document.getElementById('float-dplayer').style.display = 'block';
-        }
-    });
+    if (isShowStatus) {
+      document.getElementById('float-dplayer').style.display = 'none';
+    } else {
+      $clickDom.setAttribute('data-show', 1);
+      document.getElementById('float-dplayer').style.display = 'block';
+    }
+  });
 
-    document.getElementById('close-dialog').addEventListener('click', () => {
-        const $openDialogBtnDom = document.getElementById('dplayer-dialog');
+  document.getElementById('close-dialog').addEventListener('click', () => {
+    const $openDialogBtnDom = document.getElementById('dplayer-dialog');
 
-        $openDialogBtnDom.setAttribute('data-show', '');
-        document.getElementById('float-dplayer').style.display = 'none';
-    });
+    $openDialogBtnDom.setAttribute('data-show', '');
+    document.getElementById('float-dplayer').style.display = 'none';
+  });
 }
 
 function initPlayers() {
-    // dplayer-float
-    // window.dpFloat = new DPlayer({
-    //     container: document.getElementById('dplayer-container'),
-    //     preload: 'none',
-    //     screenshot: true,
-    //     theme: '#3093ff',
-    //     video: {
-    //         url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
-    //         pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
-    //         thumbnails: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
-    //     },
-    //     subtitle: {
-    //         url: 'subtitle test'
-    //     },
-    //     danmaku: {
-    //         id: '9E2E3368B56CDBB4',
-    //     }
-    // });
+  // dplayer-float
+  // window.dpFloat = new DPlayer({
+  //     container: document.getElementById('dplayer-container'),
+  //     preload: 'none',
+  //     screenshot: true,
+  //     theme: '#3093ff',
+  //     video: {
+  //         url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
+  //         pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
+  //         thumbnails: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
+  //     },
+  //     subtitle: {
+  //         url: 'subtitle test'
+  //     },
+  //     danmaku: {
+  //         id: '9E2E3368B56CDBB4',
+  //     }
+  // });
 
-    // dp1
-    window.dp1 = new DPlayer({
-        container: document.getElementById('dplayer1'),
-        preload: 'auto',
-        screenshot: false,
-        lang: 'en',
-        isAuth: true,
-        history: {
-            'login': () => {console.log('login')},
-            'register': () => {console.log('register')},
-        },
-        theme: '#3093ff',
-        playTime: 10,
-        likeEnbale: false,
-        reportEnable: false,
-        api: {
-            address: "https://qa.sendawish.net/graphql" // unused
-        },
-        video: {
-            defaultQuality: 0,
-            url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
-            pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg'
-        },
-        danmaku: {
-            api: "https://qa.sendawish.net/graphql", // endpoints
-            id: "fd4c3d96-d3c1-4546-9546-006dd289a325", // wishId
-            token: 'af518ab6-35c7-4249-a706-d3792741b5ea', // token
-        },
-        apiBackend: {
-            read: (options) => {
-                fetch(options.url, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': "*",
-                    'Access-Control-Allow-Headers': '*'
-                  },
-                  mode: 'cors',
-                  body: JSON.stringify({
-                    query: "query danmakuQuery($id: String!, $token: String!) { thingInvite(id: $id, token: $token) { id danmakus { id showtimeInSecond transition color body creator { id email fullname } } } }",
-                    variables: {
-                        ...options.data
-                    }
-                  }),
+  // dp1
+  window.dp1 = new DPlayer({
+    container: document.getElementById('dplayer1'),
+    preload: 'auto',
+    screenshot: false,
+    lang: 'en',
+    isAuth: false,
+    history: {
+      'login': () => { console.log('login') },
+      'register': () => { console.log('register') },
+    },
+    theme: '#3093ff',
+    playTime: 10,
+    likeEnbale: false,
+    reportEnable: false,
+    video: {
+      defaultQuality: 0,
+      url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+      pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
+      thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg'
+    },
+    danmaku: {
+      api: "https://qa.sendawish.net/graphql", // endpoints
+    },
+    apiBackend: {
+      read: (options) => {
+        fetch(options.url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*",
+            'Access-Control-Allow-Headers': '*'
+          },
+          mode: 'cors',
+          body: JSON.stringify({
+            query: "query danmakuQuery($id: String!, $token: String!) { thingInvite(id: $id, token: $token) { id danmakus { id showtimeInSecond transition color body creator { id email fullname } } } }",
+            variables: {
+              "id": 'fd4c3d96-d3c1-4546-9546-006dd289a325',
+              "token": 'af518ab6-35c7-4249-a706-d3792741b5ea'
+            }
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            options.success && options.success(
+              res.data.thingInvite.danmakus.map((d) =>
+                ({
+                  id: d.id,
+                  time: d.showtimeInSecond,
+                  type: d.transition,
+                  color: d.color,
+                  author: d.creator.id,
+                  text: d.body,
+                  likes: (Math.random() * 200).toFixed(0),
+                  iLiked: Math.random() >= 0.5,
                 })
-                .then((res) => res.json())
-                .then((res) => {
-                  options.success && options.success(
-                    res.data.thingInvite.danmakus.map((d) =>
-                      ({
-                        id: d.id,
-                        time: d.showtimeInSecond,
-                        type: d.transition,
-                        color: d.color,
-                        author: d.creator.id,
-                        text: d.body,
-                        likes: ( Math.random() * 200 ).toFixed(0),
-                        iLiked: Math.random() >= 0.5,
-                      })
-                    )
-                  );
-                })
-                .catch((err) => {
-                    options.error && options.error(err);
-                })
-                .finally((msg) => {
-                  options.finally && options.finally(msg);
-                })
-            },
-            send: (options) => {
-                fetch(options.url, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': "*",
-                    'Access-Control-Allow-Headers': '*'
-                  },
-                  mode: 'cors',
-                  body: JSON.stringify({
-                    query: "mutation ($input: DanmakuTextInput!) { createDanmakuText(input: $input) { id showtimeInSecond transition color creator { id fullname } body } }",
-                    variables: {
-                      "input": options.data
-                    }
-                  }),
-                })
-                .then((res) => res.json())
-                .then((res) => {
-                  options.success && options.success(res);
-                })
-                .catch((err) => {
-                  options.error && options.error(err);
-                })
-                .finally((msg) => {
-                  options.finally && options.finally(msg);
-                })
-              },
-            report: (options) => {console.log('this is default api function, please add your own api function. you send params: \n',options)},
-            like: (options) => {
-              new Promise((resolve, reject)=> {
-                Math.random() <= 0.9 ? resolve('success') : reject('failed')
-              }).then((res) => {
-                options.success && options.success(res);
-              })
-              .catch((err) => {
-                options.error && options.error(err);
-              })
-              .finally((msg) => {
-                options.finally && options.finally(msg);
-              })
-            },
-        }
-    });
+              )
+            );
+          })
+          .catch((err) => {
+            options.error && options.error(err);
+          })
+          .finally((msg) => {
+            options.finally && options.finally(msg);
+          })
+      },
+      send: (options) => {
+        fetch(options.url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*",
+            'Access-Control-Allow-Headers': '*'
+          },
+          mode: 'cors',
+          body: JSON.stringify({
+            query: "mutation ($input: DanmakuTextInput!) { createDanmakuText(input: $input) { id showtimeInSecond transition color creator { id fullname } body } }",
+            variables: {
+              "input": {
+                "wishInviteId": "fd4c3d96-d3c1-4546-9546-006dd289a325",
+                "token": 'af518ab6-35c7-4249-a706-d3792741b5ea',
+                ...options.data
+              }
+            }
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            options.success && options.success(res);
+          })
+          .catch((err) => {
+            options.error && options.error(err);
+          })
+          .finally((msg) => {
+            options.finally && options.finally(msg);
+          })
+      },
+    }
+  });
 
-    window.dp1.on('ended_no_loop', function () {
-        console.log('player ended');
-    });
+  window.dp1.on('ended_no_loop', function () {
+    console.log('player ended');
+  });
 
-    // dp2
-    // window.dp2 = new DPlayer({
-    //     container: document.getElementById('dplayer2'),
-    //     preload: 'none',
-    //     autoplay: false,
-    //     theme: '#3093ff',
-    //     loop: true,
-    //     screenshot: true,
-    //     airplay: true,
-    //     hotkey: true,
-    //     logo: 'https://i.loli.net/2019/06/06/5cf8c5d94521136430.png',
-    //     volume: 0.2,
-    //     mutex: true,
-    //     video: {
-    //         url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
-    //         pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-    //         thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
-    //         type: 'auto'
-    //     },
-    //     subtitle: {
-    //         url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.vtt',
-    //         type: 'webvtt',
-    //         fontSize: '25px',
-    //         bottom: '10%',
-    //         color: '#b7daff'
-    //     },
-    //     danmaku: {
-    //         id: '9E2E3368B56CDBB4',
-    //         api: 'https://api.prprpr.me/dplayer/',
-    //         token: 'tokendemo',
-    //         maximum: 3000,
-    //         user: 'DIYgod',
-    //         bottom: '15%',
-    //         unlimited: true
-    //     },
-    //     contextmenu: [
-    //         {
-    //             text: 'custom contextmenu',
-    //             link: 'https://github.com/MoePlayer/DPlayer'
-    //         }
-    //     ]
-    // });
+  // dp2
+  // window.dp2 = new DPlayer({
+  //     container: document.getElementById('dplayer2'),
+  //     preload: 'none',
+  //     autoplay: false,
+  //     theme: '#3093ff',
+  //     loop: true,
+  //     screenshot: true,
+  //     airplay: true,
+  //     hotkey: true,
+  //     logo: 'https://i.loli.net/2019/06/06/5cf8c5d94521136430.png',
+  //     volume: 0.2,
+  //     mutex: true,
+  //     video: {
+  //         url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+  //         pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
+  //         thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
+  //         type: 'auto'
+  //     },
+  //     subtitle: {
+  //         url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.vtt',
+  //         type: 'webvtt',
+  //         fontSize: '25px',
+  //         bottom: '10%',
+  //         color: '#b7daff'
+  //     },
+  //     danmaku: {
+  //         id: '9E2E3368B56CDBB4',
+  //         api: 'https://api.prprpr.me/dplayer/',
+  //         token: 'tokendemo',
+  //         maximum: 3000,
+  //         user: 'DIYgod',
+  //         bottom: '15%',
+  //         unlimited: true
+  //     },
+  //     contextmenu: [
+  //         {
+  //             text: 'custom contextmenu',
+  //             link: 'https://github.com/MoePlayer/DPlayer'
+  //         }
+  //     ]
+  // });
 
-    // const events = [
-    //     'abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error',
-    //     'loadeddata', 'loadedmetadata', 'loadstart', 'mozaudioavailable', 'pause', 'play',
-    //     'playing', 'ratechange', 'seeked', 'seeking', 'stalled',
-    //     'volumechange', 'waiting',
-    //     'screenshot',
-    //     'thumbnails_show', 'thumbnails_hide',
-    //     'danmaku_show', 'danmaku_hide', 'danmaku_clear',
-    //     'danmaku_loaded', 'danmaku_send', 'danmaku_opacity',
-    //     'contextmenu_show', 'contextmenu_hide',
-    //     'notice_show', 'notice_hide',
-    //     'quality_start', 'quality_end',
-    //     'destroy',
-    //     'resize',
-    //     'fullscreen', 'fullscreen_cancel', 'webfullscreen', 'webfullscreen_cancel',
-    //     'subtitle_show', 'subtitle_hide', 'subtitle_change'
-    // ];
-    // const eventsEle = document.getElementById('events');
-    // for (let i = 0; i < events.length; i++) {
-    //     dp2.on(events[i], (info) => {
-    //         eventsEle.innerHTML += '<p>Event: ' + events[i] + '</p>';
-    //         eventsEle.scrollTop = eventsEle.scrollHeight;
-    //     });
-    // }
+  // const events = [
+  //     'abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error',
+  //     'loadeddata', 'loadedmetadata', 'loadstart', 'mozaudioavailable', 'pause', 'play',
+  //     'playing', 'ratechange', 'seeked', 'seeking', 'stalled',
+  //     'volumechange', 'waiting',
+  //     'screenshot',
+  //     'thumbnails_show', 'thumbnails_hide',
+  //     'danmaku_show', 'danmaku_hide', 'danmaku_clear',
+  //     'danmaku_loaded', 'danmaku_send', 'danmaku_opacity',
+  //     'contextmenu_show', 'contextmenu_hide',
+  //     'notice_show', 'notice_hide',
+  //     'quality_start', 'quality_end',
+  //     'destroy',
+  //     'resize',
+  //     'fullscreen', 'fullscreen_cancel', 'webfullscreen', 'webfullscreen_cancel',
+  //     'subtitle_show', 'subtitle_hide', 'subtitle_change'
+  // ];
+  // const eventsEle = document.getElementById('events');
+  // for (let i = 0; i < events.length; i++) {
+  //     dp2.on(events[i], (info) => {
+  //         eventsEle.innerHTML += '<p>Event: ' + events[i] + '</p>';
+  //         eventsEle.scrollTop = eventsEle.scrollHeight;
+  //     });
+  // }
 
-    // dp3
-    // window.dp3 = new DPlayer({
-    //     container: document.getElementById('dplayer3'),
-    //     preload: 'none',
-    //     video: {
-    //         quality: [{
-    //             name: 'HD',
-    //             url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.m3u8',
-    //             type: 'hls'
-    //         }, {
-    //             name: 'SD',
-    //             url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
-    //             type: 'normal'
-    //         }],
-    //         defaultQuality: 0,
-    //         pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png'
-    //     }
-    // });
+  // dp3
+  // window.dp3 = new DPlayer({
+  //     container: document.getElementById('dplayer3'),
+  //     preload: 'none',
+  //     video: {
+  //         quality: [{
+  //             name: 'HD',
+  //             url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.m3u8',
+  //             type: 'hls'
+  //         }, {
+  //             name: 'SD',
+  //             url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+  //             type: 'normal'
+  //         }],
+  //         defaultQuality: 0,
+  //         pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png'
+  //     }
+  // });
 
-    // // dp4
-    // window.dp4 = new DPlayer({
-    //     container: document.getElementById('dplayer4'),
-    //     preload: 'none',
-    //     video: {
-    //         url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.m3u8',
-    //         type: 'hls'
-    //     }
-    // });
+  // // dp4
+  // window.dp4 = new DPlayer({
+  //     container: document.getElementById('dplayer4'),
+  //     preload: 'none',
+  //     video: {
+  //         url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.m3u8',
+  //         type: 'hls'
+  //     }
+  // });
 
-    // // dp5
-    // window.dp5 = new DPlayer({
-    //     container: document.getElementById('dplayer5'),
-    //     preload: 'none',
-    //     video: {
-    //         url: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.flv',
-    //         type: 'flv'
-    //     }
-    // });
+  // // dp5
+  // window.dp5 = new DPlayer({
+  //     container: document.getElementById('dplayer5'),
+  //     preload: 'none',
+  //     video: {
+  //         url: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.flv',
+  //         type: 'flv'
+  //     }
+  // });
 
-    // window.dp8 = new DPlayer({
-    //     container: document.getElementById('dplayer8'),
-    //     preload: 'none',
-    //     video: {
-    //         url: 'https://moeplayer.b0.upaiyun.com/dplayer/dash/hikarunara.mpd',
-    //         type: 'dash'
-    //     }
-    // });
+  // window.dp8 = new DPlayer({
+  //     container: document.getElementById('dplayer8'),
+  //     preload: 'none',
+  //     video: {
+  //         url: 'https://moeplayer.b0.upaiyun.com/dplayer/dash/hikarunara.mpd',
+  //         type: 'dash'
+  //     }
+  // });
 
-    // window.dp9 = new DPlayer({
-    //     container: document.getElementById('dplayer9'),
-    //     video: {
-    //         url: 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent',
-    //         type: 'webtorrent'
-    //     }
-    // });
+  // window.dp9 = new DPlayer({
+  //     container: document.getElementById('dplayer9'),
+  //     video: {
+  //         url: 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent',
+  //         type: 'webtorrent'
+  //     }
+  // });
 
-    // window.dp6 = new DPlayer({
-    //     container: document.getElementById('dplayer6'),
-    //     preload: 'none',
-    //     live: true,
-    //     danmaku: true,
-    //     apiBackend: {
-    //         read: function (endpoint, callback) {
-    //             console.log('假装 WebSocket 连接成功');
-    //             callback();
-    //         },
-    //         send: function (endpoint, danmakuData, callback) {
-    //             console.log('假装通过 WebSocket 发送数据', danmakuData);
-    //             callback();
-    //         }
-    //     },
-    //     video: {
-    //         url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.m3u8',
-    //         type: 'hls'
-    //     }
-    // });
+  // window.dp6 = new DPlayer({
+  //     container: document.getElementById('dplayer6'),
+  //     preload: 'none',
+  //     live: true,
+  //     danmaku: true,
+  //     apiBackend: {
+  //         read: function (endpoint, callback) {
+  //             console.log('假装 WebSocket 连接成功');
+  //             callback();
+  //         },
+  //         send: function (endpoint, danmakuData, callback) {
+  //             console.log('假装通过 WebSocket 发送数据', danmakuData);
+  //             callback();
+  //         }
+  //     },
+  //     video: {
+  //         url: 'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.m3u8',
+  //         type: 'hls'
+  //     }
+  // });
 
-    // window.dp10 = new DPlayer({
-    //     container: document.getElementById('dplayer10'),
-    //     video: {
-    //         url: 'https://qq.webrtc.win/tv/Pear-Demo-Yosemite_National_Park.mp4',
-    //         type: 'pearplayer',
-    //         customType: {
-    //             'pearplayer': function (video, player) {
-    //                 new PearPlayer(video, {
-    //                     src: video.src,
-    //                     autoplay: player.options.autoplay
-    //                 });
-    //             }
-    //         }
-    //     }
-    // });
+  // window.dp10 = new DPlayer({
+  //     container: document.getElementById('dplayer10'),
+  //     video: {
+  //         url: 'https://qq.webrtc.win/tv/Pear-Demo-Yosemite_National_Park.mp4',
+  //         type: 'pearplayer',
+  //         customType: {
+  //             'pearplayer': function (video, player) {
+  //                 new PearPlayer(video, {
+  //                     src: video.src,
+  //                     autoplay: player.options.autoplay
+  //                 });
+  //             }
+  //         }
+  //     }
+  // });
 }
 
 function clearPlayers() {
-    for (let i = 0; i < 6; i++) {
-        window['dp' + (i + 1)].pause();
-        document.getElementById('dplayer' + (i + 1)).innerHTML = '';
-    }
+  for (let i = 0; i < 6; i++) {
+    window['dp' + (i + 1)].pause();
+    document.getElementById('dplayer' + (i + 1)).innerHTML = '';
+  }
 }
 
 function switchDPlayer() {
-    if (dp2.option.danmaku.id !== '5rGf5Y2X55qu6Z2p') {
-        dp2.switchVideo({
-            url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
-            pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
-            type: 'auto',
-        }, {
-            id: '5rGf5Y2X55qu6Z2p',
-            api: 'https://api.prprpr.me/dplayer/',
-            maximum: 3000,
-            user: 'DIYgod'
-        });
-    } else {
-        dp2.switchVideo({
-            url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
-            pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
-            type: 'auto'
-        }, {
-            id: '9E2E3368B56CDBB42',
-            api: 'https://api.prprpr.me/dplayer/',
-            maximum: 3000,
-            user: 'DIYgod'
-        });
-    }
+  if (dp2.option.danmaku.id !== '5rGf5Y2X55qu6Z2p') {
+    dp2.switchVideo({
+      url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
+      pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
+      type: 'auto',
+    }, {
+      id: '5rGf5Y2X55qu6Z2p',
+      api: 'https://api.prprpr.me/dplayer/',
+      maximum: 3000,
+      user: 'DIYgod'
+    });
+  } else {
+    dp2.switchVideo({
+      url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+      pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
+      thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
+      type: 'auto'
+    }, {
+      id: '9E2E3368B56CDBB42',
+      api: 'https://api.prprpr.me/dplayer/',
+      maximum: 3000,
+      user: 'DIYgod'
+    });
+  }
 }

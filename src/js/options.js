@@ -7,7 +7,7 @@ export default (options) => {
         container: options.element || document.getElementsByClassName('dplayer')[0],
         live: false,
         autoplay: false,
-        theme: '#b7daff',
+        theme: '#3093ff',
         isAuth: false,
         borderColor: '#fffff',
         loop: false,
@@ -29,6 +29,13 @@ export default (options) => {
             options[defaultKey] = defaultOption[defaultKey];
         }
     }
+
+    for (const api in defaultApiBackend) {
+        if (defaultApiBackend.hasOwnProperty(api) && !options.apiBackend.hasOwnProperty(api)) {
+            options.apiBackend[api] = defaultApiBackend[api];
+        }
+    }
+
     if (options.video) {
         !options.video.type && (options.video.type = 'auto');
     }

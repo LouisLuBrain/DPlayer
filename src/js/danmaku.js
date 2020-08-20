@@ -95,10 +95,7 @@ class Danmaku {
         endpoints.map((url) => {
             url && this.options.apiBackend.read({
                 url: url,
-                data: {
-                    id: id,
-                    token: token
-                },
+                data: {},
                 success: (data) => {
                     result.push(data);
                     callback(result);
@@ -122,16 +119,7 @@ class Danmaku {
 
         this.options.apiBackend.send({
             url: this.options.api.address,
-            data: this.options.api.token 
-            ? {
-                "wishInviteId": danmakuData.id,
-                "showtimeInSecond": this.options.time() + 0.01,
-                "transition": utils.number2Type(danmakuData.type),
-                "color": danmakuData.color,
-                "body": danmakuData.text
-            }
-            : {
-                "wishInviteResponseId": danmakuData.id,
+            data: {
                 "showtimeInSecond": this.options.time() + 0.01,
                 "transition": utils.number2Type(danmakuData.type),
                 "color": danmakuData.color,
@@ -178,7 +166,7 @@ class Danmaku {
 
     opacity(percentage) {
         if (percentage !== undefined) {
-            const items = this.container.getElementsByClassName('dplayer-danmaku-item-text');   
+            const items = this.container.getElementsByClassName('dplayer-danmaku-item-text');
             for (let i = 0; i < items.length; i++) {
                 items[i].style.opacity = 0.9 * percentage + 0.1;
             }
@@ -217,7 +205,7 @@ class Danmaku {
             1: 'full',
             2: 'half',
             4: 'quarter',
-        }
+        };
         return range[this._range];
     }
 
@@ -270,7 +258,7 @@ class Danmaku {
                         this.danTunnel[type][i + ''] = [ele];
                         ele.addEventListener('animationend', () => {
                             this.danTunnel[type][i + ''].splice(0, 1);
-                        },false);
+                        }, false);
                         return i % itemY;
                     }
                 }
@@ -334,46 +322,46 @@ class Danmaku {
                 if (tunnel >= 0) {
                     // move
                     item.classList.add('dplayer-danmaku-move');
-                    if (this.options.isAuth && ( this.options.likeEnable || this.options.reportEnable ) ) item.classList.add('hoverable');
+                    if (this.options.isAuth && (this.options.likeEnable || this.options.reportEnable)) {item.classList.add('hoverable');}
                     item.style.animationDuration = this._danmakuSpeed + 'ms';
                     // add like & report
-                    let danOp = document.createElement('div');
+                    const danOp = document.createElement('div');
                     if (this.options.likeEnable) {
                         danOp.innerHTML += Icons.like;
                         // like func
-                        danOp.childNodes[0].addEventListener('click',(e) => {
+                        danOp.childNodes[0].addEventListener('click', (e) => {
                             this.options.apiBackend.like({
                                 data: dan[i],
                                 success: (res) => {
                                     item.classList.toggle('iLiked');
-                                    if(item.classList.contains('iLiked')) danOp.classList.add('ani');
-                                    dan[i].iLiked = !dan[i].iLiked
+                                    if (item.classList.contains('iLiked')) {danOp.classList.add('ani');}
+                                    dan[i].iLiked = !dan[i].iLiked;
                                     item.replaceChild(this._renderText(dan[i]), item.childNodes[0]);
                                 },
                                 error: (err) => {
-                                    this.options.error('like failed.')
+                                    this.options.error('like failed.');
                                 },
                                 finally: () => {},
                             });
                             e.stopPropagation();
-                        }, false)
-                        danOp.addEventListener('animationend',(e) => {
+                        }, false);
+                        danOp.addEventListener('animationend', (e) => {
                             danOp.classList.remove('ani');
                             e.stopPropagation();
-                        }, false)
-                        danOp.addEventListener('mouseleave',(e) => {
+                        }, false);
+                        danOp.addEventListener('mouseleave', (e) => {
                             danOp.classList.remove('ani');
                             e.stopPropagation();
-                        }, false)
+                        }, false);
                     }
 
                     if (this.options.reportEnable) {
                         danOp.innerHTML += Icons.report;
                         // report func
-                        danOp.childNodes[1].addEventListener('click',(e) => {
-                            this.options.apiBackend.report(dan[i])
+                        danOp.childNodes[1].addEventListener('click', (e) => {
+                            this.options.apiBackend.report(dan[i]);
                             e.stopPropagation();
-                        }, false)
+                        }, false);
                     }
 
                     if (this.options.reportEnable || this.likeEnable) {
@@ -381,11 +369,11 @@ class Danmaku {
                         // insert report & like
                         this.options.isAuth && item.appendChild(danOp);
                     }
-                    
+
                     // mobile hover fix
                     item.addEventListener('click', (e) => {
-                        e.stopPropagation()
-                    }, false)
+                        e.stopPropagation();
+                    }, false);
                     // insert dan
                     docFragment.appendChild(item);
                 }
@@ -408,18 +396,18 @@ class Danmaku {
     _renderText(dan) {
         const { likes, iLiked, border, text } = dan;
         let fire;
-        if (likes <= 0 || likes === undefined) fire = 'none';
-        else if (likes <= 50) fire = 'xs';
-        else if (likes <= 100) fire = 'sm';
-        else if (likes <= 150) fire = 'md';
-        else if (likes) fire = 'lg';
-        
-        let node = document.createElement('span');
+        if (likes <= 0 || likes === undefined) {fire = 'none';}
+        else if (likes <= 50) {fire = 'xs';}
+        else if (likes <= 100) {fire = 'sm';}
+        else if (likes <= 150) {fire = 'md';}
+        else if (likes) {fire = 'lg';}
+
+        const node = document.createElement('span');
         node.classList.add('dplayer-danmaku-item-text');
         iLiked || node.classList.add(fire);
         border && (node.style.border = border);
-        if ( this.options.likeEnable || this.options.reportEnable ) node.innerHTML = `${text}${iLiked ? Icons.like : Icons.fire}`;
-        else node.innerHTML = `${text}`;
+        if (this.options.likeEnable || this.options.reportEnable) {node.innerHTML = `${text}${iLiked ? Icons.like : Icons.fire}`;}
+        else {node.innerHTML = `${text}`;}
         node.style.opacity = this._opacity;
 
         return node;
