@@ -61,15 +61,15 @@ function initPlayers() {
     preload: 'auto',
     screenshot: false,
     lang: 'en',
-    isAuth: false,
+    isAuth: true,
     history: {
       'login': () => { console.log('login') },
       'register': () => { console.log('register') },
     },
     theme: '#3093ff',
     playTime: null,
-    likeEnable: false,
-    reportEnable: false,
+    likeEnable: true,
+    reportEnable: true,
     video: {
       defaultQuality: 0,
       url: 'https://www.runoob.com/try/demo_source/movie.mp4',
@@ -77,7 +77,7 @@ function initPlayers() {
       thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg'
     },
     danmaku: {
-      api: "www.danmaku.example.com", // endpoints
+      api: "https://qa.sendawish.net/graphql", // endpoints
     },
     apiBackend: {
       read: (options) => {

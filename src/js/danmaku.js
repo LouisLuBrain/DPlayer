@@ -411,7 +411,7 @@ class Danmaku {
         node.classList.add('dplayer-danmaku-item-text');
         iLiked || node.classList.add(fire);
         border && (node.style.border = border);
-        if (this.options.likeEnable || this.options.reportEnable) { node.innerHTML = `${text}${iLiked ? Icons.like : Icons.fire}`; }
+        if (this.options.likeEnable) { node.innerHTML = `${text}${iLiked ? Icons.like : Icons.fire}`; }
         else { node.innerHTML = `${text}`; }
         node.style.opacity = this._opacity;
 
