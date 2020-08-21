@@ -94,7 +94,7 @@ class DPlayer {
                     this.notice(msg);
                 },
                 isAuth: options.isAuth,
-                likeEnbale: options.likeEnbale,
+                likeEnable: options.likeEnable,
                 reportEnable: options.reportEnable,
                 apiBackend: this.options.apiBackend,
                 borderColor: this.options.theme,

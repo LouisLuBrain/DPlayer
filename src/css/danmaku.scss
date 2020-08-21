@@ -107,10 +107,7 @@
                 }
             }
             .dplayer-danmaku-report {
-                svg:nth-child(1) path {
-                    fill: #FB7431;
-                }
-                svg:nth-child(1) path {
+                svg#icon-like path {
                     fill: #FB7431;
                 }
                 &.ani::after {

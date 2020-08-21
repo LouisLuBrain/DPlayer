@@ -67,17 +67,17 @@ function initPlayers() {
       'register': () => { console.log('register') },
     },
     theme: '#3093ff',
-    playTime: 10,
-    likeEnbale: false,
+    playTime: null,
+    likeEnable: false,
     reportEnable: false,
     video: {
       defaultQuality: 0,
-      url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+      url: 'https://www.runoob.com/try/demo_source/movie.mp4',
       pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
       thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg'
     },
     danmaku: {
-      api: "https://qa.sendawish.net/graphql", // endpoints
+      api: "www.danmaku.example.com", // endpoints
     },
     apiBackend: {
       read: (options) => {
