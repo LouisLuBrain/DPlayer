@@ -1009,8 +1009,8 @@
 
 .dplayer-mobile-play {
     display: none;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border: none;
     background-color: transparent;
     outline: none;
@@ -1022,6 +1022,10 @@
     position: absolute;
     left: 50%;
     top: 50%;
+    outline: 0;
+    border-radius: 50%;
+    padding: 0px 16px 0px 20px;
+    background-color: rgba(0, 0, 0, .5);
     transform: translate(-50%, -50%);
 }
 .dplayer-setting-mobile {
