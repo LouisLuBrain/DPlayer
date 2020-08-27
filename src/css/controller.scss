@@ -210,6 +210,10 @@
                 &.mobile {
                     border-radius: 2px 99px 99px 2px;
                 }
+                &:disabled {
+                    background-color: #78b8fd!important;
+                    cursor: not-allowed;
+                }
             }
             .dplayer-send-counter{
                 background-color: rgb(201, 201, 201);

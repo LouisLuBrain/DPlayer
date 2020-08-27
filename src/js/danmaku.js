@@ -323,7 +323,7 @@ class Danmaku {
                 if (tunnel >= 0) {
                     // move
                     item.classList.add('dplayer-danmaku-move');
-                    if (this.options.isAuth) { item.classList.add('hoverable'); }
+                    if (this.options.hoverEnable) { item.classList.add('hoverable'); }
                     item.style.animationDuration = this._danmakuSpeed + 'ms';
                     // add like & report
                     const danOp = document.createElement('div');
@@ -372,7 +372,7 @@ class Danmaku {
                     if (this.options.reportEnable || this.options.likeEnable) {
                         danOp.classList.add('dplayer-danmaku-report');
                         // insert report & like
-                        this.options.isAuth && item.appendChild(danOp);
+                        item.appendChild(danOp);
                     }
 
                     // mobile hover fix

@@ -93,7 +93,8 @@ class DPlayer {
                 error: (msg) => {
                     this.notice(msg);
                 },
-                isAuth: options.isAuth,
+                sendEnable: options.sendEnable,
+                hoverEnable: options.hoverEnable,
                 likeEnable: options.likeEnable,
                 reportEnable: options.reportEnable,
                 apiBackend: this.options.apiBackend,
