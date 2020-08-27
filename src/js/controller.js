@@ -37,7 +37,7 @@ class Controller {
             this.initVolumeButton();
         }
 
-        this.player.options.enableSend || this.player.template.commentSendButton && (this.player.template.commentSendButton.disabled = 'disabled');
+        this.player.options.enableSend && this.player.template.commentSendButton && (this.player.template.commentSendButton.disabled = 'disabled');
     }
 
     initPlayButton() {
