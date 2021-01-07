@@ -1,5 +1,4 @@
 import utils from './utils';
-import i18n from './i18n';
 import Icons from './icons';
 
 class Danmaku {
@@ -21,7 +20,7 @@ class Danmaku {
         this._range = 1;
         this._danmakuSpeed = this.options.danmakuSpeed;
         this._measure('');
-        this._extraWidth = 3 + (this.options.likeEnable ? 31 : 0) + (this.options.reportEnable ? 31 : 0)
+        this._extraWidth = 3 + (this.options.likeEnable ? 31 : 0) + (this.options.reportEnable ? 31 : 0);
 
         this.load();
     }
@@ -106,6 +105,7 @@ class Danmaku {
                     callback(result);
                 }
             });
+            return url;
         });
     }
 
@@ -349,13 +349,13 @@ class Danmaku {
                     like && like.addEventListener('click', (e) => {
                         this.options.apiBackend.like({
                             data: dan[i],
-                            success: (res) => {
+                            success: () => {
                                 item.classList.toggle('iLiked');
                                 if (item.classList.contains('iLiked')) { danOp.classList.add('ani'); }
                                 dan[i].iLiked = !dan[i].iLiked;
                                 item.replaceChild(this._renderText(dan[i]), item.childNodes[0]);
                             },
-                            error: (err) => {
+                            error: () => {
                                 this.options.error('like failed.');
                             },
                             finally: () => { },

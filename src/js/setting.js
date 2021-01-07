@@ -110,11 +110,7 @@ class Setting {
             selector && selector.classList.add('range-selected');
 
             for (let i = 0; i < this.player.template.commentRangeSelector.length; i++) {
-                this.player.template.commentRangeSelector[i].addEventListener('click', (event) => {
-                    // const radio = event.target.previousElementSibling;
-                    // radio.checked = true;
-                    // this.player.danmaku.range(radio.value);
-
+                this.player.template.commentRangeSelector[i].addEventListener('click', () => {
                     const rangeSelected = document.querySelector('.dplayer-selector-option.range-selected');
                     rangeSelected && rangeSelected.classList.remove('range-selected');
                     this.player.template.commentRangeSelector[i].classList.add('range-selected');

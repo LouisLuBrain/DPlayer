@@ -32,6 +32,10 @@ class Template {
 
         this.container.innerHTML = utils.isMobile ? mobilePlayer(templateOptions) : tplPlayer(templateOptions);
 
+        window.onresize = () => {
+            this.container.innerHTML = utils.isMobile() ? mobilePlayer(templateOptions) : tplPlayer(templateOptions);
+        };
+
         this.volumeBar = this.container.querySelector('.dplayer-volume-bar-inner');
         this.volumeBarWrap = this.container.querySelector('.dplayer-volume-bar');
         this.volumeBarWrapWrap = this.container.querySelector('.dplayer-volume-bar-wrap');

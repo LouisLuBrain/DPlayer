@@ -1,4 +1,4 @@
-const isMobile = /mobile/i.test(window.navigator.userAgent);
+const isMobile = () => /mobile/i.test(window.navigator.userAgent);
 
 const isSafari = /Safari/i.test(window.navigator.userAgent);
 
@@ -110,9 +110,9 @@ const utils = {
     },
 
     nameMap: {
-        dragStart: isMobile ? 'touchstart' : 'mousedown',
-        dragMove: isMobile ? 'touchmove' : 'mousemove',
-        dragEnd: isMobile ? 'touchend' : 'mouseup',
+        dragStart: isMobile() ? 'touchstart' : 'mousedown',
+        dragMove: isMobile() ? 'touchmove' : 'mousemove',
+        dragEnd: isMobile() ? 'touchend' : 'mouseup',
     },
 
     color2Number: (color) => {
