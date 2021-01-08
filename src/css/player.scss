@@ -176,7 +176,7 @@
         width: 100% !important;
         height: 100% !important;
     }
-    &.dplayer-mobile {
+    @media (max-width: 640px) {
         .dplayer-controller .dplayer-icons {
             .dplayer-volume,
             .dplayer-camera-icon,

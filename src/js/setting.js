@@ -242,14 +242,6 @@ class Setting {
     }
 
     resize() {
-        if (!this.player.fullScreen.isFullScreen() && utils.isMobile) {
-            this.player.template.settingButton.style.display = 'none';
-        }
-        else {
-            this.player.template.settingButton.style.display = 'block';
-        }
-
-        // TODO: vertical setting panel
         if (utils.orientationAngle() === 0 || utils.orientationAngle() === 180 && utils.isMobile) {
             this.player.template.settingBox.classList.add('vertical');
         } else {

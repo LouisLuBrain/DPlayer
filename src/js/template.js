@@ -1,6 +1,5 @@
 import Icons from './icons';
 import tplPlayer from '../template/player.art';
-import mobilePlayer from '../template/mobile.art';
 import utils from './utils';
 
 class Template {
@@ -30,11 +29,7 @@ class Template {
             },
         };
 
-        this.container.innerHTML = utils.isMobile() ? mobilePlayer(templateOptions) : tplPlayer(templateOptions);
-
-        window.addEventListener("resize", () => {
-            this.container.innerHTML = window.innerWidth <= 768 ? mobilePlayer(templateOptions) : tplPlayer(templateOptions);
-        });
+        this.container.innerHTML = tplPlayer(templateOptions);
 
         this.volumeBar = this.container.querySelector('.dplayer-volume-bar-inner');
         this.volumeBarWrap = this.container.querySelector('.dplayer-volume-bar');

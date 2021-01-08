@@ -18,6 +18,95 @@
         <span class="diplayer-loading-icon">{{@ icons.loading }}</span>
     </div>
 </div>
+<div class="dplayer-setting-mobile">
+    <div class="dplayer-setting mobile">
+        <button class="dplayer-icon dplayer-setting-icon" data-balloon="{{ tran('Setting') }}" data-balloon-pos="up">
+            <span class="dplayer-icon-content">{{@ icons.more }}</span>
+        </button>
+        <div class="dplayer-setting-box">
+            <div class="dplayer-setting-origin-panel">
+                <div class="dplayer-setting-item dplayer-setting-loop">
+                    <span class="dplayer-label">{{ tran('Loop') }}</span>
+                    <div class="dplayer-toggle">
+                        <input class="dplayer-toggle-setting-input" type="checkbox" name="dplayer-toggle">
+                        <label for="dplayer-toggle"></label>
+                    </div>
+                </div>
+                <div class="dplayer-setting-item dplayer-setting-showdan" style="display: none;">
+                    <span class="dplayer-label">{{ tran('Show danmaku') }}</span>
+                    <div class="dplayer-toggle">
+                        <input class="dplayer-showdan-setting-input" type="checkbox" name="dplayer-toggle-dan">
+                        <label for="dplayer-toggle-dan"></label>
+                    </div>
+                </div>
+                <div class="dplayer-setting-item dplayer-setting-danunlimit mobile">
+                        <span class="dplayer-label">{{ tran('Unlimited danmaku') }}</span>
+                        <div class="dplayer-toggle">
+                            <input class="dplayer-danunlimit-setting-input" type="checkbox" name="dplayer-toggle-danunlimit">
+                            <label for="dplayer-toggle-danunlimit"></label>
+                        </div>
+                    </div>
+                <div class="dplayer-setting-item dplayer-speed">
+                    <div class="dplayer-label">{{ tran('Speed for video:') }}</div>
+                    <div class="dplayer-setting-speed-panel">
+                        {{ each options.playbackSpeed }}
+                            <div class="dplayer-setting-speed-item" data-speed="{{ $value }}">
+                                <input class="dplayer-speed-selector" type='radio' name="dplayer-video-speed" id="{{ $value }}-speed" {{if $value === 1}}checked="checked"{{ /if }}>
+                                <label class="dplayer-label" for="{{ $value }}-speed">{{ ( $value === 1 || $value === 2 ) ? $value + '.0' : $value }}x</label>
+                            </div>
+                        {{ /each }}
+                    </div>
+                </div>
+                <div class="dplayer-setting-item dplayer-setting-danmaku">
+                    <span class="dplayer-label">{{ tran('Opacity for danmaku') }}</span>
+                    <div class="dplayer-danmaku-bar-wrap">
+                        <div class="dplayer-danmaku-bar">
+                            <div class="dplayer-danmaku-bar-inner">
+                                <span class="dplayer-opacity-thumb"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dplayer-setting-item dplayer-setting-danmaku-speed">
+                    <span class="dplayer-label">{{ tran('Speed for danmaku') }}</span>
+                    <div class="dplayer-danmaku-speed-wrap" data-slow="{{ tran('slow') }}" data-fast="{{ tran('fast') }}">
+                        <div class="dplayer-danmaku-speed">
+                            <div class="dplayer-danmaku-speed-inner">
+                                <span class="dplayer-thumb"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dplayer-setting-item dplayer-setting-danrange">
+                    <div class="dplayer-label">{{ tran('Range for danmaku:') }}</div>
+                    <div class="dplayer-selector-box">
+                        <div class="dplayer-selector-box line"></div>
+                        <div class="dplayer-selector-box box">
+                            <div class="dplayer-selector-option" data-range="quarter">
+                                <div class="dplayer-range-selector">
+                                    <div class="dot"></div>
+                                </div>
+                                <span class="dplayer-selector-span">25%</span>
+                            </div>
+                            <div class="dplayer-selector-option" data-range="half">
+                                <div class="dplayer-range-selector">
+                                    <div class="dot"></div>
+                                </div>
+                                <span class="dplayer-selector-span">50%</span>
+                            </div>
+                            <div class="dplayer-selector-option" data-range="full">
+                                <div class="dplayer-range-selector">
+                                    <div class="dot"></div>
+                                </div>
+                                <span class="dplayer-selector-span">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="dplayer-controller-mask"></div>
 <div class="dplayer-controller dplayer-controller-comment">
     <!-- MARK: left button -->
