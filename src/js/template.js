@@ -50,8 +50,10 @@ class Template {
         this.videoWrap = this.container.querySelector('.dplayer-video-wrap');
         this.controllerMask = this.container.querySelector('.dplayer-controller-mask');
         this.ptime = this.container.querySelector('.dplayer-ptime');
-        this.settingButton = this.container.querySelector('.dplayer-setting-icon');
-        this.settingBox = this.container.querySelector('.dplayer-setting-box');
+        this.settingButton = this.container.querySelector('.dplayer-setting .dplayer-setting-icon');
+        this.settingBox = this.container.querySelector('.dplayer-setting .dplayer-setting-box');
+        this.settingButtonMobile = this.container.querySelector('.dplayer-setting-mobile .dplayer-setting-icon');
+        this.settingBoxMobile = this.container.querySelector('.dplayer-setting-mobile .dplayer-setting-box');
         this.mask = this.container.querySelector('.dplayer-mask');
         this.loop = this.container.querySelector('.dplayer-setting-loop');
         this.loopToggle = this.container.querySelector('.dplayer-setting-loop .dplayer-toggle-setting-input');

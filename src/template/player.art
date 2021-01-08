@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="dplayer-setting-mobile">
-    <div class="dplayer-setting mobile">
+    <div class="dplayer-settingmobile">
         <button class="dplayer-icon dplayer-setting-icon" data-balloon="{{ tran('Setting') }}" data-balloon-pos="up">
             <span class="dplayer-icon-content">{{@ icons.more }}</span>
         </button>

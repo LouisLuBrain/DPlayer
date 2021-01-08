@@ -16,6 +16,10 @@ class Setting {
             this.show();
             this.hover[0] = true;
         });
+        this.player.template.settingButtonMobile.addEventListener('mouseover', () => {
+            this.show();
+            this.hover[0] = true;
+        });
 
         this.player.template.speed.addEventListener('mouseover', () => {
             this.showSpeed();
@@ -23,6 +27,11 @@ class Setting {
         });
         // auto disappear
         this.player.template.settingButton.addEventListener('mouseleave', () => {
+            this.hover[0] = setTimeout(() => {
+                this.hover[0] && this.hide();
+            }, 300);
+        });
+        this.player.template.settingButtonMobile.addEventListener('mouseleave', () => {
             this.hover[0] = setTimeout(() => {
                 this.hover[0] && this.hide();
             }, 300);
@@ -37,12 +46,18 @@ class Setting {
         this.player.template.settingBox.addEventListener('mouseenter', () => {
             clearTimeout(this.hover[0]);
         });
+        this.player.template.settingBoxMobile.addEventListener('mouseenter', () => {
+            clearTimeout(this.hover[0]);
+        });
 
         this.player.template.speedBox.addEventListener('mouseenter', () => {
             clearTimeout(this.hover[1]);
         });
         // disapper when leave
         this.player.template.settingBox.addEventListener('mouseleave', () => {
+            this.hide();
+        });
+        this.player.template.settingBoxMobile.addEventListener('mouseleave', () => {
             this.hide();
         });
 
@@ -216,6 +231,7 @@ class Setting {
 
     hide() {
         this.player.template.settingBox.classList.remove('dplayer-setting-box-open');
+        this.player.template.settingBoxMobile.classList.remove('dplayer-setting-box-open');
         // this.player.template.mask.classList.remove('dplayer-mask-show');
 
         this.player.controller.disableAutoHide = false;
@@ -225,6 +241,7 @@ class Setting {
         // this.dWidth = this.player.template.danmakuOpacityBarWrap.offsetWidth
 
         this.player.template.settingBox.classList.add('dplayer-setting-box-open');
+        this.player.template.settingBoxMobile.classList.add('dplayer-setting-box-open');
         // this.player.template.mask.classList.add('dplayer-mask-show');
 
         this.player.controller.disableAutoHide = true;
@@ -242,10 +259,10 @@ class Setting {
     }
 
     resize() {
-        if (utils.orientationAngle() === 0 || utils.orientationAngle() === 180 && utils.isMobile) {
-            this.player.template.settingBox.classList.add('vertical');
+        if (utils.orientationAngle() === 0 || utils.orientationAngle() === 180) {
+            this.player.template.settingBoxMobile.classList.add('vertical');
         } else {
-            this.player.template.settingBox.classList.remove('vertical');
+            this.player.template.settingBoxMobile.classList.remove('vertical');
         }
 
     }
