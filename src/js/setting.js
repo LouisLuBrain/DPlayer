@@ -79,6 +79,17 @@ class Setting {
             // this.hide();
         });
 
+        this.player.template.loopToggleMobile.checked = this.loop;
+        this.player.template.loopMobile.addEventListener('click', () => {
+            this.player.template.loopToggleMobile.checked = !this.player.template.loopToggleMobile.checked;
+            if (this.player.template.loopToggleMobile.checked) {
+                this.loop = true;
+            } else {
+                this.loop = false;
+            }
+            // this.hide();
+        });
+
         // show danmaku
         this.showDanmaku = this.player.user.get('danmaku');
         if (!this.showDanmaku) {
@@ -120,17 +131,21 @@ class Setting {
                 this.player.user.set('range', range);
             });
             this.player.danmaku.range(this.player.user.get('range'));
-            const selector = document.querySelector(`.dplayer-selector-option[data-range="${this.player.danmaku.getRange()}"]`);
-
+            const selector = document.querySelector(`.dplayer-setting .dplayer-selector-option[data-range="${this.player.danmaku.getRange()}"]`);
             selector && selector.classList.add('range-selected');
+
+            const selectorMobile = document.querySelector(`.dplayer-settingmobile .dplayer-selector-option[data-range="${this.player.danmaku.getRange()}"]`);
+            selectorMobile && selectorMobile.classList.add('range-selected');
 
             for (let i = 0; i < this.player.template.commentRangeSelector.length; i++) {
                 this.player.template.commentRangeSelector[i].addEventListener('click', () => {
-                    const rangeSelected = document.querySelector('.dplayer-selector-option.range-selected');
-                    rangeSelected && rangeSelected.classList.remove('range-selected');
-                    this.player.template.commentRangeSelector[i].classList.add('range-selected');
+                    const rangeSelectedBefore = document.querySelectorAll('.dplayer-selector-option.range-selected');
+                    rangeSelectedBefore && rangeSelectedBefore.forEach((selected) => selected.classList.remove('range-selected'));
 
                     const range = this.player.template.commentRangeSelector[i].dataset.range;
+
+                    const rangeSelected = document.querySelectorAll(`.dplayer-selector-option[data-range="${range}"]`);
+                    rangeSelected && rangeSelected.forEach((selected) => selected.classList.add('range-selected'));
 
                     this.player.danmaku.range(range);
                 });
@@ -159,7 +174,9 @@ class Setting {
         if (this.player.danmaku) {
             this.player.on('danmaku_opacity', (percentage) => {
                 this.player.bar.set('danmaku', percentage, 'width');
+                this.player.bar.set('danmakuMobile', percentage, 'width');
                 this.player.user.set('opacity', 0.9 * percentage + 0.1);
+                this.player.template.danmakuOpacityThumb.setAttribute('aria-label', (percentage * 90 + 10).toFixed(0) + '%');
             });
             this.player.danmaku.opacity(this.player.user.get('opacity'));
 
@@ -169,12 +186,20 @@ class Setting {
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.opacity(percentage);
-                this.player.template.danmakuOpacityThumb.setAttribute('aria-label', (percentage * 90 + 10).toFixed(0) + '%');
+            };
+            const danmakuMoveMobile = (event) => {
+                const e = event || window.event;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuOpacityBarWrapMobile)) / this.player.template.danmakuOpacityBarWrapMobile.offsetWidth;
+                percentage = Math.max(percentage, 0);
+                percentage = Math.min(percentage, 1);
+                this.player.danmaku.opacity(percentage);
             };
             const danmakuUp = () => {
                 document.removeEventListener(utils.nameMap.dragEnd, danmakuUp);
                 document.removeEventListener(utils.nameMap.dragMove, danmakuMove);
+                document.removeEventListener(utils.nameMap.dragMove, danmakuMoveMobile);
                 this.player.template.danmakuOpacityBox.classList.remove('dplayer-setting-danmaku-active');
+                this.player.template.danmakuOpacityBoxMobile.classList.remove('dplayer-setting-danmaku-active');
             };
 
             this.player.template.danmakuOpacityBarWrapWrap.addEventListener('click', (event) => {
@@ -185,10 +210,23 @@ class Setting {
                 this.player.danmaku.opacity(percentage);
                 this.player.template.danmakuOpacityThumb.setAttribute('aria-label', (percentage * 90 + 10).toFixed(0) + '%');
             });
+            this.player.template.danmakuOpacityBarWrapWrapMobile.addEventListener('click', (event) => {
+                const e = event || window.event;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuOpacityBarWrapMobile)) / this.player.template.danmakuOpacityBarWrapMobile.offsetWidth;
+                percentage = Math.max(percentage, 0);
+                percentage = Math.min(percentage, 1);
+                this.player.danmaku.opacity(percentage);
+                this.player.template.danmakuOpacityThumbMobile.setAttribute('aria-label', (percentage * 90 + 10).toFixed(0) + '%');
+            });
             this.player.template.danmakuOpacityBarWrapWrap.addEventListener(utils.nameMap.dragStart, () => {
                 document.addEventListener(utils.nameMap.dragMove, danmakuMove);
                 document.addEventListener(utils.nameMap.dragEnd, danmakuUp);
                 this.player.template.danmakuOpacityBox.classList.add('dplayer-setting-danmaku-active');
+            });
+            this.player.template.danmakuOpacityBarWrapWrapMobile.addEventListener(utils.nameMap.dragStart, () => {
+                document.addEventListener(utils.nameMap.dragMove, danmakuMove);
+                document.addEventListener(utils.nameMap.dragEnd, danmakuUp);
+                this.player.template.danmakuOpacityBoxMobile.classList.add('dplayer-setting-danmaku-active');
             });
         }
 
@@ -196,13 +234,21 @@ class Setting {
         if (this.player.danmaku) {
             this.player.on('danmaku_speed', (speed) => {
                 this.player.bar.set('speed',  (speed - 5000) / 15000, 'width');
+                this.player.bar.set('speedMobile',  (speed - 5000) / 15000, 'width');
                 this.player.user.set('speed', speed);
             });
             this.player.danmaku.speed(this.player.user.get('speed'));
 
             const danmakuSpeedMove = (event) => {
                 const e = event || window.event;
-                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.player.template.danmakuOpacityBarWrap.offsetWidth;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.player.template.danmakuSpeedBarWrap.offsetWidth;
+                percentage = Math.max(percentage, 0);
+                percentage = Math.min(percentage, 1);
+                this.player.danmaku.speed(percentage.toFixed(2) * 15000 + 5000);
+            };
+            const danmakuSpeedMoveMobile = (event) => {
+                const e = event || window.event;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrapMobile)) / this.player.template.danmakuSpeedBarWrapMobile.offsetWidth;
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.speed(percentage.toFixed(2) * 15000 + 5000);
@@ -210,20 +256,35 @@ class Setting {
             const danmakuSpeedUp = () => {
                 document.removeEventListener(utils.nameMap.dragEnd, danmakuSpeedUp);
                 document.removeEventListener(utils.nameMap.dragMove, danmakuSpeedMove);
+                document.removeEventListener(utils.nameMap.dragMove, danmakuSpeedMoveMobile);
                 this.player.template.danmakuSpeedBox.classList.remove('dplayer-setting-danmaku-active');
+                this.player.template.danmakuSpeedBoxMobile.classList.remove('dplayer-setting-danmaku-active');
             };
 
             this.player.template.danmakuSpeedBarWrapWrap.addEventListener('click', (event) => {
                 const e = event || window.event;
-                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.player.template.danmakuOpacityBarWrap.offsetWidth;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrap)) / this.player.template.danmakuSpeedBarWrap.offsetWidth;
                 percentage = Math.max(percentage, 0);
                 percentage = Math.min(percentage, 1);
                 this.player.danmaku.speed(percentage.toFixed(2) * 15000 + 5000);
             });
+            this.player.template.danmakuSpeedBarWrapWrapMobile.addEventListener('click', (event) => {
+                const e = event || window.event;
+                let percentage = ((e.clientX || e.changedTouches[0].clientX) - utils.getBoundingClientRectViewLeft(this.player.template.danmakuSpeedBarWrapMobile)) / this.player.template.danmakuSpeedBarWrapMobile.offsetWidth;
+                percentage = Math.max(percentage, 0);
+                percentage = Math.min(percentage, 1);
+                this.player.danmaku.speed(percentage.toFixed(2) * 15000 + 5000);
+            });
+
             this.player.template.danmakuSpeedBarWrapWrap.addEventListener(utils.nameMap.dragStart, () => {
                 document.addEventListener(utils.nameMap.dragMove, danmakuSpeedMove);
                 document.addEventListener(utils.nameMap.dragEnd, danmakuSpeedUp);
                 this.player.template.danmakuSpeedBox.classList.add('dplayer-setting-danmaku-active');
+            });
+            this.player.template.danmakuSpeedBarWrapWrapMobile.addEventListener(utils.nameMap.dragStart, () => {
+                document.addEventListener(utils.nameMap.dragMove, danmakuSpeedMoveMobile);
+                document.addEventListener(utils.nameMap.dragEnd, danmakuSpeedUp);
+                this.player.template.danmakuSpeedBoxMobile.classList.add('dplayer-setting-danmaku-active');
             });
         }
         this.resize();

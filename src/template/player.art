@@ -62,7 +62,7 @@
                     <div class="dplayer-danmaku-bar-wrap">
                         <div class="dplayer-danmaku-bar">
                             <div class="dplayer-danmaku-bar-inner">
-                                <span class="dplayer-opacity-thumb"></span>
+                                <span class="dplayer-thumb dplayer-opacity-thumb"></span>
                             </div>
                         </div>
                     </div>

@@ -6,6 +6,8 @@ class Bar {
         this.elements.loaded = template.loadedBar;
         this.elements.danmaku = template.danmakuOpacityBar;
         this.elements.speed = template.danmakuSpeedBar;
+        this.elements.danmakuMobile = template.danmakuOpacityBarMobile;
+        this.elements.speedMobile = template.danmakuSpeedBarMobile;
     }
 
     /**
