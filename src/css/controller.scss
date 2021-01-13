@@ -1054,7 +1054,7 @@
     z-index: 999;
     .dplayer-settingmobile {
         display: flex;
-        @media (min-width: 640px) {
+        @media (min-width: 768px) {
             display: none;
         }
         height: 100%;
@@ -1092,9 +1092,6 @@
             }
             &.dplayer-setting-icon {
                 padding-top: 8.5px;
-                &.vertical {
-                    display: none;
-                }
             }
             &.dplayer-volume-icon {
                 width: 43px;
