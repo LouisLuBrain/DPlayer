@@ -212,6 +212,7 @@
                 height: 100%;
                 @media (max-width: 640px) {
                     border-radius: 2px 99px 99px 2px;
+                    margin-left: -30px;
                 }
                 &:disabled {
                     background-color: #78b8fd!important;
@@ -333,6 +334,13 @@
                 }
                 &::-ms-clear {
                     display: none;
+                }
+                @media (max-width: 640px) {
+                    &::placeholder {
+                        color: #fff!important;
+                        opacity: 0.6!important;
+                        font-size: 0.75rem!important;
+                    }
                 }
             }
             .dplayer-unAuth-placeholder {
